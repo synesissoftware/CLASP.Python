@@ -1,0 +1,14 @@
+
+# directories (by name)
+
+# directories (by pattern)
+
+# files (by name)
+
+# files (by pattern)
+
+*~
+*.pyc
+*.swp
+*.tmp
+
