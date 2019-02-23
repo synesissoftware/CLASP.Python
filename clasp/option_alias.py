@@ -12,6 +12,11 @@ class OptionAlias(Alias):
         self.is_required        =   is_required
         self.require_message    =   require_message
 
+    def __str__(self):
+
+        return "<%s.%s: name=%s; help=%s; aliases=%s; extras=%s, default_value=%s, values_range=%s,  is_required=%s, require_message=%s >" %\
+            (self.__module__, self.__class__.__name__, self.name, self.help, self.aliases, self.extras, self.default_value, self.values_range, self.is_required, self.require_message,)
+
 
 def option(name, **kwargs):
 

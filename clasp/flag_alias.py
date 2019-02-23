@@ -7,6 +7,11 @@ class FlagAlias(Alias):
 
         super(FlagAlias, self).__init__(name, aliases, help, extras)
 
+    def __str__(self):
+
+        return "<%s.%s: name=%s; help=%s; aliases=%s; extras=%s>" %\
+            (self.__module__, self.__class__.__name__, self.name, self.help, self.aliases, self.extras)
+
 
 def flag(name, **kwargs):
 

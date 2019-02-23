@@ -1,4 +1,6 @@
 
+from .alias import Alias
+from .flag_alias import FlagAlias
 from .flag_argument import FlagArgument
 from .option_alias import OptionAlias
 from .option_argument import OptionArgument
@@ -36,6 +38,59 @@ class Arguments:
 
         self.values     =   tuple(values)
         """The parsed values"""
+
+    @staticmethod
+    def _select_alias(item, aliases):
+
+        for a in aliases:
+
+            if a.name == item:
+
+                return a
+
+            for a2 in a.aliases:
+
+                if item == a2:
+
+                    return a
+
+        return None
+
+    @staticmethod
+    def _select_aliases(item, aliases):
+
+        select_alias = Arguments._select_alias(item, aliases)
+
+        if select_alias:
+
+            return select_alias
+
+        n = len(item) - 1
+
+        if n > 1:
+
+            m = re.match(r'-+([a-zA-Z]+)$', item)
+
+            if m:
+
+                select_aliases  =   []
+
+                for c in m.group(1):
+
+                    name = '-' + c
+
+                    select_alias = Arguments._select_alias(name, aliases)
+
+                    if select_alias:
+
+                        select_aliases.append(select_alias)
+
+
+                if len(select_aliases) == n:
+
+                    return select_aliases
+
+        return None
 
 
     @staticmethod
@@ -95,6 +150,41 @@ class Arguments:
 
                     value       =   arg[1 + len(gr):]
                     is_option   =   True
+                else:
+
+                    # an option name, or a flag, or a combined set of flags
+
+                    sel_aliases =   Arguments._select_aliases(arg, aliases)
+
+                    if sel_aliases:
+
+                        if isinstance(sel_aliases, (Alias, )):
+
+                            pass
+                        else:
+
+                            # We have a combination of items
+
+                            for a in sel_aliases:
+
+                                if False:
+
+                                    pass
+                                elif isinstance(a, (FlagAlias, )):
+
+                                    flag = FlagArgument(a.name, index, arg, a.name, a, len(hyphens), given_label, a.extras)
+
+                                    flags.append(flag)
+                                elif isinstance(a, (OptionAlias, )):
+
+                                    pass
+                                else:
+
+                                    pass
+
+                                pass
+
+                            continue
 
                 # Now look through the aliases, for:
                 #

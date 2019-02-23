@@ -1002,8 +1002,47 @@ class Arguments_test_1(unittest.TestCase):
 
         self.assertEqual('value-1', args.values[0])
 
+    def test_flags_combined(self):
+
+        aliases =   (
+
+            clasp.flag('--compile', alias = '-c'),
+            clasp.flag('--debug', alias = '-d'),
+            clasp.flag('--execute', alias = '-e'),
+        )
+
+        argv    =   ( '-ced', )
+        args    =   Arguments(argv, aliases)
+
+        self.assertIsInstance(args.flags, ( tuple, ))
+        self.assertTrue(args.flags)
+        self.assertEqual(3, len(args.flags))
+
+        flag    =   args.flags[0]
+
+        self.assertIsInstance(flag, ( Flag, ))
+        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_name        ,   '-ced')
+        self.assertTrue(flag.argument_alias)
+        self.assertEqual(flag.given_hyphens     ,   1)
+        self.assertEqual(flag.given_label       ,   'ced')
+        self.assertEqual(flag.name              ,   '--compile')
+        self.assertEqual(flag.extras            ,   {})
+        self.assertEqual(str(flag)              ,   '--compile')
+        self.assertEqual(flag                   ,   '--compile')
+
+        self.assertIsInstance(args.options, ( tuple, ))
+        self.assertFalse(args.options)
+        self.assertEqual(0, len(args.options))
+
+        self.assertIsInstance(args.values, ( tuple, ))
+        self.assertFalse(args.values)
+        self.assertEqual(0, len(args.values))
+
+
 
 if '__main__' == __name__:
 
     unittest.main()
+
 
