@@ -83,7 +83,20 @@ class Arguments:
 
                     if select_alias:
 
-                        select_aliases.append(select_alias)
+                        m2 = re.match(r'(-+)([^=]+)=(.*)$', select_alias.name)
+
+                        if m2:
+
+                            name2 = m2.group(1) + m2.group(2)
+
+                            select_option_alias = Arguments._select_alias(name2, aliases)
+
+                            if select_option_alias:
+
+                                select_aliases.append((select_option_alias, select_alias, m2.group(3)))
+                        else:
+
+                            select_aliases.append(select_alias)
 
 
                 if len(select_aliases) == n:
@@ -172,12 +185,21 @@ class Arguments:
                                     pass
                                 elif isinstance(a, (FlagAlias, )):
 
-                                    flag = FlagArgument(a.name, index, arg, a.name, a, len(hyphens), given_label, a.extras)
+                                    flag = FlagArgument(arg, index, arg, a.name, a, len(hyphens), given_label, a.extras)
 
                                     flags.append(flag)
                                 elif isinstance(a, (OptionAlias, )):
 
                                     pass
+                                elif isinstance(a, (tuple, )):
+
+                                    soa =   a[0]
+                                    fa  =   a[1]
+                                    v   =   a[2]
+
+                                    option = OptionArgument(arg, index, arg, soa.name, fa, len(hyphens), given_label, v, extras)
+
+                                    options.append(option)
                                 else:
 
                                     pass

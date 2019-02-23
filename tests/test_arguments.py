@@ -1040,6 +1040,71 @@ class Arguments_test_1(unittest.TestCase):
         self.assertEqual(0, len(args.values))
 
 
+    def test_flags_of_flags_and_options_combined(self):
+
+        aliases =   (
+
+            clasp.flag('--compile', alias = '-c'),
+            clasp.flag('--mode=debug', alias = '-d'),
+            clasp.flag('--execute', alias = '-e'),
+            clasp.option('--mode', alias = '-m'),
+        )
+
+        argv    =   ( '-ced', )
+        args    =   Arguments(argv, aliases)
+
+        self.assertIsInstance(args.flags, ( tuple, ))
+        self.assertTrue(args.flags)
+        self.assertEqual(2, len(args.flags))
+
+        flag    =   args.flags[0]
+
+        self.assertIsInstance(flag, ( Flag, ))
+        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_name        ,   '-ced')
+        self.assertTrue(flag.argument_alias)
+        self.assertEqual(flag.given_hyphens     ,   1)
+        self.assertEqual(flag.given_label       ,   'ced')
+        self.assertEqual(flag.name              ,   '--compile')
+        self.assertEqual(flag.extras            ,   {})
+        self.assertEqual(str(flag)              ,   '--compile')
+        self.assertEqual(flag                   ,   '--compile')
+
+        flag    =   args.flags[1]
+
+        self.assertIsInstance(flag, ( Flag, ))
+        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_name        ,   '-ced')
+        self.assertTrue(flag.argument_alias)
+        self.assertEqual(flag.given_hyphens     ,   1)
+        self.assertEqual(flag.given_label       ,   'ced')
+        self.assertEqual(flag.name              ,   '--execute')
+        self.assertEqual(flag.extras            ,   {})
+        self.assertEqual(str(flag)              ,   '--execute')
+        self.assertEqual(flag                   ,   '--execute')
+
+        self.assertIsInstance(args.options, ( tuple, ))
+        self.assertTrue(args.options)
+        self.assertEqual(1, len(args.options))
+
+        option  =   args.options[0]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index       ,   0)
+        self.assertEqual(option.given_name        ,   '-ced')
+        self.assertTrue(option.argument_alias)
+        self.assertEqual(option.given_hyphens     ,   1)
+        self.assertEqual(option.given_label       ,   'ced')
+        self.assertEqual(option.name              ,   '--mode')
+        self.assertEqual(option.extras            ,   {})
+        self.assertEqual(str(option)              ,   '--mode=debug')
+        self.assertEqual(option                   ,   '--mode=debug')
+
+        self.assertIsInstance(args.values, ( tuple, ))
+        self.assertFalse(args.values)
+        self.assertEqual(0, len(args.values))
+
+
 
 if '__main__' == __name__:
 
