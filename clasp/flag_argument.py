@@ -1,7 +1,7 @@
 
 import sys
 
-class Flag:
+class FlagArgument:
 
     def __init__(self, arg, given_index, given_name, resolved_name, argument_alias, given_hyphens, given_label, extras):
 
@@ -18,14 +18,14 @@ class Flag:
 
         #sys.stderr.write("__str__(self=%s)\n" % (self.name))
 
-        return self.arg_
+        return self.name
 
     def __eq__(self, other):
-        """Yields True if other is a Flag and has the same 'name'"""
+        """Yields True if other is a FlagArgument and has the same 'name'"""
 
         #sys.stderr.write("__eq__(self=%s, other=%s)\n" % (self, other))
 
-        if isinstance(other, Flag):
+        if isinstance(other, FlagArgument):
 
             return self.name == other.name
 
@@ -37,9 +37,10 @@ class Flag:
 
 
     def __ne__(self, other):
-        """Yields False if other is not a Flag or has a different 'name'"""
+        """Yields False if other is not a FlagArgument or has a different 'name'"""
 
         #sys.stderr.write("__ne__(self=%s, other=%s)\n" % (self, other))
 
         return not self.__eq__(other)
+
 

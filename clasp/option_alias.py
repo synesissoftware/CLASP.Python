@@ -1,0 +1,59 @@
+
+from .alias import Alias
+
+class OptionAlias(Alias):
+
+    def __init__(self, name, aliases, help, extras, values_range, default_value, is_required, require_message):
+
+        super(OptionAlias, self).__init__(name, aliases, help, extras)
+
+        self.values_range       =   values_range
+        self.default_value      =   default_value
+        self.is_required        =   is_required
+        self.require_message    =   require_message
+
+
+def option(name, **kwargs):
+
+    aliases =   None
+    help    =   None
+    extras  =   None
+
+    values_range    =   None
+    default_value   =   None
+    is_required     =   None
+    require_message =   None
+
+    for n, v in kwargs.items():
+
+        if 'alias' == n:
+
+            aliases = ( v, )
+        elif 'aliases' == n:
+
+            aliases = v
+        elif 'help' == n:
+
+            help = v
+        elif 'extras' == n:
+
+            extras = v
+        elif 'values_range' == n or 'values' == n:
+
+            values_range = v
+        elif 'default_value' == n or 'default' == n:
+
+            default_value = v
+        elif 'required' == n or 'is_required' == n:
+
+            is_required = v
+        elif 'require_message' == n:
+
+            require_message = v
+        else:
+
+            raise TypeError("'flag' method does not recognise the '%s' keyword argument" % (n, ))
+
+    return OptionAlias(name, aliases, help, extras, values_range, default_value, is_required, require_message)
+
+
