@@ -9,7 +9,7 @@ __email__       =   'matthew@synesis.com.au'
 __license__     =   'BSD-3-Clause'
 __maintainer__  =   'Matt Wilson'
 __status__      =   'Alpha'
-__version__     =   '0.0.2'
+__version__     =   '0.2.0'
 
 from .alias import Alias, alias
 from .flag_alias import FlagAlias, flag
