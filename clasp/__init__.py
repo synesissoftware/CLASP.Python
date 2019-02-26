@@ -19,6 +19,8 @@ from .arguments import Arguments
 from .flag_argument import FlagArgument as Flag
 from .option_argument import OptionArgument as Option
 
+from .cli import show_usage, show_version
+
 import sys
 
 def parse(argv = None, aliases = None):

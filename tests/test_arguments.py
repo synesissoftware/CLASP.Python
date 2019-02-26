@@ -9,7 +9,7 @@ import clasp
 import unittest
 
 
-class Arguments_test_1(unittest.TestCase):
+class Arguments_tester_1(unittest.TestCase):
 
 
     def test_empty_args_via_clasp_parse(self):
