@@ -1,6 +1,9 @@
 
 # directories (by name)
 
+build/
+dist/
+
 # directories (by pattern)
 
 # files (by name)
