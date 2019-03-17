@@ -5,6 +5,8 @@ from .flag_argument import FlagArgument
 from .option_alias import OptionAlias
 from .option_argument import OptionArgument
 
+from .cli import _get_program_name
+
 import re
 
 class Arguments:
@@ -26,6 +28,7 @@ class Arguments:
 
         flags, options, values  =   Arguments._parse(argv, self.aliases)
 
+        self.program_name   =   _get_program_name({})
 
         self.flags      =   tuple(flags)
         """The parsed flags"""
@@ -35,6 +38,108 @@ class Arguments:
 
         self.values     =   tuple(values)
         """The parsed values"""
+
+    def flagIsSpecified(self, id):
+
+        return None != self.lookupFlag(id);
+
+    def lookupFlag(self, id):
+
+        name    =   None
+
+        if False:
+
+            pass
+        elif FlagArgument == type(id):
+
+            name    =   id.name
+        elif OptionArgument == type(id):
+
+            name    =   id.name
+        else:
+
+            name    =   id
+
+        for index, flag in enumerate(self.flags):
+
+            if flag.name == name:
+
+                flag.use()
+
+                return flag
+
+        return None
+
+    def lookupOption(self, id):
+
+        name    =   None
+
+        if False:
+
+            pass
+        elif FlagArgument == type(id):
+
+            name    =   id.name
+        elif OptionArgument == type(id):
+
+            name    =   id.name
+        else:
+
+            name    =   id
+
+        for index, option in enumerate(self.options):
+
+            if option.name == name:
+
+                option.use()
+
+                return option
+
+        return None
+
+    def getFirstUnusedFlag(self):
+
+        for flag in self.flags:
+
+            if not flag.used():
+
+                return flag
+
+        return False
+
+    def getFirstUnusedOption(self):
+
+        for option in self.options:
+
+            if not option.used():
+
+                return option
+
+        return False
+
+
+    def getFirstUnusedFlagOrOption(self):
+
+        flag    =   self.getFirstUnusedFlag()
+        option  =   self.getFirstUnusedOption()
+
+        if flag:
+
+            if option:
+
+                if flag.given_index < option.given_index:
+
+                    return flag
+                else:
+
+                    return option
+            else:
+
+                return flag
+        else:
+
+            return option
+
 
     @staticmethod
     def _select_alias(item, aliases):

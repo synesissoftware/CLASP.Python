@@ -39,4 +39,16 @@ def flag(name, **kwargs):
 
     return FlagAlias(name, aliases, help, extras)
 
+HELP_FLAG_      =   FlagAlias('--help', None, 'Shows usage and terminates', None)
+VERSION_FLAG_   =   FlagAlias('--version', None, 'Shows version and terminates', None)
+
+
+def HelpFlag():
+
+   return HELP_FLAG_
+
+def VersionFlag():
+
+   return VERSION_FLAG_
+
 

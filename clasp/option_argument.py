@@ -15,6 +15,18 @@ class OptionArgument(object):
         self.value          =   value
         self.extras         =   extras if extras else dict()
 
+        self.private_fields =   {
+
+            'used'  :   False
+        }
+
+    def use(self):
+
+        self.private_fields['used'] = True
+
+    def used(self):
+
+        return self.private_fields['used']
 
     def __str__(self):
 

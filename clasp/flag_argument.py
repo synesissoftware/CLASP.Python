@@ -14,6 +14,19 @@ class FlagArgument:
         self.name           =   resolved_name if resolved_name else given_name
         self.extras         =   extras if extras else dict()
 
+        self.private_fields =   {
+
+            'used'  :   False
+        }
+
+    def use(self):
+
+        self.private_fields['used'] = True
+
+    def used(self):
+
+        return self.private_fields['used']
+
     def __str__(self):
 
         #sys.stderr.write("__str__(self=%s)\n" % (self.name))

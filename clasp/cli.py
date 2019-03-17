@@ -103,7 +103,7 @@ def show_usage(aliases, **kwargs):
 
         info_lines  =   [ info_lines ]
 
-    info_lines      =   [ _generate_version_string(options) if ':version' == l else l for l in info_lines ]
+    info_lines      =   [ _generate_version_string(options) if l in ( ':version', ':version:' ) else l for l in info_lines ]
 
 
     # sift the aliases to sort out which are value-option aliases (VOAs)
@@ -189,7 +189,7 @@ def show_usage(aliases, **kwargs):
 
                 stream.write("\n")
 
-    if exit_code:
+    if None != exit_code:
 
         sys.exit(exit_code)
 
@@ -229,7 +229,7 @@ def show_version(aliases, **kwargs):
 
     stream.write("%s\n" % version)
 
-    if exit_code:
+    if None != exit_code:
 
         sys.exit(exit_code)
 

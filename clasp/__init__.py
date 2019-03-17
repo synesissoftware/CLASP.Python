@@ -15,6 +15,8 @@ from .alias import Alias, alias
 from .flag_alias import FlagAlias, flag
 from .option_alias import OptionAlias, option
 
+from .flag_alias import HelpFlag, VersionFlag
+
 from .arguments import Arguments
 from .flag_argument import FlagArgument as Flag
 from .option_argument import OptionArgument as Option
