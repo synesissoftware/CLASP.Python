@@ -10,11 +10,9 @@ def dict_get_N(d, *keys):
 
     for key in keys:
 
-        v = d.get(key)
+        if key in d:
 
-        if v:
-
-            return v
+            return d.get(key)
 
     return default
 

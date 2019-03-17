@@ -13,8 +13,6 @@ aliases = (
     clasp.option('--length', alias = '-l', help = 'specifies the length'),
     clasp.flag('--verbosity=succinct', aliases = [ '--succinct', '-s' ]),
     clasp.flag('--verbosity=verbose', alias = '--verbose'),
-
-
 )
 
 info_lines = (
