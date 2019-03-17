@@ -73,7 +73,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertTrue(args.values)
 
 
-    def test_two_values(self):
+    def test_ten_values(self):
 
         argv    =   [ "value%d" % i for i in range(0, 10) ]
         args    =   Arguments(argv)
@@ -426,7 +426,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual('-f2', args.values[1])
 
 
-    def test_double_hyphen_1(self):
+    def test_double_hyphen_2(self):
 
         argv    =   ( '-f1', 'value1', '--', '-f2', '--', '--option1=v1' )
         args    =   Arguments(argv)
@@ -1030,6 +1030,32 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(flag.extras            ,   {})
         self.assertEqual(str(flag)              ,   '--compile')
         self.assertEqual(flag                   ,   '--compile')
+
+        flag    =   args.flags[1]
+
+        self.assertIsInstance(flag, ( Flag, ))
+        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_name        ,   '-ced')
+        self.assertTrue(flag.argument_alias)
+        self.assertEqual(flag.given_hyphens     ,   1)
+        self.assertEqual(flag.given_label       ,   'ced')
+        self.assertEqual(flag.name              ,   '--execute')
+        self.assertEqual(flag.extras            ,   {})
+        self.assertEqual(str(flag)              ,   '--execute')
+        self.assertEqual(flag                   ,   '--execute')
+
+        flag    =   args.flags[2]
+
+        self.assertIsInstance(flag, ( Flag, ))
+        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_name        ,   '-ced')
+        self.assertTrue(flag.argument_alias)
+        self.assertEqual(flag.given_hyphens     ,   1)
+        self.assertEqual(flag.given_label       ,   'ced')
+        self.assertEqual(flag.name              ,   '--debug')
+        self.assertEqual(flag.extras            ,   {})
+        self.assertEqual(str(flag)              ,   '--debug')
+        self.assertEqual(flag                   ,   '--debug')
 
         self.assertIsInstance(args.options, ( tuple, ))
         self.assertFalse(args.options)

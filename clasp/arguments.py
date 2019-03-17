@@ -26,9 +26,6 @@ class Arguments:
 
         flags, options, values  =   Arguments._parse(argv, self.aliases)
 
-        for arg in argv:
-
-            pass
 
         self.flags      =   tuple(flags)
         """The parsed flags"""
@@ -242,18 +239,13 @@ class Arguments:
 
                             resolved_name   =   resolved_name_2
 
-                        else:
-
-                            pass
-
                         if is_option:
-
 
                             if value != None:
 
                                 if alias_has_value:
 
-                                    sys.stderr.write("\t\talias_has_value\n")
+
 
                                     value   =   value_2
                                 else:
@@ -285,7 +277,6 @@ class Arguments:
                     flag        =   FlagArgument(arg, index, given_name, resolved_name, argument_alias, len(hyphens), given_label, extras)
 
                     flags.append(flag)
-
             else:
 
                 values.append(arg)
