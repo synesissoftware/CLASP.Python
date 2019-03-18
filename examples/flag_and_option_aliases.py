@@ -5,7 +5,7 @@
 
 # imports
 
-import clasp
+import pyclasp as clasp
 
 import sys
 

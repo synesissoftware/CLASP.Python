@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import clasp
+import pyclasp as clasp
 
 import sys
 

@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-from clasp import Arguments
-from clasp import alias, option
-from clasp import Flag
-from clasp import Option
-import clasp
+from pyclasp import Arguments
+from pyclasp import alias, option
+from pyclasp import Flag
+from pyclasp import Option
+import pyclasp as clasp
 
 import unittest
 
