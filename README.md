@@ -20,7 +20,15 @@ Python version.
 
 T.B.C.
 
-## Installation
+## Installation & usage
+
+Install via **pip** or **pip3**, as in:
+
+```
+	pip3 install pyclasp
+```
+
+Use via **import**:
 
 ```Python
 
