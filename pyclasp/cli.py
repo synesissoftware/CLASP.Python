@@ -1,6 +1,8 @@
 
 from .alias import Alias
-from .util import dict_get_N
+from .util import _dict_get_N, _get_program_name
+
+from .arguments import Arguments
 
 from .alias import Alias
 from .flag_alias import FlagAlias
@@ -10,22 +12,10 @@ import os
 import re
 import sys
 
-def _get_program_name(options):
+def _generate_version_string(argv, options):
 
-    program_name    =   dict_get_N(options, 'program_name', 'program-name')
-
-    if not program_name:
-
-        bn      =   os.path.basename(sys.argv[0])
-
-        program_name    =   bn
-
-    return program_name
-
-def _generate_version_string(options):
-
-    program_name    =   _get_program_name(options)
-    version_prefix  =   dict_get_N((options, ''), 'version_prefix', 'version-prefix')
+    program_name    =   _get_program_name(argv, options)
+    version_prefix  =   _dict_get_N((options, ''), 'version_prefix', 'version-prefix')
 
     version         =   options.get('version')
 
@@ -38,15 +28,15 @@ def _generate_version_string(options):
             version =   '.'.join(version)
     else:
 
-        version_major   =  dict_get_N(options, 'version_major', 'version-major')
+        version_major   =  _dict_get_N(options, 'version_major', 'version-major')
 
         if not version_major:
 
             raise ValueError("options must specify 'version' or 'version_major' [ + 'version_minor' [ + [ 'version_patch' (or 'version_revision') [ + 'version_build' ] ] ] ")
 
-        version_minor   =   dict_get_N(options, 'version_minor', 'version-minor')
-        version_patch   =   dict_get_N(options, 'version_patch', 'version-patch', 'version_revision', 'version-revision')
-        version_build   =   dict_get_N(options, 'version_build', 'version-build')
+        version_minor   =   _dict_get_N(options, 'version_minor', 'version-minor')
+        version_patch   =   _dict_get_N(options, 'version_patch', 'version-patch', 'version_revision', 'version-revision')
+        version_build   =   _dict_get_N(options, 'version_build', 'version-build')
 
         version         =   str(version_major)
 
@@ -67,6 +57,14 @@ def _generate_version_string(options):
 
 def show_usage(aliases, **kwargs):
 
+    argv                =   sys.argv
+
+    if isinstance(aliases, (Arguments, )):
+
+        args        =   aliases
+        argv        =   args.argv
+        aliases     =   args.aliases
+
     if __debug__:
 
         if aliases == None:
@@ -85,12 +83,12 @@ def show_usage(aliases, **kwargs):
 
     options             =   kwargs
 
-    exit_code           =   dict_get_N(options, 'exit', 'exit_code', 'exit-code')
-    flags_and_options   =   dict_get_N((options, ' [ ... flags and options ... ]'), 'flags_and_options', 'flags-and-options')
-    info_lines          =   dict_get_N(options, 'info_lines', 'info-lines')
-    program_name        =   _get_program_name(options)
-    stream              =   dict_get_N((options, sys.stdout), 'stream')
-    suppress_blanks     =   dict_get_N(options, 'suppress_blank_lines_between_options', 'suppress-blank-lines-between-options')
+    exit_code           =   _dict_get_N(options, 'exit', 'exit_code', 'exit-code')
+    flags_and_options   =   _dict_get_N((options, ' [ ... flags and options ... ]'), 'flags_and_options', 'flags-and-options')
+    info_lines          =   _dict_get_N(options, 'info_lines', 'info-lines')
+    program_name        =   _get_program_name(argv, options)
+    stream              =   _dict_get_N((options, sys.stdout), 'stream')
+    suppress_blanks     =   _dict_get_N(options, 'suppress_blank_lines_between_options', 'suppress-blank-lines-between-options')
     values              =   options.get('values', '')
 
     if not info_lines:
@@ -103,7 +101,7 @@ def show_usage(aliases, **kwargs):
 
         info_lines  =   [ info_lines ]
 
-    info_lines      =   [ _generate_version_string(options) if l in ( ':version', ':version:' ) else l for l in info_lines ]
+    info_lines      =   [ _generate_version_string(argv, options) if l in ( ':version', ':version:' ) else l for l in info_lines ]
 
 
     # sift the aliases to sort out which are value-option aliases (VOAs)
@@ -197,6 +195,14 @@ def show_usage(aliases, **kwargs):
 
 def show_version(aliases, **kwargs):
 
+    argv                =   sys.argv
+
+    if isinstance(aliases, (Arguments, )):
+
+        args        =   aliases
+        argv        =   args.argv
+        aliases     =   args.aliases
+
     if __debug__:
 
         if aliases == None:
@@ -225,7 +231,7 @@ def show_version(aliases, **kwargs):
     exit_code       =   kwargs.get('exit', kwargs.get('exit_code', kwargs.get('exit-code')))
     stream          =   kwargs.get('stream', sys.stdout)
 
-    version         =   _generate_version_string(kwargs)
+    version         =   _generate_version_string(argv, kwargs)
 
     stream.write("%s\n" % version)
 

@@ -23,15 +23,15 @@ info_lines = (
     '',
 )
 
-args = clasp.Arguments(sys.argv, aliases)
+args = clasp.parse(sys.argv, aliases)
 
 print '*' * 50 + "\n"
 print "usage:\n"
-clasp.show_usage(aliases, version = [ 1, 2, 3 ], stream = sys.stdout, program_name = 'myprog', version_prefix = 'v', info_lines = info_lines)
+clasp.show_usage(args, version = [ 1, 2, 3 ], stream = sys.stdout, program_name = 'myprog', version_prefix = 'v', info_lines = info_lines)
 
 print '*' * 50 + "\n"
 print "version:\n"
-clasp.show_version(aliases, version = [ 1, 2, 3 ], stream = sys.stdout, program_name = 'myprog', version_prefix = 'v')
+clasp.show_version(args, version = [ 1, 2, 3 ], stream = sys.stdout, program_name = 'myprog', version_prefix = 'v')
 
 print
 

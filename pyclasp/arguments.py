@@ -5,7 +5,7 @@ from .flag_argument import FlagArgument
 from .option_alias import OptionAlias
 from .option_argument import OptionArgument
 
-from .cli import _get_program_name
+from .util import _get_program_name
 
 import re
 
@@ -28,7 +28,7 @@ class Arguments:
 
         flags, options, values  =   Arguments._parse(argv, self.aliases)
 
-        self.program_name   =   _get_program_name({})
+        self.program_name   =   _get_program_name(argv, {})
 
         self.flags      =   tuple(flags)
         """The parsed flags"""
@@ -219,6 +219,11 @@ class Arguments:
         current_option  =   None
 
         for index, arg in enumerate(argv):
+
+            if 0 == index:
+
+                # ignore program name
+                continue
 
             if not forced_value:
 

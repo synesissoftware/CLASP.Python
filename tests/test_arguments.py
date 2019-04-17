@@ -14,7 +14,18 @@ class Arguments_tester_1(unittest.TestCase):
     def test_empty_args_via_clasp_parse(self):
 
         argv    =   ()
+
+        with self.assertRaises(IndexError):
+
+            clasp.parse(argv)
+
+
+    def test_no_args_via_clasp_parse(self):
+
+        argv    =   ( 'myprog', )
         args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertFalse(args.flags)
@@ -26,10 +37,12 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertFalse(args.values)
 
 
-    def test_empty_args(self):
+    def test_no_args_via_Arguments_constructor(self):
 
-        argv    =   ()
+        argv    =   ( 'myprog', )
         args    =   Arguments(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertFalse(args.flags)
@@ -43,8 +56,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_one_value(self):
 
-        argv    =   ( 'value1', )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', 'value1', )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertFalse(args.flags)
@@ -59,8 +74,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_two_values(self):
 
-        argv    =   ( 'value1', 'value2' )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', 'value1', 'value2' )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertFalse(args.flags)
@@ -74,8 +91,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_ten_values(self):
 
-        argv    =   [ "value%d" % i for i in range(0, 10) ]
-        args    =   Arguments(argv)
+        argv    =   [ 'myprog', ] + [ "value%d" % i for i in range(0, 10) ]
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertFalse(args.flags)
@@ -90,8 +109,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_one_flag(self):
 
-        argv    =   ( '-f1', )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-f1', )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertTrue(args.flags)
@@ -100,7 +121,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -118,8 +139,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_two_flags(self):
 
-        argv    =   ( '-f1', '--flag2' )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-f1', '--flag2' )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertTrue(args.flags)
@@ -128,7 +151,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -141,7 +164,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[1]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   1)
+        self.assertEqual(flag.given_index       ,   2)
         self.assertEqual(flag.given_name        ,   '--flag2')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   2)
@@ -160,8 +183,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_three_flags(self):
 
-        argv    =   ( '-f1', '--flag2', '---x' )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-f1', '--flag2', '---x' )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertTrue(args.flags)
@@ -170,7 +195,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -183,7 +208,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[1]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   1)
+        self.assertEqual(flag.given_index       ,   2)
         self.assertEqual(flag.given_name        ,   '--flag2')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   2)
@@ -196,7 +221,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[2]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   2)
+        self.assertEqual(flag.given_index       ,   3)
         self.assertEqual(flag.given_name        ,   '---x')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   3)
@@ -215,8 +240,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_one_option(self):
 
-        argv    =   ( '-o1=v1', )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-o1=v1', )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertFalse(args.flags)
@@ -228,7 +255,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o1')
         self.assertEqual(option.argument_alias  ,   None)
         self.assertEqual(option.given_hyphens   ,   1)
@@ -245,8 +272,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_two_options(self):
 
-        argv    =   ( '-o1=v1', '--option2=value2' )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-o1=v1', '--option2=value2' )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertFalse(args.flags)
@@ -258,7 +287,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o1')
         self.assertEqual(option.argument_alias  ,   None)
         self.assertEqual(option.given_hyphens   ,   1)
@@ -272,7 +301,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[1]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   1)
+        self.assertEqual(option.given_index     ,   2)
         self.assertEqual(option.given_name      ,   '--option2')
         self.assertEqual(option.argument_alias  ,   None)
         self.assertEqual(option.given_hyphens   ,   2)
@@ -289,8 +318,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_three_options(self):
 
-        argv    =   ( '-o1=v1', '--option2=value2', '---the-third-option=the third value' )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-o1=v1', '--option2=value2', '---the-third-option=the third value' )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple ))
         self.assertFalse(args.flags)
@@ -302,7 +333,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o1')
         self.assertEqual(option.argument_alias  ,   None)
         self.assertEqual(option.given_hyphens   ,   1)
@@ -316,7 +347,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[1]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   1)
+        self.assertEqual(option.given_index     ,   2)
         self.assertEqual(option.given_name      ,   '--option2')
         self.assertEqual(option.argument_alias  ,   None)
         self.assertEqual(option.given_hyphens   ,   2)
@@ -330,7 +361,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[2]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   2)
+        self.assertEqual(option.given_index     ,   3)
         self.assertEqual(option.given_name      ,   '---the-third-option')
         self.assertEqual(option.argument_alias  ,   None)
         self.assertEqual(option.given_hyphens   ,   3)
@@ -347,8 +378,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_one_flag_and_one_option_and_one_value(self):
 
-        argv    =   ( '-f1', 'value1', '--first-option=val1' )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-f1', 'value1', '--first-option=val1' )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -357,7 +390,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -374,7 +407,7 @@ class Arguments_tester_1(unittest.TestCase):
         option    =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   2)
+        self.assertEqual(option.given_index     ,   3)
         self.assertEqual(option.given_name      ,   '--first-option')
         self.assertEqual(option.argument_alias  ,   None)
         self.assertEqual(option.given_hyphens   ,   2)
@@ -394,8 +427,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_double_hyphen_1(self):
 
-        argv    =   ( '-f1', 'value1', '--', '-f2' )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-f1', 'value1', '--', '-f2' )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -404,7 +439,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -427,8 +462,10 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_double_hyphen_2(self):
 
-        argv    =   ( '-f1', 'value1', '--', '-f2', '--', '--option1=v1' )
-        args    =   Arguments(argv)
+        argv    =   ( 'myprog', '-f1', 'value1', '--', '-f2', '--', '--option1=v1' )
+        args    =   clasp.parse(argv)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -437,7 +474,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -466,8 +503,10 @@ class Arguments_tester_1(unittest.TestCase):
 
         for aliases in aliases_list:
 
-            argv    =   ( '-f1', 'value1', '--first-option=val1' )
-            args    =   Arguments(argv, aliases)
+            argv    =   ( 'myprog', '-f1', 'value1', '--first-option=val1' )
+            args    =   clasp.parse(argv, aliases)
+
+            self.assertEqual('myprog', args.program_name)
 
             self.assertIsInstance(args.flags, ( tuple, ))
             self.assertTrue(args.flags)
@@ -476,7 +515,7 @@ class Arguments_tester_1(unittest.TestCase):
             flag    =   args.flags[0]
 
             self.assertIsInstance(flag, ( Flag, ))
-            self.assertEqual(flag.given_index       ,   0)
+            self.assertEqual(flag.given_index       ,   1)
             self.assertEqual(flag.given_name        ,   '-f1')
             self.assertEqual(flag.argument_alias    ,   None)
             self.assertEqual(flag.given_hyphens     ,   1)
@@ -493,7 +532,7 @@ class Arguments_tester_1(unittest.TestCase):
             option    =   args.options[0]
 
             self.assertIsInstance(option, ( Option, ))
-            self.assertEqual(option.given_index     ,   2)
+            self.assertEqual(option.given_index     ,   3)
             self.assertEqual(option.given_name      ,   '--first-option')
             self.assertEqual(option.argument_alias  ,   None)
             self.assertEqual(option.given_hyphens   ,   2)
@@ -517,8 +556,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.flag('--verbose', alias = '-v', extras = { 'x-name': 'v-val' }),
         )
-        argv    =   ( '--verbose', '--succinct', 'value', '-v' )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '--verbose', '--succinct', 'value', '-v' )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -527,7 +568,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '--verbose')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   2)
@@ -540,7 +581,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[1]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   1)
+        self.assertEqual(flag.given_index       ,   2)
         self.assertEqual(flag.given_name        ,   '--succinct')
         self.assertEqual(flag.argument_alias    ,   None)
         self.assertEqual(flag.given_hyphens     ,   2)
@@ -553,7 +594,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[2]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   3)
+        self.assertEqual(flag.given_index       ,   4)
         self.assertEqual(flag.given_name        ,   '-v')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -579,8 +620,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.flag('--expand', aliases = ( '-x', '--x', ), extras = { 'some-value': ( 'e', 'x', 't', 'r', 'a', 's', ) }),
         )
-        argv    =   ( '-f1', 'value1', '-x', '--delete', '--x', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-f1', 'value1', '-x', '--delete', '--x', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -589,7 +632,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertFalse(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -602,7 +645,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[1]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   2)
+        self.assertEqual(flag.given_index       ,   3)
         self.assertEqual(flag.given_name        ,   '-x')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -615,7 +658,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[2]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   3)
+        self.assertEqual(flag.given_index       ,   4)
         self.assertEqual(flag.given_name        ,   '--delete')
         self.assertFalse(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   2)
@@ -628,7 +671,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[3]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   4)
+        self.assertEqual(flag.given_index       ,   5)
         self.assertEqual(flag.given_name        ,   '--x')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   2)
@@ -658,8 +701,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.option('--option', alias = '-o'),
         )
-        argv    =   ( '-f1', 'value1', '-o=value2', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-f1', 'value1', '-o=value2', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -668,7 +713,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertFalse(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -685,7 +730,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   2)
+        self.assertEqual(option.given_index     ,   3)
         self.assertEqual(option.given_name      ,   '-o')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -709,8 +754,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.option('--option', alias = '-o'),
         )
-        argv    =   ( '-o', 'value-1', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-o', 'value-1', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertFalse(args.flags)
@@ -723,7 +770,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -745,8 +792,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.option('--option', alias = '-o', default_value = 'def-val-1'),
         )
-        argv    =   ( '-o', 'value-1', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-o', 'value-1', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertFalse(args.flags)
@@ -759,7 +808,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -781,8 +830,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.option('--option', alias = '-o', default_value = 'def-val-1'),
         )
-        argv    =   ( '-o', '-o', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-o', '-o', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertFalse(args.flags)
@@ -795,7 +846,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -817,8 +868,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.option('--option', alias = '-o', default_value = 'def-val-1'),
         )
-        argv    =   ( '-o', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-o', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertFalse(args.flags)
@@ -831,7 +884,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -853,8 +906,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.option('--option', alias = '-o', default_value = 'def-val-1'),
         )
-        argv    =   ( '-o=', 'value-2', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-o=', 'value-2', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertFalse(args.flags)
@@ -867,7 +922,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -892,8 +947,10 @@ class Arguments_tester_1(unittest.TestCase):
             clasp.option('--verbosity'),
             clasp.flag('--verbosity=high', alias = '-v'),
         )
-        argv    =   ( '-v', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-v', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertFalse(args.flags)
@@ -906,7 +963,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   0)
+        self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-v')
         self.assertEqual(option.argument_alias  ,   aliases[1])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -928,8 +985,10 @@ class Arguments_tester_1(unittest.TestCase):
 
             clasp.option('--option', alias = '-o', default_value = 'default-value'),
         )
-        argv    =   ( '-f1', 'value-1', '-o=', '-o=given-value-1', '--option=given-value-2', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-f1', 'value-1', '-o=', '-o=given-value-1', '--option=given-value-2', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -939,7 +998,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-f1')
         self.assertFalse(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -956,7 +1015,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   2)
+        self.assertEqual(option.given_index     ,   3)
         self.assertEqual(option.given_name      ,   '-o')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -970,7 +1029,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[1]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   3)
+        self.assertEqual(option.given_index     ,   4)
         self.assertEqual(option.given_name      ,   '-o')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   1)
@@ -984,7 +1043,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[2]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index     ,   4)
+        self.assertEqual(option.given_index     ,   5)
         self.assertEqual(option.given_name      ,   '--option')
         self.assertEqual(option.argument_alias  ,   aliases[0])
         self.assertEqual(option.given_hyphens   ,   2)
@@ -1010,8 +1069,10 @@ class Arguments_tester_1(unittest.TestCase):
             clasp.flag('--execute', alias = '-e'),
         )
 
-        argv    =   ( '-ced', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-ced', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -1020,7 +1081,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -1033,7 +1094,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[1]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -1046,7 +1107,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[2]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -1075,8 +1136,10 @@ class Arguments_tester_1(unittest.TestCase):
             clasp.option('--mode', alias = '-m'),
         )
 
-        argv    =   ( '-ced', )
-        args    =   Arguments(argv, aliases)
+        argv    =   ( 'myprog', '-ced', )
+        args    =   clasp.parse(argv, aliases)
+
+        self.assertEqual('myprog', args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -1085,7 +1148,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -1098,7 +1161,7 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[1]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   0)
+        self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
         self.assertTrue(flag.argument_alias)
         self.assertEqual(flag.given_hyphens     ,   1)
@@ -1115,7 +1178,7 @@ class Arguments_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   0)
+        self.assertEqual(option.given_index       ,   1)
         self.assertEqual(option.given_name        ,   '-ced')
         self.assertTrue(option.argument_alias)
         self.assertEqual(option.given_hyphens     ,   1)

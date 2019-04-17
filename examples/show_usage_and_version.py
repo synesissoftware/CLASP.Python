@@ -29,7 +29,7 @@ aliases = (
     clasp.VersionFlag(),
 )
 
-args = clasp.Arguments(sys.argv, aliases)
+args = clasp.parse(sys.argv, aliases)
 
 if args.flagIsSpecified('--help'):
 
