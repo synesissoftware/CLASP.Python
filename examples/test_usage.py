@@ -4,7 +4,7 @@ import pyclasp as clasp
 
 import sys
 
-aliases = (
+specifications = (
 
 
     clasp.flag('--version', alias = '-v', help = 'show the program version and quits'),
@@ -23,7 +23,7 @@ info_lines = (
     '',
 )
 
-args = clasp.parse(sys.argv, aliases)
+args = clasp.parse(sys.argv, specifications)
 
 print '*' * 50 + "\n"
 print "usage:\n"

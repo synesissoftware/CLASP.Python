@@ -1,12 +1,10 @@
 
-from .alias import Alias
+from .arguments import Arguments
 from .util import _dict_get_N, _get_program_name
 
-from .arguments import Arguments
-
-from .alias import Alias
-from .flag_alias import FlagAlias
-from .option_alias import OptionAlias
+from .specification import Specification
+from .flag_specification import FlagSpecification
+from .option_specification import OptionSpecification
 
 import os
 import re
@@ -55,31 +53,31 @@ def _generate_version_string(argv, options):
     return "%s %s%s" % (program_name, version_prefix, version)
 
 
-def show_usage(aliases, **kwargs):
+def show_usage(specifications, **kwargs):
 
     argv                =   sys.argv
 
-    if isinstance(aliases, (Arguments, )):
+    if isinstance(specifications, (Arguments, )):
 
-        args        =   aliases
-        argv        =   args.argv
-        aliases     =   args.aliases
+        args            =   specifications
+        argv            =   args.argv
+        specifications  =   args.specifications
 
     if __debug__:
 
-        if aliases == None:
+        if specifications == None:
 
-            raise TypeError("'aliases' may not be None")
-        elif isinstance(aliases, (list, tuple, )):
+            raise TypeError("'specifications' may not be None")
+        elif isinstance(specifications, (list, tuple, )):
 
-            for index, a in enumerate(aliases):
+            for index, a in enumerate(specifications):
 
-                if not isinstance(a, (Alias, )):
+                if not isinstance(a, (Specification, )):
 
-                    raise TypeError("every element in 'aliases' must be an instance of clasp.Alias: the element at index %d is of type '%s'" % (index, type(a).__name__))
+                    raise TypeError("every element in 'specifications' must be an instance of clasp.Specification: the element at index %d is of type '%s'" % (index, type(a).__name__))
         else:
 
-            raise TypeError("'aliases' must be a list or a tuple")
+            raise TypeError("'specifications' must be a list or a tuple")
 
     options             =   kwargs
 
@@ -104,14 +102,14 @@ def show_usage(aliases, **kwargs):
     info_lines      =   [ _generate_version_string(argv, options) if l in ( ':version', ':version:' ) else l for l in info_lines ]
 
 
-    # sift the aliases to sort out which are value-option aliases (VOAs)
+    # sift the specifications to sort out which are value-option aliases (VOAs)
 
-    pure_aliases    =   []
+    pure_specifications    =   []
     voas            =   {}
 
-    for alias in aliases:
+    for specification in specifications:
 
-        m       =   re.match(r'(-+[a-zA-Z0-3_-]+)[=:](.+)$', alias.name)
+        m       =   re.match(r'(-+[a-zA-Z0-3_-]+)[=:](.+)$', specification.name)
 
         if m:
 
@@ -122,12 +120,12 @@ def show_usage(aliases, **kwargs):
 
                 voas[name] = []
 
-            voas[name].append([ alias, value ])
+            voas[name].append([ specification, value ])
         else:
 
-            pure_aliases.append(alias)
+            pure_specifications.append(specification)
 
-    aliases         =   pure_aliases
+    specifications         =   pure_specifications
 
 
     for info_line in info_lines:
@@ -136,23 +134,23 @@ def show_usage(aliases, **kwargs):
 
     stream.write("USAGE: %s%s%s\n\n" % (program_name, flags_and_options, values))
 
-    if aliases:
+    if specifications:
 
         stream.write("flags/options:\n\n")
 
-        for alias in aliases:
+        for specification in specifications:
 
-            if isinstance(alias, FlagAlias):
+            if isinstance(specification, FlagSpecification):
 
-                for a2 in alias.aliases:
+                for a2 in specification.aliases:
 
                     stream.write("\t%s\n" % a2)
 
-                stream.write("\t%s\n" % alias.name)
-                stream.write("\t\t%s\n" % alias.help)
-            elif isinstance(alias, OptionAlias):
+                stream.write("\t%s\n" % specification.name)
+                stream.write("\t\t%s\n" % specification.help)
+            elif isinstance(specification, OptionSpecification):
 
-                voa = voas.get(alias.name)
+                voa = voas.get(specification.name)
 
                 if voa:
 
@@ -162,21 +160,21 @@ def show_usage(aliases, **kwargs):
 
                             stream.write("\t%s %s\n" % (a3, a2[0].name))
 
-                for a2 in alias.aliases:
+                for a2 in specification.aliases:
 
                     stream.write("\t%s <value>\n" % a2)
 
-                stream.write("\t%s=<value>\n" % alias.name)
-                stream.write("\t\t%s\n" % alias.help)
-                if alias.values_range:
+                stream.write("\t%s=<value>\n" % specification.name)
+                stream.write("\t\t%s\n" % specification.help)
+                if specification.values_range:
 
                     stream.write("\t\twhere <value> one of:\n")
 
-                    for v in alias.values_range:
+                    for v in specification.values_range:
 
                         stream.write("\t\t\t%s\n" % v)
 
-            elif isinstance(alias, Alias):
+            elif isinstance(specification, Specification):
 
                 pass
             else:
@@ -193,31 +191,31 @@ def show_usage(aliases, **kwargs):
 
 
 
-def show_version(aliases, **kwargs):
+def show_version(specifications, **kwargs):
 
     argv                =   sys.argv
 
-    if isinstance(aliases, (Arguments, )):
+    if isinstance(specifications, (Arguments, )):
 
-        args        =   aliases
-        argv        =   args.argv
-        aliases     =   args.aliases
+        args            =   specifications
+        argv            =   args.argv
+        specifications  =   args.specifications
 
     if __debug__:
 
-        if aliases == None:
+        if specifications == None:
 
-            raise TypeError("'aliases' may not be None")
-        elif isinstance(aliases, (list, tuple, )):
+            raise TypeError("'specifications' may not be None")
+        elif isinstance(specifications, (list, tuple, )):
 
-            for index, a in enumerate(aliases):
+            for index, a in enumerate(specifications):
 
-                if not isinstance(a, (Alias, )):
+                if not isinstance(a, (Specification, )):
 
-                    raise TypeError("every element in 'aliases' must be an instance of clasp.Alias: the element at index %d is of type '%s'" % (index, type(a).__name__))
+                    raise TypeError("every element in 'specifications' must be an instance of clasp.Specification: the element at index %d is of type '%s'" % (index, type(a).__name__))
         else:
 
-            raise TypeError("'aliases' must be a list or a tuple")
+            raise TypeError("'specifications' must be a list or a tuple")
 
     # options:
     #

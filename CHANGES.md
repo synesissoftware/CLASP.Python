@@ -1,5 +1,10 @@
 # **CLASP.Python** Changes
 
+## 0.4.0 - 17th April 2019
+
+* ~ changed *Alias classes to *Specification
+* ~ clasp.Arguments aliases attribute is now changed to specifications, and a [DEPRECATED] #aliases added
+
 ## 0.3.1 - 17th April 2019
 
 * ~ fixed defect whereby sys.argv[0] was not used correctly to determine program name

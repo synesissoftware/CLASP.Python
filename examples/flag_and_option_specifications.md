@@ -2,14 +2,14 @@
 
 ## Summary
 
-Example illustrating various kinds of *flag* and *option* aliases, including the combination of short-names.
+Example illustrating various kinds of *flag* and *option* specifications, including the combination of short-names.
 
 ## Source
 
 ```python
 #!/usr/bin/env python
 
-# examples/flags_and_options_aliases.py
+# examples/flags_and_options_specifications.py
 
 
 # imports
@@ -26,17 +26,17 @@ info_lines = (
 
     'CLASP.Python examples',
     ':version:',
-    "Illustrates use of CLASP.Python's use of flags, options, and aliases",
+    "Illustrates use of CLASP.Python's use of flags, options, and specifications",
     '',
 )
 
-# Specify aliases, parse, and checking standard flags
+# Specify specifications, parse, and checking standard flags
 
 flag_Debug = clasp.flag('--debug', alias='-d', help='runs in Debug mode');
 option_Verbosity = clasp.option('--verbosity', alias='-v', help='specifies the verbosity', values=[ 'terse', 'quiet', 'silent', 'chatty' ]);
 flag_Chatty = clasp.flag('--verbosity=chatty', alias='-c');
 
-aliases = (
+specifications = (
 
     flag_Debug,
     option_Verbosity,
@@ -46,15 +46,15 @@ aliases = (
     clasp.VersionFlag(),
 )
 
-args = clasp.parse(sys.argv, aliases)
+args = clasp.parse(sys.argv, specifications)
 
 if args.flagIsSpecified('--help'):
 
-    clasp.show_usage(aliases, exit_code=0, version=version, stream=sys.stdout, info_lines = info_lines)
+    clasp.show_usage(specifications, exit_code=0, version=version, stream=sys.stdout, info_lines = info_lines)
 
 if args.flagIsSpecified('--version'):
 
-    clasp.show_version(aliases, exit_code=0, version=version, stream=sys.stdout)
+    clasp.show_version(specifications, exit_code=0, version=version, stream=sys.stdout)
 
 
 # Program-specific processing of flags/options
@@ -87,13 +87,13 @@ if (unused):
 If executed with no arguments
 
 ```
-    python examples/flag_and_option_aliases.py
+    python examples/flag_and_option_specifications.py
 ```
 
 or (in a Unix shell):
 
 ```
-    ./examples/flag_and_option_aliases.py
+    ./examples/flag_and_option_specifications.py
 ```
 
 it gives the output:
@@ -106,17 +106,17 @@ it gives the output:
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_aliases.py --help
+    python examples/flag_and_option_specifications.py --help
 ```
 
 it gives the output:
 
 ```
 CLASP.Python examples
-flag_and_option_aliases.py 0.0.1
-Illustrates use of CLASP.Python's use of flags, options, and aliases
+flag_and_option_specifications.py 0.0.1
+Illustrates use of CLASP.Python's use of flags, options, and specifications
 
-USAGE: flag_and_option_aliases.py [ ... flags and options ... ]
+USAGE: flag_and_option_specifications.py [ ... flags and options ... ]
 
 flags/options:
 
@@ -146,7 +146,7 @@ flags/options:
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_aliases.py --debug --verbosity=silent
+    python examples/flag_and_option_specifications.py --debug --verbosity=silent
 ```
 
 it gives the output:
@@ -161,7 +161,7 @@ Debug mode is specified
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_aliases.py -v silent -d
+    python examples/flag_and_option_specifications.py -v silent -d
 ```
 
 it gives the (same) output:
@@ -176,7 +176,7 @@ Debug mode is specified
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_aliases.py -c -d
+    python examples/flag_and_option_specifications.py -c -d
 ```
 
 it gives the output:
@@ -191,7 +191,7 @@ Debug mode is specified
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_aliases.py -dc
+    python examples/flag_and_option_specifications.py -dc
 ```
 
 it gives the (same) output:

@@ -8,14 +8,13 @@ __credits__     =   [
 __email__       =   'matthew@synesis.com.au'
 __license__     =   'BSD-3-Clause'
 __maintainer__  =   'Matt Wilson'
-__status__      =   'Alpha'
-__version__     =   '0.3.1'
+__status__      =   'Beta'
+__version__     =   '0.4.0'
 
-from .alias import Alias, alias
-from .flag_alias import FlagAlias, flag
-from .option_alias import OptionAlias, option
-
-from .flag_alias import HelpFlag, VersionFlag
+from .flag_specification import FlagSpecification, flag
+from .flag_specification import HelpFlag, VersionFlag
+from .option_specification import OptionSpecification, option
+from .specification import Specification, specification
 
 from .arguments import Arguments
 from .flag_argument import FlagArgument as Flag
@@ -25,10 +24,10 @@ from .cli import show_usage, show_version
 
 import sys
 
-def parse(argv = None, aliases = None):
+def parse(argv = None, specifications = None):
 
     argv    =   argv if None != type(argv) else sys.argv
 
-    return Arguments(argv, aliases)
+    return Arguments(argv, specifications)
 
 

@@ -1,8 +1,8 @@
 
-from .alias import Alias
-from .flag_alias import FlagAlias
+from .specification import Specification
+from .flag_specification import FlagSpecification
 from .flag_argument import FlagArgument
-from .option_alias import OptionAlias
+from .option_specification import OptionSpecification
 from .option_argument import OptionArgument
 
 from .util import _get_program_name
@@ -10,25 +10,28 @@ from .util import _get_program_name
 import re
 
 class Arguments:
+    """Represents a parsed command-line, separated into program-name, flags, options, and values"""
 
-    def __init__(self, argv, aliases = None):
+    def __init__(self, argv, specifications = None):
+        """Initialises an instance from the given argv and specifications sequences"""
 
         if not isinstance(argv, ( list, tuple )):
 
             raise TypeError("'argv' argument must be an instance of 'list' or 'tuple'")
 
-        if aliases and not isinstance(aliases, ( list, tuple )):
+        if specifications and not isinstance(specifications, ( list, tuple )):
 
-            raise TypeError("'aliases' argument must be None or an instance of 'list' or 'tuple'")
+            raise TypeError("'specifications' argument must be None or an instance of 'list' or 'tuple'")
 
 
         self.argv       =   argv
 
-        self.aliases    =   aliases if aliases else ()
+        self.specifications    =   specifications if specifications else ()
 
-        flags, options, values  =   Arguments._parse(argv, self.aliases)
+        flags, options, values  =   Arguments._parse(argv, self.specifications)
 
         self.program_name   =   _get_program_name(argv, {})
+        """The program name"""
 
         self.flags      =   tuple(flags)
         """The parsed flags"""
@@ -39,11 +42,19 @@ class Arguments:
         self.values     =   tuple(values)
         """The parsed values"""
 
+    def aliases(self):
+        "[DEPRECATED] instead use 'specifications'"""
+
+        return self.specifications
+
+
     def flagIsSpecified(self, id):
+        """Returns true if the given flag (name, or instance) has been specified; false otherwise"""
 
         return None != self.lookupFlag(id);
 
     def lookupFlag(self, id):
+        """Looks and returns the identified flag from the instance's flags; returns None if not found"""
 
         name    =   None
 
@@ -71,6 +82,7 @@ class Arguments:
         return None
 
     def lookupOption(self, id):
+        """Looks and returns the identified option from the instance's options; returns None if not found"""
 
         name    =   None
 
@@ -98,6 +110,7 @@ class Arguments:
         return None
 
     def getFirstUnusedFlag(self):
+        """Looks and returns the first unused flag from the instance's flags; returns None if not found"""
 
         for flag in self.flags:
 
@@ -105,9 +118,10 @@ class Arguments:
 
                 return flag
 
-        return False
+        return None
 
     def getFirstUnusedOption(self):
+        """Looks and returns the first unused option from the instance's options; returns None if not found"""
 
         for option in self.options:
 
@@ -115,7 +129,7 @@ class Arguments:
 
                 return option
 
-        return False
+        return None
 
 
     def getFirstUnusedFlagOrOption(self):
@@ -142,9 +156,9 @@ class Arguments:
 
 
     @staticmethod
-    def _select_alias(item, aliases):
+    def _select_specification(item, specifications):
 
-        for a in aliases:
+        for a in specifications:
 
             if a.name == item:
 
@@ -159,13 +173,13 @@ class Arguments:
         return None
 
     @staticmethod
-    def _select_aliases(item, aliases):
+    def _select_specifications(item, specifications):
 
-        select_alias = Arguments._select_alias(item, aliases)
+        select_specification = Arguments._select_specification(item, specifications)
 
-        if select_alias:
+        if select_specification:
 
-            return select_alias
+            return select_specification
 
         n = len(item) - 1
 
@@ -175,41 +189,41 @@ class Arguments:
 
             if m:
 
-                select_aliases  =   []
+                select_specifications  =   []
 
                 for c in m.group(1):
 
                     name = '-' + c
 
-                    select_alias = Arguments._select_alias(name, aliases)
+                    select_specification = Arguments._select_specification(name, specifications)
 
-                    if select_alias:
+                    if select_specification:
 
-                        m2 = re.match(r'(-+)([^=]+)=(.*)$', select_alias.name)
+                        m2 = re.match(r'(-+)([^=]+)=(.*)$', select_specification.name)
 
                         if m2:
 
                             name2 = m2.group(1) + m2.group(2)
 
-                            select_option_alias = Arguments._select_alias(name2, aliases)
+                            select_option_specification = Arguments._select_specification(name2, specifications)
 
-                            if select_option_alias:
+                            if select_option_specification:
 
-                                select_aliases.append((select_option_alias, select_alias, m2.group(3)))
+                                select_specifications.append((select_option_specification, select_specification, m2.group(3)))
                         else:
 
-                            select_aliases.append(select_alias)
+                            select_specifications.append(select_specification)
 
 
-                if len(select_aliases) == n:
+                if len(select_specifications) == n:
 
-                    return select_aliases
+                    return select_specifications
 
         return None
 
 
     @staticmethod
-    def _parse(argv, aliases):
+    def _parse(argv, specifications):
 
         flags           =   []
         options         =   []
@@ -257,7 +271,7 @@ class Arguments:
                 given_label     =   m.group(2)
                 given_name      =   hyphens + given_label
                 resolved_name   =   given_name
-                argument_alias  =   None
+                arg_spec        =   None
                 extras          =   None
                 value           =   None
                 is_option       =   False
@@ -274,28 +288,28 @@ class Arguments:
 
                     # an option name, or a flag, or a combined set of flags
 
-                    sel_aliases =   Arguments._select_aliases(arg, aliases)
+                    sel_specifications =   Arguments._select_specifications(arg, specifications)
 
-                    if sel_aliases:
+                    if sel_specifications:
 
-                        if isinstance(sel_aliases, (Alias, )):
+                        if isinstance(sel_specifications, (Specification, )):
 
                             pass
                         else:
 
                             # We have a combination of items
 
-                            for a in sel_aliases:
+                            for a in sel_specifications:
 
                                 if False:
 
                                     pass
-                                elif isinstance(a, (FlagAlias, )):
+                                elif isinstance(a, (FlagSpecification, )):
 
                                     flag = FlagArgument(arg, index, arg, a.name, a, len(hyphens), given_label, a.extras)
 
                                     flags.append(flag)
-                                elif isinstance(a, (OptionAlias, )):
+                                elif isinstance(a, (OptionSpecification, )):
 
                                     pass
                                 elif isinstance(a, (tuple, )):
@@ -315,18 +329,18 @@ class Arguments:
 
                             continue
 
-                # Now look through the aliases, for:
+                # Now look through the specifications, for:
                 #
                 # - the resolved name, and
                 # - the default value, if none was attached
-                for i, a in enumerate(aliases):
+                for i, a in enumerate(specifications):
 
                     if a.name == given_name or given_name in a.aliases:
 
-                        is_option       =   isinstance(a, OptionAlias)
+                        is_option       =   isinstance(a, OptionSpecification)
 
                         resolved_name   =   a.name
-                        argument_alias  =   a
+                        arg_spec        =   a
                         extras          =   a.extras
 
                         hyphens_2       =   None
@@ -374,7 +388,7 @@ class Arguments:
 
                 if is_option:
 
-                    option      =   OptionArgument(arg, index, given_name, resolved_name, argument_alias, len(hyphens), given_label, value, extras)
+                    option      =   OptionArgument(arg, index, given_name, resolved_name, arg_spec, len(hyphens), given_label, value, extras)
 
                     if value:
 
@@ -384,7 +398,7 @@ class Arguments:
                         current_option  =   option
                 else:
 
-                    flag        =   FlagArgument(arg, index, given_name, resolved_name, argument_alias, len(hyphens), given_label, extras)
+                    flag        =   FlagArgument(arg, index, given_name, resolved_name, arg_spec, len(hyphens), given_label, extras)
 
                     flags.append(flag)
             else:
@@ -394,13 +408,13 @@ class Arguments:
         if current_option:
 
             value   =   None
-            alias   =   current_option.argument_alias
+            specification   =   current_option.argument_specification
 
-            if alias:
+            if specification:
 
-                if alias.default_value:
+                if specification.default_value:
 
-                    current_option.value = alias.default_value
+                    current_option.value = specification.default_value
 
             options.append(current_option)
 

@@ -1,13 +1,6 @@
 # CLASP.Python
 **C**ommand-**L**ine **A**rgument **S**orting and **P**arsing for Python
 
-## Introduction
-
-**CLASP** stands for **C**ommand-**L**ine **A**rgument **S**orting and
-**P**arsing. The first CLASP library was a C library with a C++ wrapper. There
-have been several implementations in other languages. **CLASP.Python** is the
-Python version.
-
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -18,7 +11,10 @@ Python version.
 
 ## Introduction
 
-T.B.C.
+**CLASP** stands for **C**ommand-**L**ine **A**rgument **S**orting and
+**P**arsing. The first CLASP library was a C library with a C++ wrapper. There
+have been several implementations in other languages. **CLASP.Python** is the
+Python version.
 
 ## Installation & usage
 
@@ -68,6 +64,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 * [**CLASP.Go**](https://github.com/synesissoftware/CLASP.Go/)
 * [**CLASP.js**](https://github.com/synesissoftware/CLASP.js/)
 * [**CLASP.Ruby**](https://github.com/synesissoftware/CLASP.Ruby/)
+* [**libCLImate.Ruby**](https://github.com/synesissoftware/libCLImate.Ruby/)
 
 ### License
 
