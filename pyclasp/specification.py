@@ -1,5 +1,5 @@
 
-class Alias(object):
+class Specification(object):
 
     def __init__(self, name, aliases, help, extras):
 
@@ -42,7 +42,7 @@ class Alias(object):
         self.extras     =   extras
 
 
-def alias(name, **kwargs):
+def specification(name, **kwargs):
 
     aliases =   None
     help    =   None
@@ -64,8 +64,8 @@ def alias(name, **kwargs):
             extras = v
         else:
 
-            raise TypeError("'alias' method does not recognise the '%s' keyword argument" % (n, ))
+            raise TypeError("'specification' method does not recognise the '%s' keyword argument" % (n, ))
 
-    return Alias(name, aliases, help, extras)
+    return Specification(name, aliases, help, extras)
 
 

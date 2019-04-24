@@ -1,11 +1,11 @@
 
-from .alias import Alias
+from .specification import Specification
 
-class OptionAlias(Alias):
+class OptionSpecification(Specification):
 
     def __init__(self, name, aliases, help, extras, values_range, default_value, is_required, require_message):
 
-        super(OptionAlias, self).__init__(name, aliases, help, extras)
+        super(OptionSpecification, self).__init__(name, aliases, help, extras)
 
         self.values_range       =   values_range
         self.default_value      =   default_value
@@ -19,6 +19,7 @@ class OptionAlias(Alias):
 
 
 def option(name, **kwargs):
+    """Creates an option specification from the given parameters"""
 
     aliases =   None
     help    =   None
@@ -59,6 +60,6 @@ def option(name, **kwargs):
 
             raise TypeError("'flag' method does not recognise the '%s' keyword argument" % (n, ))
 
-    return OptionAlias(name, aliases, help, extras, values_range, default_value, is_required, require_message)
+    return OptionSpecification(name, aliases, help, extras, values_range, default_value, is_required, require_message)
 
 

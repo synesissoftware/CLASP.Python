@@ -3,12 +3,12 @@ import sys
 
 class OptionArgument(object):
 
-    def __init__(self, arg, given_index, given_name, resolved_name, argument_alias, given_hyphens, given_label, value, extras):
+    def __init__(self, arg, given_index, given_name, resolved_name, argument_specification, given_hyphens, given_label, value, extras):
 
         self.arg_           =   arg
         self.given_index    =   given_index
         self.given_name     =   given_name
-        self.argument_alias =   argument_alias
+        self.argument_specification =   argument_specification
         self.given_hyphens  =   given_hyphens
         self.given_label    =   given_label
         self.name           =   resolved_name if resolved_name else given_name

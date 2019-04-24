@@ -1,11 +1,11 @@
 
-from .alias import Alias
+from .specification import Specification
 
-class FlagAlias(Alias):
+class FlagSpecification(Specification):
 
     def __init__(self, name, aliases, help, extras):
 
-        super(FlagAlias, self).__init__(name, aliases, help, extras)
+        super(FlagSpecification, self).__init__(name, aliases, help, extras)
 
     def __str__(self):
 
@@ -14,6 +14,7 @@ class FlagAlias(Alias):
 
 
 def flag(name, **kwargs):
+    """Creates a flag specification from the given parameters"""
 
     aliases =   None
     help    =   None
@@ -37,18 +38,18 @@ def flag(name, **kwargs):
 
             raise TypeError("'flag' method does not recognise the '%s' keyword argument" % (n, ))
 
-    return FlagAlias(name, aliases, help, extras)
+    return FlagSpecification(name, aliases, help, extras)
 
-HELP_FLAG_      =   FlagAlias('--help', None, 'Shows usage and terminates', None)
-VERSION_FLAG_   =   FlagAlias('--version', None, 'Shows version and terminates', None)
+_HELP_FLAG      =   FlagSpecification('--help', None, 'Shows usage and terminates', None)
+_VERSION_FLAG   =   FlagSpecification('--version', None, 'Shows version and terminates', None)
 
 
 def HelpFlag():
 
-   return HELP_FLAG_
+   return _HELP_FLAG
 
 def VersionFlag():
 
-   return VERSION_FLAG_
+   return _VERSION_FLAG
 
 

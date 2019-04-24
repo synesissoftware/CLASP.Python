@@ -5,7 +5,7 @@
 
 # imports
 
-import clasp
+import pyclasp as clasp
 
 import sys
 
@@ -21,23 +21,23 @@ info_lines = (
     '',
 )
 
-# Specify aliases, parse, and checking standard flags
+# Specify specifications, parse, and checking standard flags
 
-aliases = (
+specifications = (
 
     clasp.HelpFlag(),
     clasp.VersionFlag(),
 )
 
-args = clasp.Arguments(sys.argv, aliases)
+args = clasp.parse(sys.argv, specifications)
 
 if args.flagIsSpecified('--help'):
 
-    clasp.show_usage(aliases, exit_code=0, version=version, stream=sys.stdout, info_lines = info_lines)
+    clasp.show_usage(specifications, exit_code=0, version=version, stream=sys.stdout, info_lines = info_lines)
 
 if args.flagIsSpecified('--version'):
 
-    clasp.show_version(aliases, exit_code=0, version=version, stream=sys.stdout)
+    clasp.show_version(specifications, exit_code=0, version=version, stream=sys.stdout)
 
 
 # Check for any unrecognised flags or options
