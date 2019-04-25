@@ -58,7 +58,7 @@ def option(name, **kwargs):
             require_message = v
         else:
 
-            raise TypeError("'flag' method does not recognise the '%s' keyword argument" % (n, ))
+            raise TypeError("'option' method does not recognise the '%s' keyword argument" % (n, ))
 
     return OptionSpecification(name, aliases, help, extras, values_range, default_value, is_required, require_message)
 

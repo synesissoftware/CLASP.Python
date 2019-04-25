@@ -9,7 +9,7 @@ __email__       =   'matthew@synesis.com.au'
 __license__     =   'BSD-3-Clause'
 __maintainer__  =   'Matt Wilson'
 __status__      =   'Beta'
-__version__     =   '0.4.0'
+__version__     =   '0.4.1'
 
 from .flag_specification import FlagSpecification, flag
 from .flag_specification import HelpFlag, VersionFlag

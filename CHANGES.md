@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.4.1 - 25th April 2019
+
+* ~ fixed type in exception message in ``option()``
+
 ## 0.4.0 - 17th April 2019
 
 * ~ changed *Alias classes to *Specification
