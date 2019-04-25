@@ -16,6 +16,7 @@ dist/
 *~
 *.pyc
 *.pyo
+*.swo
 *.swp
 *.tmp
 
