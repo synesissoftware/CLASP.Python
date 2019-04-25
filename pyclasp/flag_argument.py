@@ -1,9 +1,20 @@
 
-import sys
+from .flag_specification import FlagSpecification
 
 class FlagArgument(object):
 
     def __init__(self, arg, given_index, given_name, resolved_name, argument_specification, given_hyphens, given_label, extras):
+
+        if __debug__:
+            if not argument_specification:
+
+                pass
+            elif isinstance(argument_specification, (FlagSpecification, )):
+
+                pass
+            else:
+
+                raise TypeError("'argument_specification' must be instance of type '%s'; '%s' (%s) given" % (FlagSpecification, type(argument_specification), argument_specification))
 
         self.arg_           =   arg
         self.given_index    =   given_index
@@ -29,14 +40,10 @@ class FlagArgument(object):
 
     def __str__(self):
 
-        #sys.stderr.write("__str__(self=%s)\n" % (self.name))
-
         return self.name
 
     def __eq__(self, other):
         """Yields True if other is a FlagArgument and has the same 'name'"""
-
-        #sys.stderr.write("__eq__(self=%s, other=%s)\n" % (self, other))
 
         if isinstance(other, FlagArgument):
 
@@ -51,8 +58,6 @@ class FlagArgument(object):
 
     def __ne__(self, other):
         """Yields False if other is not a FlagArgument or has a different 'name'"""
-
-        #sys.stderr.write("__ne__(self=%s, other=%s)\n" % (self, other))
 
         return not self.__eq__(other)
 

@@ -1,8 +1,12 @@
 # **CLASP.Python** Changes
 
+## 0.4.2 - 25th April 2019
+
+* ~ ensuring that all flag/option arguments receive the correct (underlying) flag/option specifications
+
 ## 0.4.1 - 25th April 2019
 
-* ~ fixed typo in exception message in ``option()``
+* ~ fixed type in exception message in ``option()``
 
 ## 0.4.0 - 17th April 2019
 
