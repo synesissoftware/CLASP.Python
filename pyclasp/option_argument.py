@@ -1,4 +1,5 @@
 
+from .exceptions import *
 from .option_specification import OptionSpecification
 
 class OptionArgument(object):
@@ -23,13 +24,67 @@ class OptionArgument(object):
         self.given_hyphens  =   given_hyphens
         self.given_label    =   given_label
         self.name           =   resolved_name if resolved_name else given_name
-        self.value          =   value
+        self._set_value(value, True)
         self.extras         =   extras if extras else dict()
 
         self.private_fields =   {
 
             'used'  :   False
         }
+
+    def _set_value(self, value, from_ctor=False):
+
+        given_value         =   value
+
+        arg_spec            =   self.argument_specification
+
+        if arg_spec:
+
+            if not given_value:
+
+                given_value = arg_spec.default_value
+
+            if given_value:
+
+
+                if arg_spec.value_type:
+
+                    assert arg_spec.value_type in OptionSpecification._VALID_VALUE_TYPES
+
+                    if False:
+
+                        pass
+                    elif arg_spec.value_type == float:
+
+                        try:
+
+                            value       =   float(given_value)
+                        except ValueError as x:
+
+                            raise InvalidNumberException("the '%s' option's value '%s' cannot be interpreted as a number" % (self.name, given_value))
+                    elif arg_spec.value_type == int:
+
+                        try:
+
+                            value       =   int(given_value)
+                        except ValueError as x:
+
+                            raise InvalidIntegerException("the '%s' option's value '%s' cannot be interpreted as an integer" % (self.name, given_value))
+
+
+            else:
+
+                if given_value is None and from_ctor:
+
+                    pass
+                else:
+
+                    raise MissingValueException("the '%s' option does not have a value to be interpreted as an integer" % (self.name))
+
+
+        self.given_value    =   given_value
+        self.value          =   value
+
 
     def use(self):
 

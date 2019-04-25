@@ -9,8 +9,9 @@ __email__       =   'matthew@synesis.com.au'
 __license__     =   'BSD-3-Clause'
 __maintainer__  =   'Matt Wilson'
 __status__      =   'Beta'
-__version__     =   '0.4.2'
+__version__     =   '0.5.0'
 
+from .exceptions import *
 from .flag_specification import FlagSpecification, flag
 from .flag_specification import HelpFlag, VersionFlag
 from .option_specification import OptionSpecification, option
@@ -25,9 +26,16 @@ from .cli import show_usage, show_version
 import sys
 
 def parse(argv = None, specifications = None):
+    """Obtains an instance of clasp.Arguments, representing all the command-line arguments present in argv (or sys.argv)"""
 
-    argv    =   argv if None != type(argv) else sys.argv
+    if argv is None:
+
+        argv = sys.argv
 
     return Arguments(argv, specifications)
 
+def get_program_name(argv = None):
+    """Obtains/infers the program name from the given array, or from sys.argv"""
+
+    return Arguments.get_program_name(argv)
 

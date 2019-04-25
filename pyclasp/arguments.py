@@ -8,12 +8,13 @@ from .option_argument import OptionArgument
 from .util import _get_program_name
 
 import re
+import sys
 
 class Arguments:
     """Represents a parsed command-line, separated into program-name, flags, options, and values"""
 
     def __init__(self, argv, specifications = None):
-        """Initialises an instance from the given argv and specifications sequences"""
+        """Initialises an instance from the given argv and specifications sequences. Users should instead use clasp.parse()"""
 
         if not isinstance(argv, ( list, tuple )):
 
@@ -23,14 +24,13 @@ class Arguments:
 
             raise TypeError("'specifications' argument must be None or an instance of 'list' or 'tuple'")
 
-
         self.argv       =   argv
 
-        self.specifications    =   specifications if specifications else ()
+        self.specifications     =   specifications if specifications else ()
 
         flags, options, values  =   Arguments._parse(argv, self.specifications)
 
-        self.program_name   =   _get_program_name(argv, {})
+        self.program_name       =   Arguments.get_program_name(argv)
         """The program name"""
 
         self.flags      =   tuple(flags)
@@ -49,11 +49,21 @@ class Arguments:
 
 
     def flagIsSpecified(self, id):
+        """[DEPRECATED] Use flag_is_specified()"""
+
+        return self.flag_is_specified(id)
+
+    def flag_is_specified(self, id):
         """Returns true if the given flag (name, or instance) has been specified; false otherwise"""
 
         return None != self.lookupFlag(id);
 
     def lookupFlag(self, id):
+        """[DEPRECATED] Use lookup_flag()"""
+
+        return self.lookup_flag(id)
+
+    def lookup_flag(self, id):
         """Looks and returns the identified flag from the instance's flags; returns None if not found"""
 
         name    =   None
@@ -82,6 +92,11 @@ class Arguments:
         return None
 
     def lookupOption(self, id):
+        """[DEPRECATED] Use lookup_option()"""
+
+        return self.lookup_option(id)
+
+    def lookup_option(self, id):
         """Looks and returns the identified option from the instance's options; returns None if not found"""
 
         name    =   None
@@ -110,6 +125,11 @@ class Arguments:
         return None
 
     def getFirstUnusedFlag(self):
+        """[DEPRECATED] Use get_first_unused_flag()"""
+
+        return self.get_first_unused_flag()
+
+    def get_first_unused_flag(self):
         """Looks and returns the first unused flag from the instance's flags; returns None if not found"""
 
         for flag in self.flags:
@@ -121,6 +141,11 @@ class Arguments:
         return None
 
     def getFirstUnusedOption(self):
+        """[DEPRECATED] Use get_first_unused_option()"""
+
+        return self.get_first_unused_option()
+
+    def get_first_unused_option(self):
         """Looks and returns the first unused option from the instance's options; returns None if not found"""
 
         for option in self.options:
@@ -133,6 +158,12 @@ class Arguments:
 
 
     def getFirstUnusedFlagOrOption(self):
+        """[DEPRECATED] Use get_first_unused_option_or_option()"""
+
+        return self.get_first_unused_option_or_option()
+
+    def get_first_unused_option_or_option(self):
+        """Obtains a reference to the first unused flag or option, or None if all no unused are found"""
 
         flag    =   self.getFirstUnusedFlag()
         option  =   self.getFirstUnusedOption()
@@ -153,6 +184,16 @@ class Arguments:
         else:
 
             return option
+
+    @staticmethod
+    def get_program_name(argv=None):
+        """Obtains/infers the program name from the given array, or from sys.argv"""
+
+        if argv is None:
+
+            argv = sys.argv
+
+        return _get_program_name(argv, {})
 
 
     @staticmethod
@@ -249,7 +290,7 @@ class Arguments:
 
             if current_option:
 
-                current_option.value    =   arg
+                current_option._set_value(arg)
 
                 options.append(current_option)
 
@@ -427,9 +468,9 @@ class Arguments:
 
             if specification:
 
-                if specification.default_value:
+                # always push, so value type processing can be done (for missing values)
 
-                    current_option.value = specification.default_value
+                current_option._set_value(specification.default_value)
 
             options.append(current_option)
 

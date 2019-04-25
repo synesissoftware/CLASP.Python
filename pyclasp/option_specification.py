@@ -3,7 +3,9 @@ from .specification import Specification
 
 class OptionSpecification(Specification):
 
-    def __init__(self, name, aliases, help, extras, values_range, default_value, is_required, require_message):
+    _VALID_VALUE_TYPES = (float, int, )
+
+    def __init__(self, name, aliases, help, extras, values_range, default_value, is_required, require_message, value_type):
 
         super(OptionSpecification, self).__init__(name, aliases, help, extras)
 
@@ -11,6 +13,7 @@ class OptionSpecification(Specification):
         self.default_value      =   default_value
         self.is_required        =   is_required
         self.require_message    =   require_message
+        self.value_type         =   value_type
 
     def __str__(self):
 
@@ -29,6 +32,7 @@ def option(name, **kwargs):
     default_value   =   None
     is_required     =   None
     require_message =   None
+    value_type      =   None
 
     for n, v in kwargs.items():
 
@@ -56,10 +60,23 @@ def option(name, **kwargs):
         elif 'require_message' == n:
 
             require_message = v
+        elif 'value_type' == n:
+
+            value_type = v
+
+            if value_type is None:
+
+                pass
+            elif value_type in OptionSpecification._VALID_VALUE_TYPES:
+
+                pass
+            else:
+
+                raise TypeError("'option' supports 'value_type' but only for 'None', 'float', and 'int'; '%s' given" % value_type)
         else:
 
             raise TypeError("'option' method does not recognise the '%s' keyword argument" % (n, ))
 
-    return OptionSpecification(name, aliases, help, extras, values_range, default_value, is_required, require_message)
+    return OptionSpecification(name, aliases, help, extras, values_range, default_value, is_required, require_message, value_type)
 
 

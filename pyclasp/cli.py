@@ -54,6 +54,7 @@ def _generate_version_string(argv, options):
 
 
 def show_usage(specifications, **kwargs):
+    """Displays program usage from the given specifications (or arguments), according to the given options"""
 
     argv                =   sys.argv
 
@@ -192,6 +193,7 @@ def show_usage(specifications, **kwargs):
 
 
 def show_version(specifications, **kwargs):
+    """Displays program version from the given specifications (or arguments), according to the given options"""
 
     argv                =   sys.argv
 

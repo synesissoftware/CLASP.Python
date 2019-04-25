@@ -1,5 +1,10 @@
 # **CLASP.Python** Changes
 
+## 0.5.0 - 25th April 2019
+
+* + added ``OptionArgument.given_value`` attribute, which is always the string that is given during parsing
+* + now supports 'value_type' named parameter in option specifications, whose value can be ``None`` (default), ``float``, or ``int``. For ``float`` and ``int`` a successful parse of the option value means that the ``OptionArgument.value`` attribute will be a ``float`` or ``int`` converted from the given value
+
 ## 0.4.2 - 25th April 2019
 
 * ~ ensuring that all flag/option arguments receive the correct (underlying) flag/option specifications
