@@ -318,7 +318,7 @@ class Arguments:
                                     fa  =   a[1]
                                     v   =   a[2]
 
-                                    option = OptionArgument(arg, index, arg, soa.name, fa, len(hyphens), given_label, v, extras)
+                                    option = OptionArgument(arg, index, arg, soa.name, soa, len(hyphens), given_label, v, extras)
 
                                     options.append(option)
                                 else:
@@ -352,6 +352,11 @@ class Arguments:
 
                         m2 = re.match(r'(-+)([^=]+)=(.*)', resolved_name)
 
+                        # need to check whether the alias is a
+                        # valued-option, and, if so, expand out its name
+                        # and value, and replace the name and (if not
+                        # previously specified) the value
+
                         if m2:
 
                             alias_has_value =   True
@@ -362,6 +367,16 @@ class Arguments:
                             resolved_name_2 =   hyphens_2 + given_label_2
 
                             resolved_name   =   resolved_name_2
+
+                            # now find the underlying (option) specification
+
+                            for j, s2 in enumerate(specifications):
+
+                                if s2.name == resolved_name or resolved_name in s2.aliases:
+
+                                    arg_spec = s2
+
+                                    break
 
                         if is_option:
 

@@ -1,9 +1,20 @@
 
-import sys
+from .option_specification import OptionSpecification
 
 class OptionArgument(object):
 
     def __init__(self, arg, given_index, given_name, resolved_name, argument_specification, given_hyphens, given_label, value, extras):
+
+        if __debug__:
+            if not argument_specification:
+
+                pass
+            elif isinstance(argument_specification, (OptionSpecification, )):
+
+                pass
+            else:
+
+                raise TypeError("'argument_specification' must be instance of type '%s'; '%s' (%s) given" % (OptionSpecification, type(argument_specification), argument_specification))
 
         self.arg_           =   arg
         self.given_index    =   given_index
@@ -48,8 +59,6 @@ class OptionArgument(object):
 
     def __ne__(self, other):
         """Yields False if other is not a OptionArgument or has a different 'name'"""
-
-        sys.stderr.write("__ne__(self=%s, other=%s)\n" % (self, other))
 
         return not self.__eq__(other)
 
