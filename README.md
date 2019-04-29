@@ -63,6 +63,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 * [**CLASP**](https://github.com/synesissoftware/CLASP/)
 * [**CLASP.Go**](https://github.com/synesissoftware/CLASP.Go/)
 * [**CLASP.js**](https://github.com/synesissoftware/CLASP.js/)
+* [**CLASP.NET**](https://github.com/synesissoftware/CLASP.NET/)
 * [**CLASP.Ruby**](https://github.com/synesissoftware/CLASP.Ruby/)
 * [**libCLImate.Ruby**](https://github.com/synesissoftware/libCLImate.Ruby/)
 
