@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.5.1 - 12th June 2019
+
+* ~ improving flexibility of handling of options to ``show_usage()``
+
 ## 0.5.0 - 25th April 2019
 
 * + added ``OptionArgument.given_value`` attribute, which is always the string that is given during parsing

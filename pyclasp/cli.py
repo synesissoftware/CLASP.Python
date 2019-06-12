@@ -88,7 +88,7 @@ def show_usage(specifications, **kwargs):
     program_name        =   _get_program_name(argv, options)
     stream              =   _dict_get_N((options, sys.stdout), 'stream')
     suppress_blanks     =   _dict_get_N(options, 'suppress_blank_lines_between_options', 'suppress-blank-lines-between-options')
-    values              =   options.get('values', '')
+    values              =   _dict_get_N((options, ''), 'values_string', 'values-string', 'values', default_if_none=True)
 
     if not info_lines:
 

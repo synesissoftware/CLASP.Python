@@ -1,9 +1,11 @@
 
 import os
 
-def _dict_get_N(d, *keys):
+def _dict_get_N(d, *keys, **kwargs):
 
-    default =   None
+    default         =   None
+    default_if_none =   kwargs.get('default_if_none', False)
+
 
     if isinstance(d, (tuple, )):
 
@@ -14,7 +16,13 @@ def _dict_get_N(d, *keys):
 
         if key in d:
 
-            return d.get(key)
+            v = d.get(key)
+
+            if None == v and default_if_none:
+
+                continue
+
+            return v
 
     return default
 
