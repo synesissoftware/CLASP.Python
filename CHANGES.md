@@ -4,6 +4,7 @@
 
 * ~ fixed ``lookup_flag()``/``lookup_option()`` such that can now be passed specifications as well as strings for id
 * ~ compatibility for StringIO for Python 2/3
+* ~ updated examples to use non-deprecated constructs
 
 ## 0.5.1 - 12th June 2019
 

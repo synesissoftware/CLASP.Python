@@ -11,9 +11,9 @@ import sys
 
 # constants
 
-version = [ 0, 0, 1 ]
+VERSION = [ 0, 0, 2 ]
 
-info_lines = (
+INFO_LINES = (
 
     'CLASP.Python examples',
     ':version:',
@@ -31,18 +31,18 @@ specifications = (
 
 args = clasp.parse(sys.argv, specifications)
 
-if args.flagIsSpecified('--help'):
+if args.flag_is_specified('--help'):
 
-    clasp.show_usage(specifications, exit_code=0, version=version, stream=sys.stdout, info_lines = info_lines)
+    clasp.show_usage(specifications, exit_code=0, version=VERSION, stream=sys.stdout, info_lines=INFO_LINES)
 
-if args.flagIsSpecified('--version'):
+if args.flag_is_specified('--version'):
 
-    clasp.show_version(specifications, exit_code=0, version=version, stream=sys.stdout)
+    clasp.show_version(specifications, exit_code=0, version=VERSION, stream=sys.stdout)
 
 
 # Check for any unrecognised flags or options
 
-unused = args.getFirstUnusedFlagOrOption();
+unused = args.get_first_unused_flag_or_option();
 if (unused):
 
     sys.stderr.write("%s: unrecognised flag/option: %s\n" % (args.program_name, unused))

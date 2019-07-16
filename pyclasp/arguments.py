@@ -158,11 +158,11 @@ class Arguments:
 
 
     def getFirstUnusedFlagOrOption(self):
-        """[DEPRECATED] Use get_first_unused_option_or_option()"""
+        """[DEPRECATED] Use get_first_unused_flag_or_option()"""
 
-        return self.get_first_unused_option_or_option()
+        return self.get_first_unused_flag_or_option()
 
-    def get_first_unused_option_or_option(self):
+    def get_first_unused_flag_or_option(self):
         """Obtains a reference to the first unused flag or option, or None if all no unused are found"""
 
         flag    =   self.getFirstUnusedFlag()

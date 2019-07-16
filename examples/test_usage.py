@@ -15,7 +15,7 @@ specifications = (
     clasp.flag('--verbosity=verbose', alias = '--verbose'),
 )
 
-info_lines = (
+INFO_LINES = (
 
     'CLASP.Python examples',
     ':version',
@@ -27,7 +27,7 @@ args = clasp.parse(sys.argv, specifications)
 
 print '*' * 50 + "\n"
 print "usage:\n"
-clasp.show_usage(args, version = [ 1, 2, 3 ], stream = sys.stdout, program_name = 'myprog', version_prefix = 'v', info_lines = info_lines)
+clasp.show_usage(args, version = [ 1, 2, 3 ], stream = sys.stdout, program_name = 'myprog', version_prefix = 'v', info_lines=INFO_LINES)
 
 print '*' * 50 + "\n"
 print "version:\n"
