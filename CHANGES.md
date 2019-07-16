@@ -1,5 +1,10 @@
 # **CLASP.Python** Changes
 
+## 0.5.2 - 16th July 2019
+
+* ~ fixed ``lookup_flag()``/``lookup_option()`` such that can now be passed specifications as well as strings for id
+* ~ compatibility for StringIO for Python 2/3
+
 ## 0.5.1 - 12th June 2019
 
 * ~ improving flexibility of handling of options to ``show_usage()``

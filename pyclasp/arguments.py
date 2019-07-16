@@ -71,10 +71,10 @@ class Arguments:
         if False:
 
             pass
-        elif FlagArgument == type(id):
+        elif FlagSpecification == type(id):
 
             name    =   id.name
-        elif OptionArgument == type(id):
+        elif OptionSpecification == type(id):
 
             name    =   id.name
         else:
@@ -104,10 +104,10 @@ class Arguments:
         if False:
 
             pass
-        elif FlagArgument == type(id):
+        elif FlagSpecification == type(id):
 
             name    =   id.name
-        elif OptionArgument == type(id):
+        elif OptionSpecification == type(id):
 
             name    =   id.name
         else:
