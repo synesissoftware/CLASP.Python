@@ -9,7 +9,7 @@ __email__       =   'matthew@synesis.com.au'
 __license__     =   'BSD-3-Clause'
 __maintainer__  =   'Matt Wilson'
 __status__      =   'Beta'
-__version__     =   '0.5.2'
+__version__     =   '0.5.3'
 
 from .exceptions import *
 from .flag_specification import FlagSpecification, flag

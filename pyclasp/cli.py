@@ -10,6 +10,18 @@ import os
 import re
 import sys
 
+def _ensure_single_space_prefix(s):
+
+    if s:
+
+        s = str(s).strip()
+
+        if 0 != len(s):
+
+            s = ' ' + s
+
+    return s
+
 def _generate_version_string(argv, options):
 
     program_name    =   _get_program_name(argv, options)
@@ -102,6 +114,8 @@ def show_usage(specifications, **kwargs):
 
     info_lines      =   [ _generate_version_string(argv, options) if l in ( ':version', ':version:' ) else l for l in info_lines ]
 
+    flags_and_options   =   _ensure_single_space_prefix(flags_and_options)
+    values              =   _ensure_single_space_prefix(values)
 
     # sift the specifications to sort out which are value-option aliases (VOAs)
 

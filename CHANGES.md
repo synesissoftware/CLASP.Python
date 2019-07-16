@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.5.3 - 16th July 2019
+
+* ~ increased flexibility of dealing with ``flags_and_options`` and ``values_string``
+
 ## 0.5.2 - 16th July 2019
 
 * ~ fixed ``lookup_flag()``/``lookup_option()`` such that can now be passed specifications as well as strings for id
