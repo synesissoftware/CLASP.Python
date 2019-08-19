@@ -129,10 +129,17 @@ class Arguments:
 
         return self.get_first_unused_flag()
 
-    def get_first_unused_flag(self):
-        """Looks and returns the first unused flag from the instance's flags; returns None if not found"""
+    def get_first_unused_flag(self, id=None):
+        """Looks and returns the first unused flag from the instance's flags; returns None if not found
+
+        If the argument `id` is specified, only matching unused flags will be obtained
+        """
 
         for flag in self.flags:
+
+            if id and not Arguments._id_matches(flag, id):
+
+                continue
 
             if not flag.used():
 
@@ -145,10 +152,17 @@ class Arguments:
 
         return self.get_first_unused_option()
 
-    def get_first_unused_option(self):
-        """Looks and returns the first unused option from the instance's options; returns None if not found"""
+    def get_first_unused_option(self, id=None):
+        """Looks and returns the first unused option from the instance's options; returns None if not found
+
+        If the argument `id` is specified, only matching unused options will be obtained
+        """
 
         for option in self.options:
+
+            if id and not Arguments._id_matches(option, id):
+
+                continue
 
             if not option.used():
 
@@ -162,11 +176,14 @@ class Arguments:
 
         return self.get_first_unused_flag_or_option()
 
-    def get_first_unused_flag_or_option(self):
-        """Obtains a reference to the first unused flag or option, or None if all no unused are found"""
+    def get_first_unused_flag_or_option(self, id=None):
+        """Obtains a reference to the first unused flag or option, or None if all no unused are found
 
-        flag    =   self.getFirstUnusedFlag()
-        option  =   self.getFirstUnusedOption()
+        If the argument `id` is specified, only matching unused flags/options will be obtained
+        """
+
+        flag    =   self.getFirstUnusedFlag(id)
+        option  =   self.getFirstUnusedOption(id)
 
         if flag:
 
@@ -184,6 +201,26 @@ class Arguments:
         else:
 
             return option
+
+    @staticmethod
+    def _id_matches(flag_or_option, id):
+
+        name    =   None
+
+        if False:
+
+            pass
+        elif FlagSpecification == type(id):
+
+            name    =   id.name
+        elif OptionSpecification == type(id):
+
+            name    =   id.name
+        else:
+
+            name    =   id
+
+        return name == flag_or_option.name
 
     @staticmethod
     def get_program_name(argv=None):

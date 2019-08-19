@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.6.0 - 19th August 2019
+
+* ~ ``get_first_unused_flag()``, ``get_first_unused_option()``, ``get_first_unused_flag_or_option()`` all now take an optional ``id`` parameter, which may be a flag/option or a string, that constrains the search
+
 ## 0.5.3 - 16th July 2019
 
 * ~ increased flexibility of dealing with ``flags_and_options`` and ``values_string``
