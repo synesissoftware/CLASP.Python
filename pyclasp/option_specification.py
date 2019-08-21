@@ -36,7 +36,10 @@ def option(name, **kwargs):
 
     for n, v in kwargs.items():
 
-        if 'alias' == n:
+        if False:
+
+            pass
+        elif 'alias' == n:
 
             aliases = ( v, )
         elif 'aliases' == n:

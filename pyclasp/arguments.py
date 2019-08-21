@@ -182,8 +182,8 @@ class Arguments:
         If the argument `id` is specified, only matching unused flags/options will be obtained
         """
 
-        flag    =   self.getFirstUnusedFlag(id)
-        option  =   self.getFirstUnusedOption(id)
+        flag    =   self.get_first_unused_flag(id)
+        option  =   self.get_first_unused_option(id)
 
         if flag:
 
