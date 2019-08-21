@@ -9,12 +9,13 @@ __email__       =   'matthew@synesis.com.au'
 __license__     =   'BSD-3-Clause'
 __maintainer__  =   'Matt Wilson'
 __status__      =   'Beta'
-__version__     =   '0.6.1'
+__version__     =   '0.7.0'
 
 from .exceptions import *
 from .flag_specification import FlagSpecification, flag
 from .flag_specification import HelpFlag, VersionFlag
 from .option_specification import OptionSpecification, option
+from .section_specification import SectionSpecification, section
 from .specification import Specification, specification
 
 from .arguments import Arguments

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# examples/flags_and_options_specifications.py
+# examples/sections.py
 
 
 # imports
@@ -11,27 +11,25 @@ import sys
 
 # constants
 
-VERSION = [ 0, 0, 3 ]
+VERSION = [ 0, 0, 1 ]
 
 INFO_LINES = (
 
     'CLASP.Python examples',
     ':version:',
-    "Illustrates use of CLASP.Python's use of flags, options, and specifications",
+    "Illustrates use of CLASP.Python's clasp.section() to create sections",
     '',
 )
 
 # Specify specifications, parse, and checking standard flags
 
-flag_Debug = clasp.flag('--debug', alias='-d', help='runs in Debug mode')
-option_Verbosity = clasp.option('--verbosity', alias='-v', help='specifies the verbosity', values=[ 'terse', 'quiet', 'silent', 'chatty' ])
-flag_Chatty = clasp.flag('--verbosity=chatty', alias='-c')
-
 specifications = (
 
-    flag_Debug,
-    option_Verbosity,
-    flag_Chatty,
+    clasp.section('Behaviour:'),
+
+    clasp.option('--verbosity', alias='-v', help='specifies the verbosity', values=[ 'terse', 'quiet', 'silent', 'chatty' ]),
+
+    clasp.section('Standard:'),
 
     clasp.HelpFlag(),
     clasp.VersionFlag(),
@@ -56,11 +54,6 @@ if (opt):
     sys.stdout.write("verbosity is specified as: %s\n" % opt.value)
 
 
-if (args.flag_is_specified('--debug')):
-
-    sys.stdout.write("Debug mode is specified\n")
-
-
 # Check for any unrecognised flags or options
 
 unused = args.get_first_unused_flag_or_option();
@@ -69,5 +62,8 @@ if (unused):
     sys.stderr.write("%s: unrecognised flag/option: %s\n" % (args.program_name, unused))
 
     sys.exit(1)
+
+
+sys.stdout.write("no flags specified\n");
 
 

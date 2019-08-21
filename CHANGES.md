@@ -1,5 +1,10 @@
 # **CLASP.Python** Changes
 
+## 0.7.0 - 22nd August 2019
+
+* + added sections, via ``clasp.section()``
+* + added examples/sections.py (and examples/section.md)
+
 ## 0.6.1 - 22nd August 2019
 
 * ~ fixed defect in ``get_first_unused_flag_or_option()`` introduced in 0.6.0

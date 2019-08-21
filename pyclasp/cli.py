@@ -5,6 +5,7 @@ from .util import _dict_get_N, _get_program_name
 from .specification import Specification
 from .flag_specification import FlagSpecification
 from .option_specification import OptionSpecification
+from .section_specification import SectionSpecification
 
 import os
 import re
@@ -188,6 +189,10 @@ def show_usage(specifications, **kwargs):
                     for v in specification.values_range:
 
                         stream.write("\t\t\t%s\n" % v)
+
+            elif isinstance(specification, SectionSpecification):
+
+                stream.write("\t%s\n" % specification.name)
 
             elif isinstance(specification, Specification):
 
