@@ -56,7 +56,7 @@ class Arguments:
     def flag_is_specified(self, id):
         """Returns true if the given flag (name, or instance) has been specified; false otherwise"""
 
-        return None != self.lookupFlag(id);
+        return None != self.lookup_flag(id);
 
     def lookupFlag(self, id):
         """[DEPRECATED] Use lookup_flag()"""
