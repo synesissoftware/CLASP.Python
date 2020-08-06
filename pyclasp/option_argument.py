@@ -98,6 +98,11 @@ class OptionArgument(object):
 
         return "%s=%s" % (self.name, self.value)
 
+    def __repr__(self):
+
+        return "<%s.%s: given_index=%s; given_name=%s; given_value=%s; given_hyphens=%s, given_label=%s, extras=%s; argument_specification=%s >" %\
+            (self.__module__, self.__class__.__name__, self.given_index, self.given_name, self.given_value, self.given_hyphens, self.given_label, self.extras, self.argument_specification, )
+
     def __eq__(self, other):
         """Yields True if other is a OptionArgument and has the same 'name'"""
 

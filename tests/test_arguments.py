@@ -563,16 +563,16 @@ class Arguments_tester_1(unittest.TestCase):
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
-        self.assertEqual(3, len(args.flags))
+        self.assertEqual(2, len(args.flags))
 
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   1)
-        self.assertEqual(flag.given_name        ,   '--verbose')
+        self.assertEqual(flag.given_index       ,   4)
+        self.assertEqual(flag.given_name        ,   '-v')
         self.assertEqual(flag.argument_specification, specifications[0])
-        self.assertEqual(flag.given_hyphens     ,   2)
-        self.assertEqual(flag.given_label       ,   'verbose')
+        self.assertEqual(flag.given_hyphens     ,   1)
+        self.assertEqual(flag.given_label       ,   'v')
         self.assertEqual(flag.name              ,   '--verbose')
         self.assertEqual(flag.extras            ,   { 'x-name': 'v-val' })
         self.assertEqual(str(flag)              ,   '--verbose')
@@ -590,19 +590,6 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(flag.extras            ,   {})
         self.assertEqual(str(flag)              ,   '--succinct')
         self.assertEqual(flag                   ,   '--succinct')
-
-        flag    =   args.flags[2]
-
-        self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   4)
-        self.assertEqual(flag.given_name        ,   '-v')
-        self.assertEqual(flag.argument_specification, specifications[0])
-        self.assertEqual(flag.given_hyphens     ,   1)
-        self.assertEqual(flag.given_label       ,   'v')
-        self.assertEqual(flag.name              ,   '--verbose')
-        self.assertEqual(flag.extras            ,   { 'x-name': 'v-val' })
-        self.assertEqual(str(flag)              ,   '--verbose')
-        self.assertEqual(flag                   ,   '--verbose')
 
         self.assertIsInstance(args.options, ( tuple, ))
         self.assertFalse(args.options)
@@ -979,11 +966,11 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(0, len(args.values))
 
 
-    def test_alias_of_option_with_value(self):
+    def test_alias_of_option_with_value_allowing_multiple(self):
 
         specifications =   (
 
-            clasp.option('--option', alias = '-o', default_value = 'default-value'),
+            clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='allow'),
         )
         argv    =   ( 'myprog', '-f1', 'value-1', '-o=', '-o=given-value-1', '--option=given-value-2', )
         args    =   clasp.parse(argv, specifications)
@@ -1041,6 +1028,112 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(option                 ,   '--option=default-value')
 
         option  =   args.options[2]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index     ,   5)
+        self.assertEqual(option.given_name      ,   '--option')
+        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.given_hyphens   ,   2)
+        self.assertEqual(option.given_label     ,   'option')
+        self.assertEqual(option.name            ,   '--option')
+        self.assertEqual(option.value           ,   'default-value')
+        self.assertEqual(option.extras          ,   {})
+        self.assertEqual(str(option)            ,   '--option=default-value')
+        self.assertEqual(option                 ,   '--option=default-value')
+
+        self.assertIsInstance(args.values, ( tuple, ))
+        self.assertTrue(args.values)
+        self.assertEqual(1, len(args.values))
+
+        self.assertEqual('value-1', args.values[0])
+
+    def test_alias_of_option_with_value_ignoring_multiple(self):
+
+        specifications =   (
+
+            clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='ignore'),
+        )
+        argv    =   ( 'myprog', '-f1', 'value-1', '-o=', '-o=given-value-1', '--option=given-value-2', )
+        args    =   clasp.parse(argv, specifications)
+
+        self.assertEqual('myprog', args.program_name)
+
+        self.assertIsInstance(args.flags, ( tuple, ))
+        self.assertTrue(args.flags)
+        self.assertEqual(1, len(args.flags))
+
+
+        flag    =   args.flags[0]
+
+        self.assertIsInstance(flag, ( Flag, ))
+        self.assertEqual(flag.given_index       ,   1)
+        self.assertEqual(flag.given_name        ,   '-f1')
+        self.assertIsNone(flag.argument_specification)
+        self.assertEqual(flag.given_hyphens     ,   1)
+        self.assertEqual(flag.given_label       ,   'f1')
+        self.assertEqual(flag.name              ,   '-f1')
+        self.assertEqual(flag.extras            ,   {})
+        self.assertEqual(str(flag)              ,   '-f1')
+        self.assertEqual(flag                   ,   '-f1')
+
+        self.assertIsInstance(args.options, ( tuple, ))
+        self.assertTrue(args.options)
+        self.assertEqual(1, len(args.options))
+
+        option  =   args.options[0]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index     ,   3)
+        self.assertEqual(option.given_name      ,   '-o')
+        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.given_hyphens   ,   1)
+        self.assertEqual(option.given_label     ,   'o')
+        self.assertEqual(option.name            ,   '--option')
+        self.assertEqual(option.value           ,   'default-value')
+        self.assertEqual(option.extras          ,   {})
+        self.assertEqual(str(option)            ,   '--option=default-value')
+        self.assertEqual(option                 ,   '--option=default-value')
+
+        self.assertIsInstance(args.values, ( tuple, ))
+        self.assertTrue(args.values)
+        self.assertEqual(1, len(args.values))
+
+        self.assertEqual('value-1', args.values[0])
+
+    def test_alias_of_option_with_value_replacing_multiple(self):
+
+        specifications =   (
+
+            clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='replace'),
+        )
+        argv    =   ( 'myprog', '-f1', 'value-1', '-o=', '-o=given-value-1', '--option=given-value-2', )
+        args    =   clasp.parse(argv, specifications)
+
+        self.assertEqual('myprog', args.program_name)
+
+        self.assertIsInstance(args.flags, ( tuple, ))
+        self.assertTrue(args.flags)
+        self.assertEqual(1, len(args.flags))
+
+
+        flag    =   args.flags[0]
+
+        self.assertIsInstance(flag, ( Flag, ))
+        self.assertEqual(flag.given_index       ,   1)
+        self.assertEqual(flag.given_name        ,   '-f1')
+        self.assertIsNone(flag.argument_specification)
+        self.assertEqual(flag.given_hyphens     ,   1)
+        self.assertEqual(flag.given_label       ,   'f1')
+        self.assertEqual(flag.name              ,   '-f1')
+        self.assertEqual(flag.extras            ,   {})
+        self.assertEqual(str(flag)              ,   '-f1')
+        self.assertEqual(flag                   ,   '-f1')
+
+        self.assertIsInstance(args.options, ( tuple, ))
+        self.assertTrue(args.options)
+        self.assertEqual(1, len(args.options))
+
+        option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
         self.assertEqual(option.given_index     ,   5)

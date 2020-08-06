@@ -1,6 +1,29 @@
 
 import os
 
+_MULTIPLE_ACTION_ALLOW      =   'ALLOW'
+_MULTIPLE_ACTION_IGNORE     =   'IGNORE'
+_MULTIPLE_ACTION_REJECT     =   'REJECT'
+_MULTIPLE_ACTION_REPLACE    =   'REPLACE'
+
+_MULTIPLE_ACTION_FLAG_ALLOWED = (
+
+    _MULTIPLE_ACTION_IGNORE,
+    _MULTIPLE_ACTION_REJECT,
+    _MULTIPLE_ACTION_REPLACE,
+)
+
+_MULTIPLE_ACTION_OPTION_ALLOWED = (
+
+    _MULTIPLE_ACTION_ALLOW,
+    _MULTIPLE_ACTION_IGNORE,
+    _MULTIPLE_ACTION_REJECT,
+    _MULTIPLE_ACTION_REPLACE,
+)
+
+_MULTIPLE_FLAG_ACTION_DEFAULT    =   _MULTIPLE_ACTION_REPLACE
+_MULTIPLE_OPTION_ACTION_DEFAULT  =   _MULTIPLE_ACTION_ALLOW
+
 def _dict_get_N(d, *keys, **kwargs):
 
     default         =   None
@@ -37,4 +60,46 @@ def _get_program_name(argv, options):
         program_name    =   bn
 
     return program_name
+
+def _global_multiple_flags_action():
+
+    a = os.environ.get('CLASP_MULTIPLE_FLAG_ACTION')
+
+    if a:
+
+        a = a.upper()
+
+    if a:
+
+        if not a in _MULTIPLE_ACTION_FLAG_ALLOWED:
+
+            a = None
+
+    if not a:
+
+        a = _MULTIPLE_FLAG_ACTION_DEFAULT
+
+    return a
+
+
+def _global_multiple_options_action():
+
+    a = os.environ.get('CLASP_MULTIPLE_OPTION_ACTION')
+
+    if a:
+
+        a = a.upper()
+
+    if a:
+
+        if not a in _MULTIPLE_ACTION_OPTION_ALLOWED:
+
+            a = None
+
+    if not a:
+
+        a = _MULTIPLE_OPTION_ACTION_DEFAULT
+
+    return a
+
 

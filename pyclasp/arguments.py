@@ -6,6 +6,8 @@ from .option_specification import OptionSpecification
 from .option_argument import OptionArgument
 
 from .util import _get_program_name
+from .util import _global_multiple_flags_action, _global_multiple_options_action
+from .util import _MULTIPLE_ACTION_ALLOW, _MULTIPLE_ACTION_IGNORE, _MULTIPLE_ACTION_REJECT, _MULTIPLE_ACTION_REPLACE
 
 import re
 import sys
@@ -299,6 +301,73 @@ class Arguments:
 
         return None
 
+    @staticmethod
+    def _add_flag(flags, flag, spec):
+
+        for i, f in enumerate(flags):
+
+            if f == flag:
+
+                default_action  =   _global_multiple_flags_action()
+
+                if False:
+
+                    pass
+                elif _MULTIPLE_ACTION_IGNORE == default_action:
+
+                    return
+                elif _MULTIPLE_ACTION_REJECT == default_action:
+
+                    raise DuplicateFlagSpecified(f, flag, spec)
+                elif _MULTIPLE_ACTION_REPLACE == default_action:
+
+                    flags[i] = flag
+
+                    return
+
+        flags.append(flag)
+
+    @staticmethod
+    def _add_option(options, option, spec):
+
+        for i, o in enumerate(options):
+
+            if o == option:
+
+                action  =   None
+
+                if not spec:
+
+                    spec    =   option.argument_specification
+
+                if spec:
+
+                    action  =   spec.on_multiple
+                else:
+
+                    action  =   _global_multiple_options_action()
+
+                if False:
+
+                    pass
+                elif _MULTIPLE_ACTION_ALLOW == action:
+
+                    options.append(option)
+
+                    return
+                elif _MULTIPLE_ACTION_IGNORE == action:
+
+                    return
+                elif _MULTIPLE_ACTION_REJECT == action:
+
+                    raise DuplicateOptionSpecified(o, option, spec)
+                elif _MULTIPLE_ACTION_REPLACE == action:
+
+                    options[i] = option
+
+                    return
+
+        options.append(option)
 
     @staticmethod
     def _parse(argv, specifications):
@@ -329,7 +398,7 @@ class Arguments:
 
                 current_option._set_value(arg)
 
-                options.append(current_option)
+                Arguments._add_option(options, current_option, None)
 
                 current_option          =   None
 
@@ -386,7 +455,7 @@ class Arguments:
 
                                     flag = FlagArgument(arg, index, arg, spec.name, spec, len(hyphens), given_label, spec.extras)
 
-                                    Arguments._add_flag(flags, flag)
+                                    Arguments._add_flag(flags, flag, spec)
                                 elif isinstance(spec, (OptionSpecification, )):
 
                                     pass
@@ -398,7 +467,7 @@ class Arguments:
 
                                     option = OptionArgument(arg, index, arg, soa.name, soa, len(hyphens), given_label, v, extras)
 
-                                    options.append(option)
+                                    Arguments._add_option(options, option, soa)
                                 else:
 
                                     pass
@@ -485,7 +554,7 @@ class Arguments:
 
                     if value:
 
-                        options.append(option)
+                        Arguments._add_option(options, option, arg_spec)
                     else:
 
                         current_option  =   option
@@ -493,7 +562,7 @@ class Arguments:
 
                     flag        =   FlagArgument(arg, index, given_name, resolved_name, arg_spec, len(hyphens), given_label, extras)
 
-                    flags.append(flag)
+                    Arguments._add_flag(flags, flag, arg_spec)
             else:
 
                 values.append(arg)
@@ -501,15 +570,15 @@ class Arguments:
         if current_option:
 
             value   =   None
-            specification   =   current_option.argument_specification
+            spec    =   current_option.argument_specification
 
-            if specification:
+            if spec:
 
                 # always push, so value type processing can be done (for missing values)
 
-                current_option._set_value(specification.default_value)
+                current_option._set_value(spec.default_value)
 
-            options.append(current_option)
+            Arguments._add_option(options, current_option, spec)
 
 
         return flags, options, values
