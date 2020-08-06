@@ -236,17 +236,17 @@ class Arguments:
     @staticmethod
     def _select_specification(item, specifications):
 
-        for a in specifications:
+        for spec in specifications:
 
-            if a.name == item:
+            if spec.name == item:
 
-                return a
+                return spec
 
-            for a2 in a.aliases:
+            for a2 in spec.aliases:
 
                 if item == a2:
 
-                    return a
+                    return spec
 
         return None
 
@@ -377,24 +377,24 @@ class Arguments:
 
                             # We have a combination of items
 
-                            for a in sel_specifications:
+                            for spec in sel_specifications:
 
                                 if False:
 
                                     pass
-                                elif isinstance(a, (FlagSpecification, )):
+                                elif isinstance(spec, (FlagSpecification, )):
 
-                                    flag = FlagArgument(arg, index, arg, a.name, a, len(hyphens), given_label, a.extras)
+                                    flag = FlagArgument(arg, index, arg, spec.name, spec, len(hyphens), given_label, spec.extras)
 
-                                    flags.append(flag)
-                                elif isinstance(a, (OptionSpecification, )):
+                                    Arguments._add_flag(flags, flag)
+                                elif isinstance(spec, (OptionSpecification, )):
 
                                     pass
-                                elif isinstance(a, (tuple, )):
+                                elif isinstance(spec, (tuple, )):
 
-                                    soa =   a[0]
-                                    fa  =   a[1]
-                                    v   =   a[2]
+                                    soa =   spec[0]
+                                    fa  =   spec[1]
+                                    v   =   spec[2]
 
                                     option = OptionArgument(arg, index, arg, soa.name, soa, len(hyphens), given_label, v, extras)
 
@@ -411,15 +411,15 @@ class Arguments:
                 #
                 # - the resolved name, and
                 # - the default value, if none was attached
-                for i, a in enumerate(specifications):
+                for i, spec in enumerate(specifications):
 
-                    if a.name == given_name or given_name in a.aliases:
+                    if spec.name == given_name or given_name in spec.aliases:
 
-                        is_option       =   isinstance(a, OptionSpecification)
+                        is_option       =   isinstance(spec, OptionSpecification)
 
-                        resolved_name   =   a.name
-                        arg_spec        =   a
-                        extras          =   a.extras
+                        resolved_name   =   spec.name
+                        arg_spec        =   spec
+                        extras          =   spec.extras
 
                         hyphens_2       =   None
                         given_label_2   =   None
@@ -467,9 +467,9 @@ class Arguments:
                                     value   =   value_2
                                 else:
 
-                                    if a.default_value:
+                                    if spec.default_value:
 
-                                        value   =   a.default_value
+                                        value   =   spec.default_value
                         else:
 
                             if alias_has_value:
