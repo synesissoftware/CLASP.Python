@@ -6,7 +6,7 @@
 # Purpose:      Executes the unit-tests regardless of calling directory
 #
 # Created:      13th February 2019
-# Updated:      17th March 2019
+# Updated:      6th August 2020
 #
 # Author:       Matthew Wilson
 #
@@ -20,9 +20,11 @@ while [ -h "$source" ]; do
 done
 dir="$( cd -P "$( dirname "$source" )" && pwd )"
 
+python_cmd=python
+
 
 # This will operate recursively as long as each subdirectory of $dir/tests
 # contains an __init__.py file (which may be empty)
-python -m unittest discover $dir/tests
+PYTHONPATH=$dir:$PYTHONPATH $python_cmd -m unittest discover $dir/tests
 
 
