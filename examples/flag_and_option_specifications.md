@@ -1,4 +1,4 @@
-# CLASP.Python Example - **show_usage_and_version**
+# CLASP.Python Example - **flag_and_option_specifications**
 
 ## Summary
 
