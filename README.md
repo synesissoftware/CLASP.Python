@@ -21,7 +21,7 @@ Python version.
 Install via **pip** or **pip3**, as in:
 
 ```
-	pip3 install pyclasp
+$ pip3 install pyclasp
 ```
 
 Use via **import**:
