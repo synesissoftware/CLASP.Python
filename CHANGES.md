@@ -1,5 +1,22 @@
 # **CLASP.Python** Changes
 
+## 0.8.1 - 11th August 2020
+
+* can now compare equal Flag instances with FlagSpecification instances and Option instances with OptionSpecification instances
+* significantly expanded unit-tests
+
+## 0.8.0 - 6th August 2020
+
+* added ``on_multiple`` keyword argument to ``OptionSpecification``
+* added ``DuplicateFlagSpecified`` exception class
+* added ``DuplicateOptionSpecified`` exception class
+* added ``ParsingException`` exception class
+* added examples/multiple_options.py (and examples/multiple_options.md)
+
+## 0.7.1 - 4th August 2020
+
+* ~ various tidyings
+
 ## 0.7.0 - 22nd August 2019
 
 * + added sections, via ``clasp.section()``
