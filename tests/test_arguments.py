@@ -552,9 +552,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_flag_with_one_specification(self):
 
+        flag_verbose    =   clasp.flag('--verbose', alias = '-v', extras = { 'x-name': 'v-val' })
+
         specifications =   (
 
-            clasp.flag('--verbose', alias = '-v', extras = { 'x-name': 'v-val' }),
+            flag_verbose,
         )
         argv    =   ( 'myprog', '--verbose', '--succinct', 'value', '-v' )
         args    =   clasp.parse(argv, specifications)
@@ -570,7 +572,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(flag, ( Flag, ))
         self.assertEqual(flag.given_index       ,   4)
         self.assertEqual(flag.given_name        ,   '-v')
-        self.assertEqual(flag.argument_specification, specifications[0])
+        self.assertEqual(flag.argument_specification, flag_verbose)
         self.assertEqual(flag.given_hyphens     ,   1)
         self.assertEqual(flag.given_label       ,   'v')
         self.assertEqual(flag.name              ,   '--verbose')
@@ -603,9 +605,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def alias_of_flag_with_two_specifications(self):
 
+        flag_expand =   clasp.flag('--expand', aliases = ( '-x', '--x', ), extras = { 'some-value': ( 'e', 'x', 't', 'r', 'a', 's', ) })
+
         specifications =   (
 
-            clasp.flag('--expand', aliases = ( '-x', '--x', ), extras = { 'some-value': ( 'e', 'x', 't', 'r', 'a', 's', ) }),
+            flag_expand,
         )
         argv    =   ( 'myprog', '-f1', 'value1', '-x', '--delete', '--x', )
         args    =   clasp.parse(argv, specifications)
@@ -634,7 +638,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(flag, ( Flag, ))
         self.assertEqual(flag.given_index       ,   3)
         self.assertEqual(flag.given_name        ,   '-x')
-        self.assertEqual(flag.argument_specification, specifications[0])
+        self.assertEqual(flag.argument_specification, flag_expand)
         self.assertEqual(flag.given_hyphens     ,   1)
         self.assertEqual(flag.given_label       ,   'x')
         self.assertEqual(flag.name              ,   '--expand')
@@ -684,9 +688,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_option_with_one_specification(self):
 
+        option_option   =   clasp.option('--option', alias = '-o')
+
         specifications =   (
 
-            clasp.option('--option', alias = '-o'),
+            option_option,
         )
         argv    =   ( 'myprog', '-f1', 'value1', '-o=value2', )
         args    =   clasp.parse(argv, specifications)
@@ -719,7 +725,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(option, ( Option, ))
         self.assertEqual(option.given_index     ,   3)
         self.assertEqual(option.given_name      ,   '-o')
-        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.argument_specification, option_option)
         self.assertEqual(option.given_hyphens   ,   1)
         self.assertEqual(option.given_label     ,   'o')
         self.assertEqual(option.name            ,   '--option')
@@ -737,9 +743,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_option_with_separate_value(self):
 
+        option_option   =   clasp.option('--option', alias = '-o')
+
         specifications =   (
 
-            clasp.option('--option', alias = '-o'),
+            option_option,
         )
         argv    =   ( 'myprog', '-o', 'value-1', )
         args    =   clasp.parse(argv, specifications)
@@ -759,7 +767,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(option, ( Option, ))
         self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
-        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.argument_specification, option_option)
         self.assertEqual(option.given_hyphens   ,   1)
         self.assertEqual(option.given_label     ,   'o')
         self.assertEqual(option.name            ,   '--option')
@@ -775,9 +783,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_option_that_has_default_with_separate_value(self):
 
+        option_option   =   clasp.option('--option', alias = '-o', default_value = 'def-val-1')
+
         specifications =   (
 
-            clasp.option('--option', alias = '-o', default_value = 'def-val-1'),
+            option_option,
         )
         argv    =   ( 'myprog', '-o', 'value-1', )
         args    =   clasp.parse(argv, specifications)
@@ -797,7 +807,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(option, ( Option, ))
         self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
-        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.argument_specification, option_option)
         self.assertEqual(option.given_hyphens   ,   1)
         self.assertEqual(option.given_label     ,   'o')
         self.assertEqual(option.name            ,   '--option')
@@ -813,9 +823,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_option_that_has_default_with_separate_value_that_resembles_flag(self):
 
+        option_option   =   clasp.option('--option', alias = '-o', default_value = 'def-val-1')
+
         specifications =   (
 
-            clasp.option('--option', alias = '-o', default_value = 'def-val-1'),
+            option_option,
         )
         argv    =   ( 'myprog', '-o', '-o', )
         args    =   clasp.parse(argv, specifications)
@@ -835,7 +847,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(option, ( Option, ))
         self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
-        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.argument_specification, option_option)
         self.assertEqual(option.given_hyphens   ,   1)
         self.assertEqual(option.given_label     ,   'o')
         self.assertEqual(option.name            ,   '--option')
@@ -851,9 +863,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_option_that_has_default_with_missing_separate_value(self):
 
+        option_option   =   clasp.option('--option', alias = '-o', default_value = 'def-val-1')
+
         specifications =   (
 
-            clasp.option('--option', alias = '-o', default_value = 'def-val-1'),
+            option_option,
         )
         argv    =   ( 'myprog', '-o', )
         args    =   clasp.parse(argv, specifications)
@@ -873,7 +887,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(option, ( Option, ))
         self.assertEqual(option.given_index     ,   1)
         self.assertEqual(option.given_name      ,   '-o')
-        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.argument_specification, option_option)
         self.assertEqual(option.given_hyphens   ,   1)
         self.assertEqual(option.given_label     ,   'o')
         self.assertEqual(option.name            ,   '--option')
@@ -929,9 +943,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_flag_alias_of_option_with_value(self):
 
+        option_verbosity    =   clasp.option('--verbosity')
+
         specifications =   (
 
-            clasp.option('--verbosity'),
+            option_verbosity,
             clasp.flag('--verbosity=high', alias = '-v'),
         )
         argv    =   ( 'myprog', '-v', )
@@ -968,9 +984,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_option_with_value_allowing_multiple(self):
 
+        option_option   =   clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='allow')
+
         specifications =   (
 
-            clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='allow'),
+            option_option,
         )
         argv    =   ( 'myprog', '-f1', 'value-1', '-o=', '-o=given-value-1', '--option=given-value-2', )
         args    =   clasp.parse(argv, specifications)
@@ -1049,9 +1067,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_option_with_value_ignoring_multiple(self):
 
+        option_option   =   clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='ignore')
+
         specifications =   (
 
-            clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='ignore'),
+            option_option,
         )
         argv    =   ( 'myprog', '-f1', 'value-1', '-o=', '-o=given-value-1', '--option=given-value-2', )
         args    =   clasp.parse(argv, specifications)
@@ -1102,9 +1122,11 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_alias_of_option_with_value_replacing_multiple(self):
 
+        option_option   =   clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='replace')
+
         specifications =   (
 
-            clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='replace'),
+            option_option,
         )
         argv    =   ( 'myprog', '-f1', 'value-1', '-o=', '-o=given-value-1', '--option=given-value-2', )
         args    =   clasp.parse(argv, specifications)
@@ -1155,11 +1177,15 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_flags_combined(self):
 
+        flag_compile    =   clasp.flag('--compile', alias = '-c')
+        flag_debug      =   clasp.flag('--debug', alias = '-d')
+        flag_execute    =   clasp.flag('--execute', alias = '-e')
+
         specifications =   (
 
-            clasp.flag('--compile', alias = '-c'),
-            clasp.flag('--debug', alias = '-d'),
-            clasp.flag('--execute', alias = '-e'),
+            flag_compile,
+            flag_debug,
+            flag_execute,
         )
 
         argv    =   ( 'myprog', '-ced', )
@@ -1176,7 +1202,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(flag, ( Flag, ))
         self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
-        self.assertEqual(flag.argument_specification, specifications[0])
+        self.assertEqual(flag.argument_specification, flag_compile)
         self.assertEqual(flag.given_hyphens     ,   1)
         self.assertEqual(flag.given_label       ,   'ced')
         self.assertEqual(flag.name              ,   '--compile')
@@ -1189,7 +1215,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(flag, ( Flag, ))
         self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
-        self.assertEqual(flag.argument_specification, specifications[2])
+        self.assertEqual(flag.argument_specification, flag_execute)
         self.assertEqual(flag.given_hyphens     ,   1)
         self.assertEqual(flag.given_label       ,   'ced')
         self.assertEqual(flag.name              ,   '--execute')
@@ -1202,7 +1228,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(flag, ( Flag, ))
         self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
-        self.assertEqual(flag.argument_specification, specifications[1])
+        self.assertEqual(flag.argument_specification, flag_debug)
         self.assertEqual(flag.given_hyphens     ,   1)
         self.assertEqual(flag.given_label       ,   'ced')
         self.assertEqual(flag.name              ,   '--debug')
@@ -1221,12 +1247,16 @@ class Arguments_tester_1(unittest.TestCase):
 
     def test_flags_of_flags_and_options_combined(self):
 
+        flag_compile    =   clasp.flag('--compile', alias = '-c')
+        flag_execute    =   clasp.flag('--execute', alias = '-e')
+        option_mode     =   clasp.option('--mode', alias = '-m')
+
         specifications =   (
 
-            clasp.flag('--compile', alias = '-c'),
+            flag_compile,
             clasp.flag('--mode=debug', alias = '-d'),
-            clasp.flag('--execute', alias = '-e'),
-            clasp.option('--mode', alias = '-m'),
+            flag_execute,
+            option_mode,
         )
 
         argv    =   ( 'myprog', '-ced', )
@@ -1243,7 +1273,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(flag, ( Flag, ))
         self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
-        self.assertEqual(flag.argument_specification, specifications[0])
+        self.assertEqual(flag.argument_specification, flag_compile)
         self.assertEqual(flag.given_hyphens     ,   1)
         self.assertEqual(flag.given_label       ,   'ced')
         self.assertEqual(flag.name              ,   '--compile')
@@ -1256,7 +1286,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(flag, ( Flag, ))
         self.assertEqual(flag.given_index       ,   1)
         self.assertEqual(flag.given_name        ,   '-ced')
-        self.assertEqual(flag.argument_specification, specifications[2])
+        self.assertEqual(flag.argument_specification, flag_execute)
         self.assertEqual(flag.given_hyphens     ,   1)
         self.assertEqual(flag.given_label       ,   'ced')
         self.assertEqual(flag.name              ,   '--execute')
@@ -1273,7 +1303,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(option, ( Option, ))
         self.assertEqual(option.given_index       ,   1)
         self.assertEqual(option.given_name        ,   '-ced')
-        self.assertEqual(option.argument_specification, specifications[3])
+        self.assertEqual(option.argument_specification, option_mode)
         self.assertEqual(option.given_hyphens     ,   1)
         self.assertEqual(option.given_label       ,   'ced')
         self.assertEqual(option.name              ,   '--mode')
