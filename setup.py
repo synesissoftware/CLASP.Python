@@ -4,7 +4,7 @@ import setuptools
 setuptools.setup(
 
     name='pyclasp',
-    version='0.8.0.1',
+    version='0.8.1',
 
     author='Matt Wilson',
     author_email='matthew@synesis.com.au',

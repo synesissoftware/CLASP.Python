@@ -1188,6 +1188,10 @@ class Arguments_tester_1(unittest.TestCase):
             flag_execute,
         )
 
+        self.assertEqual(flag_compile, specifications[0])
+        self.assertEqual(flag_debug, specifications[1])
+        self.assertEqual(flag_execute, specifications[2])
+
         argv    =   ( 'myprog', '-ced', )
         args    =   clasp.parse(argv, specifications)
 
@@ -1209,6 +1213,8 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(flag.extras            ,   {})
         self.assertEqual(str(flag)              ,   '--compile')
         self.assertEqual(flag                   ,   '--compile')
+        self.assertEqual(flag, flag_compile)
+        self.assertEqual(flag_compile, flag)
 
         flag    =   args.flags[1]
 
@@ -1222,6 +1228,8 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(flag.extras            ,   {})
         self.assertEqual(str(flag)              ,   '--execute')
         self.assertEqual(flag                   ,   '--execute')
+        self.assertEqual(flag, flag_execute)
+        self.assertEqual(flag_execute, flag)
 
         flag    =   args.flags[2]
 
@@ -1235,6 +1243,8 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(flag.extras            ,   {})
         self.assertEqual(str(flag)              ,   '--debug')
         self.assertEqual(flag                   ,   '--debug')
+        self.assertEqual(flag_debug, flag)
+        self.assertEqual(flag, flag_debug)
 
         self.assertIsInstance(args.options, ( tuple, ))
         self.assertFalse(args.options)
@@ -1280,6 +1290,8 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(flag.extras            ,   {})
         self.assertEqual(str(flag)              ,   '--compile')
         self.assertEqual(flag                   ,   '--compile')
+        self.assertEqual(flag, flag_compile)
+        self.assertEqual(flag_compile, flag)
 
         flag    =   args.flags[1]
 
@@ -1293,6 +1305,8 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(flag.extras            ,   {})
         self.assertEqual(str(flag)              ,   '--execute')
         self.assertEqual(flag                   ,   '--execute')
+        self.assertEqual(flag, flag_execute)
+        self.assertEqual(flag_execute, flag)
 
         self.assertIsInstance(args.options, ( tuple, ))
         self.assertTrue(args.options)
@@ -1310,6 +1324,8 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(option.extras            ,   {})
         self.assertEqual(str(option)              ,   '--mode=debug')
         self.assertEqual(option                   ,   '--mode=debug')
+        self.assertEqual(option_mode, option)
+        self.assertEqual(option, option_mode)
 
         self.assertIsInstance(args.values, ( tuple, ))
         self.assertFalse(args.values)

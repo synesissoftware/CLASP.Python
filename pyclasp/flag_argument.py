@@ -43,9 +43,13 @@ class FlagArgument(object):
         return self.name
 
     def __eq__(self, other):
-        """Yields True if other is a FlagArgument and has the same 'name'"""
+        """Yields True if other is a string that is the same as 'name', or a FlagArgument or a FlagSpecification that has the same 'name'"""
 
         if isinstance(other, FlagArgument):
+
+            return self.name == other.name
+
+        if isinstance(other, FlagSpecification):
 
             return self.name == other.name
 
@@ -54,7 +58,6 @@ class FlagArgument(object):
             return self.name == other
 
         return False
-
 
     def __ne__(self, other):
         """Yields False if other is not a FlagArgument or has a different 'name'"""

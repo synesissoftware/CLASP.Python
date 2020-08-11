@@ -104,18 +104,21 @@ class OptionArgument(object):
             (self.__module__, self.__class__.__name__, self.given_index, self.given_name, self.given_value, self.given_hyphens, self.given_label, self.extras, self.argument_specification, )
 
     def __eq__(self, other):
-        """Yields True if other is a OptionArgument and has the same 'name'"""
+        """Yields True if other is a string that is the same as 'name', or a OptionArgument or a OptionSpecification that has the same 'name'"""
 
         if isinstance(other, OptionArgument):
 
             return str(self) == str(other)
+
+        if isinstance(other, OptionSpecification):
+
+            return self.name == other.name
 
         if isinstance(other, str):
 
             return str(self) == other
 
         return False
-
 
     def __ne__(self, other):
         """Yields False if other is not a OptionArgument or has a different 'name'"""
