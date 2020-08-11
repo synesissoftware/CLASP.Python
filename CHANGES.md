@@ -2,7 +2,7 @@
 
 ## 0.8.1 - 11th August 2020
 
-* can now compare equal Flag instances with FlagSpecification instances and Option instances with OptionSpecification instances
+* can now compare equal ``Flag`` instances with ``FlagSpecification`` instances and ``Option`` instances with ``OptionSpecification`` instances
 * significantly expanded unit-tests
 
 ## 0.8.0 - 6th August 2020
