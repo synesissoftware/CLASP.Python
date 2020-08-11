@@ -1429,6 +1429,55 @@ class Arguments_tester_1(unittest.TestCase):
 
         self.assertIsNone(fu)
 
+    def test_first_unused_Flag_via_get_first_unused(self):
+
+        flag_compile    =   clasp.flag('--compile', alias = '-c')
+        flag_debug      =   clasp.flag('--debug', alias = '-d')
+
+        specifications = (
+
+            flag_compile,
+            flag_debug,
+        )
+
+        argv    =   ( 'dir1/myprog', '-cd' )
+        args    =   clasp.parse(argv, specifications)
+
+        self.assertEqual('myprog', args.program_name)
+
+        self.assertIsInstance(args.flags, ( tuple, ))
+        self.assertTrue(args.flags)
+        self.assertEqual(2, len(args.flags))
+
+
+        # now check the 'unused', iteratively using and testing
+
+        self.assertIsNone(args.get_first_unused_option())
+
+        # before any use()d
+
+        fu      =   args.get_first_unused()
+
+        self.assertIsNotNone(fu)
+        self.assertEqual(flag_compile, fu)
+
+        # after use() (1st time)
+
+        fu.use()
+
+        fu      =   args.get_first_unused()
+
+        self.assertIsNotNone(fu)
+        self.assertEqual(flag_debug, fu)
+
+        # after use() (2nd time)
+
+        fu.use()
+
+        fu      =   args.get_first_unused()
+
+        self.assertIsNone(fu)
+
     def test_first_unused_Option_via_get_first_unused_option(self):
 
         option_mode     =   clasp.option('--mode', alias = '-m')
@@ -1524,6 +1573,55 @@ class Arguments_tester_1(unittest.TestCase):
         fu.use()
 
         fu      =   args.get_first_unused_flag_or_option()
+
+        self.assertIsNone(fu)
+
+    def test_first_unused_Option_via_get_first_unused(self):
+
+        option_mode     =   clasp.option('--mode', alias = '-m')
+        option_option   =   clasp.option('--option', alias = '-o', default_value = 'default-value', on_multiple='replace')
+
+        specifications = (
+
+            option_mode,
+            option_option,
+        )
+
+        argv    =   ( 'dir1/myprog', '--mode=verbose', '--option=ignore' )
+        args    =   clasp.parse(argv, specifications)
+
+        self.assertEqual('myprog', args.program_name)
+
+        self.assertIsInstance(args.options, ( tuple, ))
+        self.assertTrue(args.options)
+        self.assertEqual(2, len(args.options))
+
+
+        # now check the 'unused', iteratively using and testing
+
+        self.assertIsNone(args.get_first_unused_flag())
+
+        # before any use()d
+
+        fu      =   args.get_first_unused()
+
+        self.assertIsNotNone(fu)
+        self.assertEqual(option_mode, fu)
+
+        # after use() (1st time)
+
+        fu.use()
+
+        fu      =   args.get_first_unused()
+
+        self.assertIsNotNone(fu)
+        self.assertEqual(option_option, fu)
+
+        # after use() (2nd time)
+
+        fu.use()
+
+        fu      =   args.get_first_unused()
 
         self.assertIsNone(fu)
 

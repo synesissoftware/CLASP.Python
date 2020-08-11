@@ -178,6 +178,11 @@ class Arguments:
 
         return self.get_first_unused_flag_or_option()
 
+    def get_first_unused(self, id=None):
+        """shorthand for get_first_unused_flag_or_option()"""
+
+        return self.get_first_unused_flag_or_option(id)
+
     def get_first_unused_flag_or_option(self, id=None):
         """Obtains a reference to the first unused flag or option, or None if all no unused are found
 
