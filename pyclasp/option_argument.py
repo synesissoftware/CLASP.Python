@@ -70,8 +70,9 @@ class OptionArgument(object):
                         except ValueError as x:
 
                             raise InvalidIntegerException("the '%s' option's value '%s' cannot be interpreted as an integer" % (self.name, given_value))
+                    elif arg_spec.value_type == str:
 
-
+                        value   =   given_value
             else:
 
                 if given_value is None and from_ctor:

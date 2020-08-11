@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.8.2 - 12th August 2020
+
+* allows ``OptionSpecification``'s ``value_type`` to be ``str``
+
 ## 0.8.1 - 11th August 2020
 
 * can now compare equal ``Flag`` instances with ``FlagSpecification`` instances and ``Option`` instances with ``OptionSpecification`` instances

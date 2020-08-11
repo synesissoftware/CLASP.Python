@@ -10,6 +10,49 @@ import unittest
 
 class Typed_values_tester_1(unittest.TestCase):
 
+    def test_valid_option_value_of_type_str(self):
+
+        specifications =   (
+
+            clasp.option('--length', alias='-l', value_type=str),
+        )
+
+        argv    =   ( 'myprog', '--length=1.23', '-l', '4.56', )
+        args    =   clasp.parse(argv, specifications)
+
+        self.assertEqual(0, len(args.flags))
+        self.assertEqual(2, len(args.options))
+        self.assertEqual(0, len(args.values))
+
+        option  =   args.options[0]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index       ,   1)
+        self.assertEqual(option.given_name        ,   '--length')
+        self.assertTrue(option.argument_specification)
+        self.assertEqual(option.given_hyphens     ,   2)
+        self.assertEqual(option.given_label       ,   'length')
+        self.assertEqual(option.name              ,   '--length')
+        self.assertEqual(option.extras            ,   {})
+        self.assertEqual(option.given_value       ,   '1.23')
+        self.assertEqual(str(option)              ,   '--length=1.23')
+        self.assertEqual(option                   ,   '--length=1.23')
+
+        option  =   args.options[1]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index       ,   2)
+        self.assertEqual(option.given_name        ,   '-l')
+        self.assertTrue(option.argument_specification)
+        self.assertEqual(option.given_hyphens     ,   1)
+        self.assertEqual(option.given_label       ,   'l')
+        self.assertEqual(option.name              ,   '--length')
+        self.assertEqual(option.extras            ,   {})
+        self.assertEqual(option.given_value       ,   '4.56')
+        self.assertEqual(str(option)              ,   '--length=4.56')
+        self.assertEqual(option                   ,   '--length=4.56')
+
+
     def test_valid_option_value_of_type_float(self):
 
         specifications =   (
