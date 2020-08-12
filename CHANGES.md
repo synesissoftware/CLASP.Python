@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.8.3 - 12th August 2020
+
+* allows ``OptionSpecification``'s ``value_type`` to be ``long``
+
 ## 0.8.2 - 12th August 2020
 
 * allows ``OptionSpecification``'s ``value_type`` to be ``str``
