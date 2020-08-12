@@ -4,7 +4,7 @@ from .util import _MULTIPLE_OPTION_ACTION_DEFAULT, _MULTIPLE_ACTION_OPTION_ALLOW
 
 class OptionSpecification(Specification):
 
-    _VALID_VALUE_TYPES = (float, int, long, str, )
+    _VALID_VALUE_TYPES = (bool, float, int, long, str, )
 
     def __init__(self, name, aliases, help, extras, values_range, default_value, is_required, require_message, value_type, on_multiple):
 
@@ -96,7 +96,7 @@ def option(name, **kwargs):
                 pass
             else:
 
-                raise TypeError("'option' method supports 'value_type' but only for 'None', 'float', 'int', 'long', and 'str'; '%s' (%s) given" % (value_type, type(value_type)))
+                raise TypeError("'option' method supports 'value_type' but only for 'None', 'bool', 'float', 'int', 'long', and 'str'; '%s' (%s) given" % (value_type, type(value_type)))
         else:
 
             raise TypeError("'option' method does not recognise the '%s' keyword argument" % (n, ))

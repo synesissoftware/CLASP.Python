@@ -1,5 +1,10 @@
 # **CLASP.Python** Changes
 
+## 0.8.4 - 12th August 2020
+
+* allows ``OptionSpecification``'s ``value_type`` to be ``bool``
+* added ``InvalidBooleanException`` exception class
+
 ## 0.8.3 - 12th August 2020
 
 * allows ``OptionSpecification``'s ``value_type`` to be ``long``

@@ -2,6 +2,35 @@
 from .exceptions import *
 from .option_specification import OptionSpecification
 
+_FALSE_STRINGS_lower = (
+
+    "false",
+    "no",
+    "0",
+)
+_TRUE_STRINGS_lower = (
+
+    "true",
+    "yes",
+    "1",
+)
+
+def _parse_to_bool(v):
+
+    s   =   str(v)
+
+    s   =   s.lower()
+
+    if s in _FALSE_STRINGS_lower:
+
+        return False
+
+    if s in _TRUE_STRINGS_lower:
+
+        return True
+
+    return None
+
 class OptionArgument(object):
 
     def __init__(self, arg, given_index, given_name, resolved_name, argument_specification, given_hyphens, given_label, value, extras):
@@ -54,6 +83,14 @@ class OptionArgument(object):
                     if False:
 
                         pass
+                    elif arg_spec.value_type == bool:
+
+                        try:
+
+                            value       =   _parse_to_bool(given_value)
+                        except ValueError as x:
+
+                            raise InvalidBooleanException("the '%s' option's value '%s' cannot be interpreted as boolean" % (self.name, given_value))
                     elif arg_spec.value_type == float:
 
                         try:
@@ -105,7 +142,14 @@ class OptionArgument(object):
 
     def __str__(self):
 
-        return "%s=%s" % (self.name, self.value)
+        if isinstance(self.value, (bool, )):
+
+            v   =   str(self.value).lower()
+        else:
+
+            v   =   str(self.value)
+
+        return "%s=%s" % (self.name, v)
 
     def __repr__(self):
 

@@ -24,6 +24,11 @@ class InvalidValueException(ValueParsingException):
 
     pass
 
+class InvalidBooleanException(InvalidValueException):
+    """The given value could not be recognised as a (properly-formatted) boolean"""
+
+    pass
+
 class InvalidNumberException(InvalidValueException):
     """The given value could not be recognised as a (properly-formatted) number"""
 
