@@ -1,6 +1,15 @@
 
 import os
 
+import sys
+
+
+_SUPPORT_long = True
+if sys.version_info >= (3, 0):
+
+    _SUPPORT_long = False
+
+
 _MULTIPLE_ACTION_ALLOW      =   'ALLOW'
 _MULTIPLE_ACTION_IGNORE     =   'IGNORE'
 _MULTIPLE_ACTION_REJECT     =   'REJECT'

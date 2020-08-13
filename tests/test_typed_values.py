@@ -8,6 +8,8 @@ import pyclasp as clasp
 
 import unittest
 
+import sys
+
 class Typed_values_tester_1(unittest.TestCase):
 
     def test_valid_option_value_of_type_str(self):
@@ -53,6 +55,7 @@ class Typed_values_tester_1(unittest.TestCase):
         self.assertIsInstance(option.value        ,   str)
         self.assertEqual(str(option)              ,   '--length=4.56')
         self.assertEqual(option                   ,   '--length=4.56')
+
 
     def test_valid_option_value_of_type_bool(self):
 
@@ -100,6 +103,7 @@ class Typed_values_tester_1(unittest.TestCase):
         self.assertEqual(str(option)              ,   '--verbose=false')
         self.assertEqual(option                   ,   '--verbose=false')
 
+
     def test_valid_option_value_of_type_float(self):
 
         specifications =   (
@@ -145,6 +149,7 @@ class Typed_values_tester_1(unittest.TestCase):
         self.assertAlmostEqual(option.value       ,   4.56)
         self.assertEqual(str(option)              ,   '--length=4.56')
         self.assertEqual(option                   ,   '--length=4.56')
+
 
     def test_valid_option_value_of_type_int(self):
 
@@ -192,51 +197,55 @@ class Typed_values_tester_1(unittest.TestCase):
         self.assertEqual(str(option)              ,   '--length=456')
         self.assertEqual(option                   ,   '--length=456')
 
-    def test_valid_option_value_of_type_long(self):
 
-        specifications =   (
+    if sys.version_info < (3, 0):
 
-            clasp.option('--length', alias='-l', value_type=long),
-        )
+        def test_valid_option_value_of_type_long(self):
 
-        argv    =   ( 'myprog', '--length=123', '-l', '456', )
-        args    =   clasp.parse(argv, specifications)
+            specifications =   (
 
-        self.assertEqual(0, len(args.flags))
-        self.assertEqual(2, len(args.options))
-        self.assertEqual(0, len(args.values))
+                clasp.option('--length', alias='-l', value_type=long),
+            )
 
-        option  =   args.options[0]
+            argv    =   ( 'myprog', '--length=123', '-l', '456', )
+            args    =   clasp.parse(argv, specifications)
 
-        self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   1)
-        self.assertEqual(option.given_name        ,   '--length')
-        self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   2)
-        self.assertEqual(option.given_label       ,   'length')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '123')
-        self.assertIsInstance(option.value        ,   long)
-        self.assertEqual(option.value             ,   123)
-        self.assertEqual(str(option)              ,   '--length=123')
-        self.assertEqual(option                   ,   '--length=123')
+            self.assertEqual(0, len(args.flags))
+            self.assertEqual(2, len(args.options))
+            self.assertEqual(0, len(args.values))
 
-        option  =   args.options[1]
+            option  =   args.options[0]
 
-        self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   2)
-        self.assertEqual(option.given_name        ,   '-l')
-        self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   1)
-        self.assertEqual(option.given_label       ,   'l')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '456')
-        self.assertIsInstance(option.value        ,   long)
-        self.assertEqual(option.value             ,   456)
-        self.assertEqual(str(option)              ,   '--length=456')
-        self.assertEqual(option                   ,   '--length=456')
+            self.assertIsInstance(option, ( Option, ))
+            self.assertEqual(option.given_index       ,   1)
+            self.assertEqual(option.given_name        ,   '--length')
+            self.assertTrue(option.argument_specification)
+            self.assertEqual(option.given_hyphens     ,   2)
+            self.assertEqual(option.given_label       ,   'length')
+            self.assertEqual(option.name              ,   '--length')
+            self.assertEqual(option.extras            ,   {})
+            self.assertEqual(option.given_value       ,   '123')
+            self.assertIsInstance(option.value        ,   long)
+            self.assertEqual(option.value             ,   123)
+            self.assertEqual(str(option)              ,   '--length=123')
+            self.assertEqual(option                   ,   '--length=123')
+
+            option  =   args.options[1]
+
+            self.assertIsInstance(option, ( Option, ))
+            self.assertEqual(option.given_index       ,   2)
+            self.assertEqual(option.given_name        ,   '-l')
+            self.assertTrue(option.argument_specification)
+            self.assertEqual(option.given_hyphens     ,   1)
+            self.assertEqual(option.given_label       ,   'l')
+            self.assertEqual(option.name              ,   '--length')
+            self.assertEqual(option.extras            ,   {})
+            self.assertEqual(option.given_value       ,   '456')
+            self.assertIsInstance(option.value        ,   long)
+            self.assertEqual(option.value             ,   456)
+            self.assertEqual(str(option)              ,   '--length=456')
+            self.assertEqual(option                   ,   '--length=456')
+
 
     def test_invalid_option_value_of_type_int(self):
 
@@ -251,6 +260,7 @@ class Typed_values_tester_1(unittest.TestCase):
 
             clasp.parse(argv, specifications)
 
+
     def test_invalid_option_value_of_type_float(self):
 
         specifications =   (
@@ -263,6 +273,7 @@ class Typed_values_tester_1(unittest.TestCase):
         with self.assertRaises(clasp.InvalidNumberException):
 
             clasp.parse(argv, specifications)
+
 
     def test_empty_option_value_of_type_int(self):
 
@@ -277,6 +288,7 @@ class Typed_values_tester_1(unittest.TestCase):
 
             clasp.parse(argv, specifications)
 
+
     def test_empty_option_value_of_type_int_2(self):
 
         specifications =   (
@@ -289,6 +301,7 @@ class Typed_values_tester_1(unittest.TestCase):
         with self.assertRaises(clasp.MissingValueException):
 
             clasp.parse(argv, specifications)
+
 
     def test_empty_option_value_of_type_int_3(self):
 
@@ -303,6 +316,7 @@ class Typed_values_tester_1(unittest.TestCase):
 
             clasp.parse(argv, specifications)
 
+
     def test_empty_option_value_of_type_int_4(self):
 
         specifications =   (
@@ -316,11 +330,13 @@ class Typed_values_tester_1(unittest.TestCase):
 
             clasp.parse(argv, specifications)
 
+
     def test_invalid_option_value_of_type_that_is_not_supported(self):
 
         with self.assertRaises(TypeError):
 
             clasp.option('--length', alias='-l', value_type='abc'),
+
 
     def test_flags_of_flags_and_options_combined(self):
 

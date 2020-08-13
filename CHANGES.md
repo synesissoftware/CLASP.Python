@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.8.5 - 13th August 2020
+
+* ~ fixing compatibility with Python 3's removal of ``long``
+
 ## 0.8.4 - 12th August 2020
 
 * allows ``OptionSpecification``'s ``value_type`` to be ``bool``

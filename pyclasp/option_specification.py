@@ -2,9 +2,16 @@
 from .specification import Specification
 from .util import _MULTIPLE_OPTION_ACTION_DEFAULT, _MULTIPLE_ACTION_OPTION_ALLOWED
 
+from .util import _SUPPORT_long
+
 class OptionSpecification(Specification):
 
-    _VALID_VALUE_TYPES = (bool, float, int, long, str, )
+    if _SUPPORT_long:
+
+        _VALID_VALUE_TYPES = (bool, float, int, long, str, )
+    else:
+
+        _VALID_VALUE_TYPES = (bool, float, int, str, )
 
     def __init__(self, name, aliases, help, extras, values_range, default_value, is_required, require_message, value_type, on_multiple):
 
@@ -96,7 +103,7 @@ def option(name, **kwargs):
                 pass
             else:
 
-                raise TypeError("'option' method supports 'value_type' but only for 'None', 'bool', 'float', 'int', 'long', and 'str'; '%s' (%s) given" % (value_type, type(value_type)))
+                raise TypeError("'option' method supports 'value_type' only for 'None' and the types %s; '%s' (%s) given" % ([t.__name__ for t in OptionSpecification._VALID_VALUE_TYPES], value_type, type(value_type)))
         else:
 
             raise TypeError("'option' method does not recognise the '%s' keyword argument" % (n, ))
