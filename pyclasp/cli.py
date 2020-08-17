@@ -93,6 +93,18 @@ def show_usage(specifications, **kwargs):
 
             raise TypeError("'specifications' must be a list or a tuple")
 
+        alias_dups = {}
+        for spec in specifications:
+
+            for a in spec.aliases:
+
+                if a in alias_dups:
+
+                    sys.stderr.write("WARNING: alias '%s' is already used for specification '%s'\n" % (a, spec))
+                else:
+
+                    alias_dups[a] = spec
+
     options             =   kwargs
 
     exit_code           =   _dict_get_N(options, 'exit', 'exit_code', 'exit-code')

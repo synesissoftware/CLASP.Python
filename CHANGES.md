@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.8.6 - 17th August 2020
+
+* ~ ``show_usage()`` now issues a warning message to stderr for duplicate aliases (consistent with behaviour of (CLASP.Ruby)[https://github.com/synesissoftware/CLASP.Ruby])
+
 ## 0.8.5 - 13th August 2020
 
 * ~ fixing compatibility with Python 3's removal of ``long``
