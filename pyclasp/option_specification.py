@@ -26,8 +26,8 @@ class OptionSpecification(Specification):
 
     def __str__(self):
 
-        return "<%s.%s: name=%s; help=%s; aliases=%s; extras=%s, default_value=%s, values_range=%s, on_multiple=%s, is_required=%s, require_message=%s >" %\
-            (self.__module__, self.__class__.__name__, self.name, self.help, self.aliases, self.extras, self.default_value, self.values_range, self.on_multiple, self.is_required, self.require_message,)
+        return "<%s.%s: name=%s; help=%s; aliases=%s; extras=%s, default_value=%s, value_type=%s, values_range=%s, on_multiple=%s, is_required=%s, require_message=%s >" %\
+            (self.__module__, self.__class__.__name__, self.name, self.help, self.aliases, self.extras, self.default_value, self.value_type, self.values_range, self.on_multiple, self.is_required, self.require_message,)
 
 
 def option(name, **kwargs):

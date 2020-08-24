@@ -1,5 +1,9 @@
 # **CLASP.Python** Changes
 
+## 0.8.8 - 24th August 2020
+
+* ~ fixing defect in option default value processing
+
 ## 0.8.7 - 24th August 2020
 
 * ~ fixing defect in option value processing

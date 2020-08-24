@@ -128,7 +128,18 @@ class OptionArgument(object):
                     pass
                 else:
 
-                    raise MissingValueException("the '%s' option does not have a value to be interpreted as an integer" % (self.name))
+                    if False:
+
+                        pass
+                    elif arg_spec.value_type == str:
+
+                        pass
+                    elif not arg_spec.value_type:
+
+                        pass
+                    else:
+
+                        raise MissingValueException("the '%s' option does not have a value to be interpreted as an integer" % (self.name))
 
 
         self.given_value    =   given_value
