@@ -477,8 +477,6 @@ class Arguments:
 
                                     pass
 
-                                pass
-
                             continue
 
                 # Now look through the specifications, for:
@@ -532,11 +530,9 @@ class Arguments:
 
                         if is_option:
 
-                            if value != None:
+                            if not value and value != None:
 
                                 if alias_has_value:
-
-
 
                                     value   =   value_2
                                 else:

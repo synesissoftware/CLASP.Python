@@ -1040,10 +1040,10 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(option.given_hyphens   ,   1)
         self.assertEqual(option.given_label     ,   'o')
         self.assertEqual(option.name            ,   '--option')
-        self.assertEqual(option.value           ,   'default-value')
+        self.assertEqual(option.value           ,   'given-value-1')
         self.assertEqual(option.extras          ,   {})
-        self.assertEqual(str(option)            ,   '--option=default-value')
-        self.assertEqual(option                 ,   '--option=default-value')
+        self.assertEqual(str(option)            ,   '--option=given-value-1')
+        self.assertEqual(option                 ,   '--option=given-value-1')
 
         option  =   args.options[2]
 
@@ -1054,10 +1054,10 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(option.given_hyphens   ,   2)
         self.assertEqual(option.given_label     ,   'option')
         self.assertEqual(option.name            ,   '--option')
-        self.assertEqual(option.value           ,   'default-value')
+        self.assertEqual(option.value           ,   'given-value-2')
         self.assertEqual(option.extras          ,   {})
-        self.assertEqual(str(option)            ,   '--option=default-value')
-        self.assertEqual(option                 ,   '--option=default-value')
+        self.assertEqual(str(option)            ,   '--option=given-value-2')
+        self.assertEqual(option                 ,   '--option=given-value-2')
 
         self.assertIsInstance(args.values, ( tuple, ))
         self.assertTrue(args.values)
@@ -1098,7 +1098,7 @@ class Arguments_tester_1(unittest.TestCase):
 
         self.assertIsInstance(args.options, ( tuple, ))
         self.assertTrue(args.options)
-        self.assertEqual(1, len(args.options))
+        self.assertEqual(3, len(args.options))
 
         option  =   args.options[0]
 
@@ -1113,6 +1113,34 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(option.extras          ,   {})
         self.assertEqual(str(option)            ,   '--option=default-value')
         self.assertEqual(option                 ,   '--option=default-value')
+
+        option  =   args.options[1]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index     ,   4)
+        self.assertEqual(option.given_name      ,   '-o')
+        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.given_hyphens   ,   1)
+        self.assertEqual(option.given_label     ,   'o')
+        self.assertEqual(option.name            ,   '--option')
+        self.assertEqual(option.value           ,   'given-value-1')
+        self.assertEqual(option.extras          ,   {})
+        self.assertEqual(str(option)            ,   '--option=given-value-1')
+        self.assertEqual(option                 ,   '--option=given-value-1')
+
+        option  =   args.options[2]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index     ,   5)
+        self.assertEqual(option.given_name      ,   '--option')
+        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.given_hyphens   ,   2)
+        self.assertEqual(option.given_label     ,   'option')
+        self.assertEqual(option.name            ,   '--option')
+        self.assertEqual(option.value           ,   'given-value-2')
+        self.assertEqual(option.extras          ,   {})
+        self.assertEqual(str(option)            ,   '--option=given-value-2')
+        self.assertEqual(option                 ,   '--option=given-value-2')
 
         self.assertIsInstance(args.values, ( tuple, ))
         self.assertTrue(args.values)
@@ -1153,9 +1181,37 @@ class Arguments_tester_1(unittest.TestCase):
 
         self.assertIsInstance(args.options, ( tuple, ))
         self.assertTrue(args.options)
-        self.assertEqual(1, len(args.options))
+        self.assertEqual(3, len(args.options))
 
         option  =   args.options[0]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index     ,   3)
+        self.assertEqual(option.given_name      ,   '-o')
+        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.given_hyphens   ,   1)
+        self.assertEqual(option.given_label     ,   'o')
+        self.assertEqual(option.name            ,   '--option')
+        self.assertEqual(option.value           ,   'default-value')
+        self.assertEqual(option.extras          ,   {})
+        self.assertEqual(str(option)            ,   '--option=default-value')
+        self.assertEqual(option                 ,   '--option=default-value')
+
+        option  =   args.options[1]
+
+        self.assertIsInstance(option, ( Option, ))
+        self.assertEqual(option.given_index     ,   4)
+        self.assertEqual(option.given_name      ,   '-o')
+        self.assertEqual(option.argument_specification  ,   specifications[0])
+        self.assertEqual(option.given_hyphens   ,   1)
+        self.assertEqual(option.given_label     ,   'o')
+        self.assertEqual(option.name            ,   '--option')
+        self.assertEqual(option.value           ,   'given-value-1')
+        self.assertEqual(option.extras          ,   {})
+        self.assertEqual(str(option)            ,   '--option=given-value-1')
+        self.assertEqual(option                 ,   '--option=given-value-1')
+
+        option  =   args.options[2]
 
         self.assertIsInstance(option, ( Option, ))
         self.assertEqual(option.given_index     ,   5)
@@ -1164,10 +1220,10 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual(option.given_hyphens   ,   2)
         self.assertEqual(option.given_label     ,   'option')
         self.assertEqual(option.name            ,   '--option')
-        self.assertEqual(option.value           ,   'default-value')
+        self.assertEqual(option.value           ,   'given-value-2')
         self.assertEqual(option.extras          ,   {})
-        self.assertEqual(str(option)            ,   '--option=default-value')
-        self.assertEqual(option                 ,   '--option=default-value')
+        self.assertEqual(str(option)            ,   '--option=given-value-2')
+        self.assertEqual(option                 ,   '--option=given-value-2')
 
         self.assertIsInstance(args.values, ( tuple, ))
         self.assertTrue(args.values)
