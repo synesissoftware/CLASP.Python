@@ -1,6 +1,8 @@
 # CLASP.Python
 **C**ommand-**L**ine **A**rgument **S**orting and **P**arsing for Python
 
+[![PyPI version](https://badge.fury.io/py/CLASP.Python.svg)](https://badge.fury.io/py/CLASP.Python)
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
