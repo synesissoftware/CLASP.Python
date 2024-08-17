@@ -37,7 +37,9 @@ class OptionSpecification(Specification):
 
 
 def option(name, **kwargs):
-    """Creates an option specification from the given parameters"""
+    """
+    Creates an option specification from the given parameters
+    """
 
     aliases =   None
     help    =   None

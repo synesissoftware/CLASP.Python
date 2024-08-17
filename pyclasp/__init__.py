@@ -28,7 +28,9 @@ from .cli import show_usage, show_version
 import sys
 
 def parse(argv = None, specifications = None):
-    """Obtains an instance of clasp.Arguments, representing all the command-line arguments present in argv (or sys.argv)"""
+    """
+    Obtains an instance of `clasp.Arguments`, representing all the command-line arguments present in `argv` (or `sys.argv`)
+    """
 
     if argv is None:
 
@@ -37,7 +39,9 @@ def parse(argv = None, specifications = None):
     return Arguments(argv, specifications)
 
 def get_program_name(argv = None):
-    """Obtains/infers the program name from the given array, or from sys.argv"""
+    """
+    Obtains/infers the program name from the given array, or from `sys.argv`
+    """
 
     return Arguments.get_program_name(argv)
 

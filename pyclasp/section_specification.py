@@ -19,7 +19,9 @@ class SectionSpecification(Specification):
 
 
 def section(name, **kwargs):
-    """Creates a section specification from the given parameters"""
+    """
+    Creates a section specification from the given parameters
+    """
 
     extras  =   None
 

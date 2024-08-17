@@ -182,7 +182,9 @@ class OptionArgument(object):
 
 
     def __eq__(self, other):
-        """Yields True if other is a string that is the same as 'name', or a OptionArgument or a OptionSpecification that has the same 'name'"""
+        """
+        Yields `True` if `other` is a string that is the same as `#name`, or a `OptionArgument` or a `OptionSpecification` that has the same `#name`
+        """
 
         if isinstance(other, OptionArgument):
 
@@ -200,7 +202,9 @@ class OptionArgument(object):
 
 
     def __ne__(self, other):
-        """Yields False if other is not a OptionArgument or has a different 'name'"""
+        """
+        Yields `False` if `other` is not an `OptionArgument` or has a different `#name`
+        """
 
         return not self.__eq__(other)
 

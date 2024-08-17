@@ -19,7 +19,9 @@ class FlagSpecification(Specification):
 
 
 def flag(name, **kwargs):
-    """Creates a flag specification from the given parameters"""
+    """
+    Creates a flag specification from the given parameters
+    """
 
     aliases =   None
     help    =   None
