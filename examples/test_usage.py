@@ -25,12 +25,12 @@ INFO_LINES = (
 
 args = clasp.parse(sys.argv, specifications)
 
-print '*' * 50 + "\n"
-print "usage:\n"
+print('*' * 50 + "\n")
+print("usage:\n")
 clasp.show_usage(args, version = [ 1, 2, 3 ], stream = sys.stdout, program_name = 'myprog', version_prefix = 'v', info_lines=INFO_LINES)
 
-print '*' * 50 + "\n"
-print "version:\n"
+print('*' * 50 + "\n")
+print("version:\n")
 clasp.show_version(args, version = [ 1, 2, 3 ], stream = sys.stdout, program_name = 'myprog', version_prefix = 'v')
 
 print
