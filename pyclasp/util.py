@@ -33,6 +33,7 @@ _MULTIPLE_ACTION_OPTION_ALLOWED = (
 _MULTIPLE_FLAG_ACTION_DEFAULT    =   _MULTIPLE_ACTION_REPLACE
 _MULTIPLE_OPTION_ACTION_DEFAULT  =   _MULTIPLE_ACTION_ALLOW
 
+
 def _dict_get_N(d, *keys, **kwargs):
 
     default         =   None
@@ -58,6 +59,7 @@ def _dict_get_N(d, *keys, **kwargs):
 
     return default
 
+
 def _get_program_name(argv, options):
 
     program_name    =   _dict_get_N(options, 'program_name', 'program-name')
@@ -69,6 +71,7 @@ def _get_program_name(argv, options):
         program_name    =   bn
 
     return program_name
+
 
 def _global_multiple_flags_action():
 

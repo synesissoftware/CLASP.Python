@@ -2,6 +2,10 @@
 from .flag_specification import FlagSpecification
 
 class FlagArgument(object):
+    """
+    TBC
+    """
+
 
     def __init__(self, arg, given_index, given_name, resolved_name, argument_specification, given_hyphens, given_label, extras):
 
@@ -30,17 +34,21 @@ class FlagArgument(object):
             'used'  :   False
         }
 
+
     def use(self):
 
         self.private_fields['used'] = True
+
 
     def used(self):
 
         return self.private_fields['used']
 
+
     def __str__(self):
 
         return self.name
+
 
     def __eq__(self, other):
         """Yields True if other is a string that is the same as 'name', or a FlagArgument or a FlagSpecification that has the same 'name'"""
@@ -58,6 +66,7 @@ class FlagArgument(object):
             return self.name == other
 
         return False
+
 
     def __ne__(self, other):
         """Yields False if other is not a FlagArgument or has a different 'name'"""

@@ -11,6 +11,7 @@ import os
 import re
 import sys
 
+
 def _ensure_single_space_prefix(s):
 
     if s:
@@ -22,6 +23,7 @@ def _ensure_single_space_prefix(s):
             s = ' ' + s
 
     return s
+
 
 def _generate_version_string(argv, options):
 
@@ -220,7 +222,6 @@ def show_usage(specifications, **kwargs):
     if None != exit_code:
 
         sys.exit(exit_code)
-
 
 
 def show_version(specifications, **kwargs):

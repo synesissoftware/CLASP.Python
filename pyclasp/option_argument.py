@@ -18,6 +18,7 @@ _TRUE_STRINGS_lower = (
     "1",
 )
 
+
 def _parse_to_bool(v):
 
     s   =   str(v)
@@ -34,7 +35,12 @@ def _parse_to_bool(v):
 
     return None
 
+
 class OptionArgument(object):
+    """
+    TBC
+    """
+
 
     def __init__(self, arg, given_index, given_name, resolved_name, argument_specification, given_hyphens, given_label, value, extras):
 
@@ -63,6 +69,7 @@ class OptionArgument(object):
 
             'used'  :   False
         }
+
 
     def _set_value(self, value, from_ctor=False):
 
@@ -150,9 +157,11 @@ class OptionArgument(object):
 
         self.private_fields['used'] = True
 
+
     def used(self):
 
         return self.private_fields['used']
+
 
     def __str__(self):
 
@@ -165,10 +174,12 @@ class OptionArgument(object):
 
         return "%s=%s" % (self.name, v)
 
+
     def __repr__(self):
 
         return "<%s.%s: given_index=%s; given_name=%s; given_value=%s; given_hyphens=%s, given_label=%s, extras=%s; argument_specification=%s >" %\
             (self.__module__, self.__class__.__name__, self.given_index, self.given_name, self.given_value, self.given_hyphens, self.given_label, self.extras, self.argument_specification, )
+
 
     def __eq__(self, other):
         """Yields True if other is a string that is the same as 'name', or a OptionArgument or a OptionSpecification that has the same 'name'"""
@@ -186,6 +197,7 @@ class OptionArgument(object):
             return str(self) == other
 
         return False
+
 
     def __ne__(self, other):
         """Yields False if other is not a OptionArgument or has a different 'name'"""

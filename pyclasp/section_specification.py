@@ -2,10 +2,15 @@
 from .specification import Specification
 
 class SectionSpecification(Specification):
+    """
+    TBC
+    """
+
 
     def __init__(self, name, extras):
 
         super(SectionSpecification, self).__init__(name, None, None, extras)
+
 
     def __str__(self):
 

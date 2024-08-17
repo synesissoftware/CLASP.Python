@@ -1,5 +1,9 @@
 
 class Specification(object):
+    """
+    TBC
+    """
+
 
     def __init__(self, name, aliases, help, extras):
 
@@ -43,6 +47,10 @@ class Specification(object):
 
 
 def specification(name, **kwargs):
+    """
+    TBC
+    """
+
 
     aliases =   None
     help    =   None

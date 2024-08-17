@@ -5,6 +5,10 @@ from .util import _MULTIPLE_OPTION_ACTION_DEFAULT, _MULTIPLE_ACTION_OPTION_ALLOW
 from .util import _SUPPORT_long
 
 class OptionSpecification(Specification):
+    """
+    TBC
+    """
+
 
     if _SUPPORT_long:
 
@@ -12,6 +16,7 @@ class OptionSpecification(Specification):
     else:
 
         _VALID_VALUE_TYPES = (bool, float, int, str, )
+
 
     def __init__(self, name, aliases, help, extras, values_range, default_value, is_required, require_message, value_type, on_multiple):
 
@@ -23,6 +28,7 @@ class OptionSpecification(Specification):
         self.require_message    =   require_message
         self.value_type         =   value_type
         self.on_multiple        =   on_multiple
+
 
     def __str__(self):
 
@@ -109,5 +115,4 @@ def option(name, **kwargs):
             raise TypeError("'option' method does not recognise the '%s' keyword argument" % (n, ))
 
     return OptionSpecification(name, aliases, help, extras, values_range, default_value, is_required, require_message, value_type, on_multiple)
-
 

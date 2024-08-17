@@ -2,10 +2,15 @@
 from .specification import Specification
 
 class FlagSpecification(Specification):
+    """
+    TBC
+    """
+
 
     def __init__(self, name, aliases, help, extras):
 
         super(FlagSpecification, self).__init__(name, aliases, help, extras)
+
 
     def __str__(self):
 
@@ -43,6 +48,7 @@ def flag(name, **kwargs):
 
     return FlagSpecification(name, aliases, help, extras)
 
+
 _HELP_FLAG      =   FlagSpecification('--help', None, 'Shows usage and terminates', None)
 _VERSION_FLAG   =   FlagSpecification('--version', None, 'Shows version and terminates', None)
 
@@ -50,6 +56,7 @@ _VERSION_FLAG   =   FlagSpecification('--version', None, 'Shows version and term
 def HelpFlag():
 
    return _HELP_FLAG
+
 
 def VersionFlag():
 
