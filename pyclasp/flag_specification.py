@@ -2,10 +2,15 @@
 from .specification import Specification
 
 class FlagSpecification(Specification):
+    """
+    TBC
+    """
+
 
     def __init__(self, name, aliases, help, extras):
 
         super(FlagSpecification, self).__init__(name, aliases, help, extras)
+
 
     def __str__(self):
 
@@ -14,7 +19,9 @@ class FlagSpecification(Specification):
 
 
 def flag(name, **kwargs):
-    """Creates a flag specification from the given parameters"""
+    """
+    Creates a flag specification from the given parameters
+    """
 
     aliases =   None
     help    =   None
@@ -39,9 +46,10 @@ def flag(name, **kwargs):
             extras = v
         else:
 
-            raise TypeError("'flag' method does not recognise the '%s' keyword argument" % (n, ))
+            raise TypeError("`flag` method does not recognise the `%s` keyword argument" % (n, ))
 
     return FlagSpecification(name, aliases, help, extras)
+
 
 _HELP_FLAG      =   FlagSpecification('--help', None, 'Shows usage and terminates', None)
 _VERSION_FLAG   =   FlagSpecification('--version', None, 'Shows version and terminates', None)
@@ -50,6 +58,7 @@ _VERSION_FLAG   =   FlagSpecification('--version', None, 'Shows version and term
 def HelpFlag():
 
    return _HELP_FLAG
+
 
 def VersionFlag():
 

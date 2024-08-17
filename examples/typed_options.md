@@ -59,7 +59,7 @@ if args.flag_is_specified('--version'):
 opt_length = args.lookup_option('--length')
 if opt_length:
 
-    print("You specified length with the value: %d (of type %s). The string that was passed is available in the 'given_value' attribute, which is '%s' (of type %s)\n" % (opt_length.value, type(opt_length.value), opt_length.given_value, type(opt_length.given_value)))
+    print("You specified length with the value: %d (of type `%s`). The string that was passed is available in the `given_value` attribute, which is '%s' (of type `%s`)\n" % (opt_length.value, type(opt_length.value), opt_length.given_value, type(opt_length.given_value)))
 else:
 
     sys.stderr.write("try specifying the '--length' option; use --help for usage\n")

@@ -2,10 +2,15 @@
 from .specification import Specification
 
 class SectionSpecification(Specification):
+    """
+    TBC
+    """
+
 
     def __init__(self, name, extras):
 
         super(SectionSpecification, self).__init__(name, None, None, extras)
+
 
     def __str__(self):
 
@@ -14,7 +19,9 @@ class SectionSpecification(Specification):
 
 
 def section(name, **kwargs):
-    """Creates a section specification from the given parameters"""
+    """
+    Creates a section specification from the given parameters
+    """
 
     extras  =   None
 
@@ -28,7 +35,7 @@ def section(name, **kwargs):
             extras = v
         else:
 
-            raise TypeError("'section' method does not recognise the '%s' keyword argument" % (n, ))
+            raise TypeError("`section` method does not recognise the `%s` keyword argument" % (n, ))
 
     return SectionSpecification(name, extras)
 

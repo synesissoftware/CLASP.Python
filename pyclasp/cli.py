@@ -11,6 +11,7 @@ import os
 import re
 import sys
 
+
 def _ensure_single_space_prefix(s):
 
     if s:
@@ -22,6 +23,7 @@ def _ensure_single_space_prefix(s):
             s = ' ' + s
 
     return s
+
 
 def _generate_version_string(argv, options):
 
@@ -67,7 +69,9 @@ def _generate_version_string(argv, options):
 
 
 def show_usage(specifications, **kwargs):
-    """Displays program usage from the given specifications (or arguments), according to the given options"""
+    """
+    Displays program usage from the given `specifications` (or arguments), according to the given options
+    """
 
     argv                =   sys.argv
 
@@ -81,17 +85,17 @@ def show_usage(specifications, **kwargs):
 
         if specifications == None:
 
-            raise TypeError("'specifications' may not be None")
+            raise TypeError("`specifications` may not be `None`")
         elif isinstance(specifications, (list, tuple, )):
 
             for index, a in enumerate(specifications):
 
                 if not isinstance(a, (Specification, )):
 
-                    raise TypeError("every element in 'specifications' must be an instance of clasp.Specification: the element at index %d is of type '%s'" % (index, type(a).__name__))
+                    raise TypeError("every element in `specifications` must be an instance of `clasp.Specification`: the element at index %d is of type `%s`" % (index, type(a).__name__))
         else:
 
-            raise TypeError("'specifications' must be a list or a tuple")
+            raise TypeError("`specifications` must be a `list` or a `tuple`")
 
         alias_dups = {}
         for spec in specifications:
@@ -222,9 +226,10 @@ def show_usage(specifications, **kwargs):
         sys.exit(exit_code)
 
 
-
 def show_version(specifications, **kwargs):
-    """Displays program version from the given specifications (or arguments), according to the given options"""
+    """
+    Displays program version from the given `specifications` (or arguments), according to the given options
+    """
 
     argv                =   sys.argv
 
@@ -238,17 +243,17 @@ def show_version(specifications, **kwargs):
 
         if specifications == None:
 
-            raise TypeError("'specifications' may not be None")
+            raise TypeError("`specifications` may not be `None`")
         elif isinstance(specifications, (list, tuple, )):
 
             for index, a in enumerate(specifications):
 
                 if not isinstance(a, (Specification, )):
 
-                    raise TypeError("every element in 'specifications' must be an instance of clasp.Specification: the element at index %d is of type '%s'" % (index, type(a).__name__))
+                    raise TypeError("every element in `specifications` must be an instance of `clasp.Specification`: the element at index %d is of type `%s`" % (index, type(a).__name__))
         else:
 
-            raise TypeError("'specifications' must be a list or a tuple")
+            raise TypeError("`specifications` must be a `list` or a `tuple`")
 
     # options:
     #

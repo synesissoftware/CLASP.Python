@@ -12,19 +12,25 @@ from .util import _MULTIPLE_ACTION_ALLOW, _MULTIPLE_ACTION_IGNORE, _MULTIPLE_ACT
 import re
 import sys
 
+
 class Arguments:
-    """Represents a parsed command-line, separated into program-name, flags, options, and values"""
+    """
+    Represents a parsed command-line, separated into program-name, flags, options, and values
+    """
+
 
     def __init__(self, argv, specifications = None):
-        """Initialises an instance from the given argv and specifications sequences. Users should instead use clasp.parse()"""
+        """
+        Initialises an instance from the given `argv` and `specifications` sequences. Users should instead use `clasp.parse()`
+        """
 
         if not isinstance(argv, ( list, tuple )):
 
-            raise TypeError("'argv' argument must be an instance of 'list' or 'tuple'")
+            raise TypeError("`argv` argument must be an instance of `list` or `tuple`")
 
         if specifications and not isinstance(specifications, ( list, tuple )):
 
-            raise TypeError("'specifications' argument must be None or an instance of 'list' or 'tuple'")
+            raise TypeError("`specifications` argument must be `None` or an instance of `list` or `tuple`")
 
         self.argv       =   argv
 
@@ -33,40 +39,69 @@ class Arguments:
         flags, options, values  =   Arguments._parse(argv, self.specifications)
 
         self.program_name       =   Arguments.get_program_name(argv)
-        """The program name"""
+        """
+        str
+            The program name
+        """
 
         self.flags      =   tuple(flags)
-        """The parsed flags"""
+        """
+        tuple
+            The parsed flags
+        """
 
         self.options    =   tuple(options)
-        """The parsed options"""
+        """
+        tuple
+            The parsed options
+        """
 
         self.values     =   tuple(values)
-        """The parsed values"""
+        """
+        tuple
+            The parsed values
+        """
+
 
     def aliases(self):
-        "[DEPRECATED] instead use 'specifications'"""
+        """
+        [DEPRECATED] instead use `specifications`
+        """
 
         return self.specifications
 
 
     def flagIsSpecified(self, id):
-        """[DEPRECATED] Use flag_is_specified()"""
+        """
+        [DEPRECATED] Use `flag_is_specified()`
+        """
 
         return self.flag_is_specified(id)
 
+
     def flag_is_specified(self, id):
-        """Returns true if the given flag (name, or instance) has been specified; false otherwise"""
+        """
+        Returns
+        -------
+        bool
+            `True` if the given flag (name, or instance) has been specified; `False` otherwise
+        """
 
         return None != self.lookup_flag(id);
 
+
     def lookupFlag(self, id):
-        """[DEPRECATED] Use lookup_flag()"""
+        """
+        [DEPRECATED] Use `lookup_flag()`
+        """
 
         return self.lookup_flag(id)
 
+
     def lookup_flag(self, id):
-        """Looks and returns the identified flag from the instance's flags; returns None if not found"""
+        """
+        Looks and returns the identified flag from the instance's flags; returns `None` if not found
+        """
 
         name    =   None
 
@@ -93,13 +128,19 @@ class Arguments:
 
         return None
 
+
     def lookupOption(self, id):
-        """[DEPRECATED] Use lookup_option()"""
+        """
+        [DEPRECATED] Use `lookup_option()`
+        """
 
         return self.lookup_option(id)
 
+
     def lookup_option(self, id):
-        """Looks and returns the identified option from the instance's options; returns None if not found"""
+        """
+        Looks and returns the identified option from the instance's options; returns `None` if not found
+        """
 
         name    =   None
 
@@ -126,13 +167,18 @@ class Arguments:
 
         return None
 
+
     def getFirstUnusedFlag(self):
-        """[DEPRECATED] Use get_first_unused_flag()"""
+        """
+        [DEPRECATED] Use `get_first_unused_flag()`
+        """
 
         return self.get_first_unused_flag()
 
+
     def get_first_unused_flag(self, id=None):
-        """Looks and returns the first unused flag from the instance's flags; returns None if not found
+        """
+        Looks and returns the first unused flag from the instance's flags; returns `None` if not found
 
         If the argument `id` is specified, only matching unused flags will be obtained
         """
@@ -149,13 +195,18 @@ class Arguments:
 
         return None
 
+
     def getFirstUnusedOption(self):
-        """[DEPRECATED] Use get_first_unused_option()"""
+        """
+        [DEPRECATED] Use `get_first_unused_option()`
+        """
 
         return self.get_first_unused_option()
 
+
     def get_first_unused_option(self, id=None):
-        """Looks and returns the first unused option from the instance's options; returns None if not found
+        """
+        Looks and returns the first unused option from the instance's options; returns `None` if not found
 
         If the argument `id` is specified, only matching unused options will be obtained
         """
@@ -174,19 +225,31 @@ class Arguments:
 
 
     def getFirstUnusedFlagOrOption(self):
-        """[DEPRECATED] Use get_first_unused_flag_or_option()"""
+        """
+        [DEPRECATED] Use `get_first_unused_flag_or_option()`
+        """
 
         return self.get_first_unused_flag_or_option()
 
+
     def get_first_unused(self, id=None):
-        """shorthand for get_first_unused_flag_or_option()"""
+        """
+        Shorthand for `get_first_unused_flag_or_option()`
+        """
 
         return self.get_first_unused_flag_or_option(id)
 
+
     def get_first_unused_flag_or_option(self, id=None):
-        """Obtains a reference to the first unused flag or option, or None if all no unused are found
+        """
+        Obtains a reference to the first unused flag or option, or `None` if all no unused are found
 
         If the argument `id` is specified, only matching unused flags/options will be obtained
+
+        Returns
+        -------
+        FlagArgument, OptionArgument, None
+            the first unused flag or option, if any
         """
 
         flag    =   self.get_first_unused_flag(id)
@@ -209,6 +272,7 @@ class Arguments:
 
             return option
 
+
     @staticmethod
     def _id_matches(flag_or_option, id):
 
@@ -229,9 +293,17 @@ class Arguments:
 
         return name == flag_or_option.name
 
+
     @staticmethod
     def get_program_name(argv=None):
-        """Obtains/infers the program name from the given array, or from sys.argv"""
+        """
+        Obtains/infers the program name from the given array, or from `sys.argv`
+
+        Returns
+        -------
+        str
+            the program name
+        """
 
         if argv is None:
 
@@ -256,6 +328,7 @@ class Arguments:
                     return spec
 
         return None
+
 
     @staticmethod
     def _select_specifications(item, specifications):
@@ -306,6 +379,7 @@ class Arguments:
 
         return None
 
+
     @staticmethod
     def _add_flag(flags, flag, spec):
 
@@ -331,6 +405,7 @@ class Arguments:
                     return
 
         flags.append(flag)
+
 
     @staticmethod
     def _add_option(options, option, spec):
@@ -373,6 +448,7 @@ class Arguments:
                     return
 
         options.append(option)
+
 
     @staticmethod
     def _parse(argv, specifications):
