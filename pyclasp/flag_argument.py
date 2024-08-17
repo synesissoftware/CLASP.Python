@@ -2,6 +2,10 @@
 from .flag_specification import FlagSpecification
 
 class FlagArgument(object):
+    """
+    TBC
+    """
+
 
     def __init__(self, arg, given_index, given_name, resolved_name, argument_specification, given_hyphens, given_label, extras):
 
@@ -14,7 +18,7 @@ class FlagArgument(object):
                 pass
             else:
 
-                raise TypeError("'argument_specification' must be instance of type '%s'; '%s' (%s) given" % (FlagSpecification, type(argument_specification), argument_specification))
+                raise TypeError("`argument_specification` must be instance of type `%s`; `%s` (%s) given" % (FlagSpecification, type(argument_specification), argument_specification))
 
         self.arg_           =   arg
         self.given_index    =   given_index
@@ -30,20 +34,26 @@ class FlagArgument(object):
             'used'  :   False
         }
 
+
     def use(self):
 
         self.private_fields['used'] = True
+
 
     def used(self):
 
         return self.private_fields['used']
 
+
     def __str__(self):
 
         return self.name
 
+
     def __eq__(self, other):
-        """Yields True if other is a string that is the same as 'name', or a FlagArgument or a FlagSpecification that has the same 'name'"""
+        """
+        Yields `True` if `other` is a string that is the same as `#name`, or a `FlagArgument` or a `FlagSpecification` that has the same `#name`
+        """
 
         if isinstance(other, FlagArgument):
 
@@ -59,8 +69,11 @@ class FlagArgument(object):
 
         return False
 
+
     def __ne__(self, other):
-        """Yields False if other is not a FlagArgument or has a different 'name'"""
+        """
+        Yields `False` if `other` is not a `FlagArgument` or has a different `#name`
+        """
 
         return not self.__eq__(other)
 

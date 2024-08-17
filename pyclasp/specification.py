@@ -1,18 +1,22 @@
 
 class Specification(object):
+    """
+    TBC
+    """
+
 
     def __init__(self, name, aliases, help, extras):
 
         if not isinstance(name, str):
 
-            raise TypeError("'name' must be of type 'str'")
+            raise TypeError("`name` must be of type `str`")
 
 
         if aliases:
 
             if not isinstance(aliases, ( list, tuple )):
 
-                raise TypeError("'aliases' must be None or an instance of 'list' or 'tuple'")
+                raise TypeError("`aliases` must be `None` or an instance of `list` or `tuple`")
         else:
 
             aliases = ()
@@ -22,14 +26,14 @@ class Specification(object):
 
             if not isinstance(help, ( str, )):
 
-                raise TypeError("'help' must be an instance of 'str'")
+                raise TypeError("`help` must be an instance of `str`")
 
 
         if extras:
 
             if not isinstance(extras, ( dict, )):
 
-                raise TypeError("'extras must be None or an instance of 'dict'")
+                raise TypeError("`extras` must be `None` or an instance of `dict`")
 
         else:
 
@@ -43,6 +47,10 @@ class Specification(object):
 
 
 def specification(name, **kwargs):
+    """
+    TBC
+    """
+
 
     aliases =   None
     help    =   None
@@ -64,7 +72,7 @@ def specification(name, **kwargs):
             extras = v
         else:
 
-            raise TypeError("'specification' method does not recognise the '%s' keyword argument" % (n, ))
+            raise TypeError("`specification` method does not recognise the `%s` keyword argument" % (n, ))
 
     return Specification(name, aliases, help, extras)
 
