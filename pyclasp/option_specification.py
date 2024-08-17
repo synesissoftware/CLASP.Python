@@ -89,11 +89,11 @@ def option(name, **kwargs):
 
                 if v not in _MULTIPLE_ACTION_OPTION_ALLOWED:
 
-                    raise TypeError("'option' method keyword argument 'on_multiple' must be one of %s (in any case); '%s' given" % (_MULTIPLE_ACTION_OPTION_ALLOWED, v))
+                    raise TypeError("`option` method keyword argument `on_multiple` must be one of %s (in any case); '%s' given" % (_MULTIPLE_ACTION_OPTION_ALLOWED, v))
 
             else:
 
-                raise TypeError("'option' method keyword argument 'on_multiple' must be 'None' or a string; '%s' (%s) given" % (v, type(v)))
+                raise TypeError("`option` method keyword argument `on_multiple` must be `None` or a string; '%s' (%s) given" % (v, type(v)))
 
             on_multiple = v
         elif 'require_message' == n:
@@ -111,10 +111,10 @@ def option(name, **kwargs):
                 pass
             else:
 
-                raise TypeError("'option' method supports 'value_type' only for 'None' and the types %s; '%s' (%s) given" % ([t.__name__ for t in OptionSpecification._VALID_VALUE_TYPES], value_type, type(value_type)))
+                raise TypeError("`option` method supports `value_type` only for `None` and the types %s; `%s` (%s) given" % ([t.__name__ for t in OptionSpecification._VALID_VALUE_TYPES], value_type, type(value_type)))
         else:
 
-            raise TypeError("'option' method does not recognise the '%s' keyword argument" % (n, ))
+            raise TypeError("`option` method does not recognise the `%s` keyword argument" % (n, ))
 
     return OptionSpecification(name, aliases, help, extras, values_range, default_value, is_required, require_message, value_type, on_multiple)
 

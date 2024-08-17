@@ -85,17 +85,17 @@ def show_usage(specifications, **kwargs):
 
         if specifications == None:
 
-            raise TypeError("'specifications' may not be None")
+            raise TypeError("`specifications` may not be `None`")
         elif isinstance(specifications, (list, tuple, )):
 
             for index, a in enumerate(specifications):
 
                 if not isinstance(a, (Specification, )):
 
-                    raise TypeError("every element in 'specifications' must be an instance of clasp.Specification: the element at index %d is of type '%s'" % (index, type(a).__name__))
+                    raise TypeError("every element in `specifications` must be an instance of `clasp.Specification`: the element at index %d is of type `%s`" % (index, type(a).__name__))
         else:
 
-            raise TypeError("'specifications' must be a list or a tuple")
+            raise TypeError("`specifications` must be a `list` or a `tuple`")
 
         alias_dups = {}
         for spec in specifications:
@@ -243,17 +243,17 @@ def show_version(specifications, **kwargs):
 
         if specifications == None:
 
-            raise TypeError("'specifications' may not be None")
+            raise TypeError("`specifications` may not be `None`")
         elif isinstance(specifications, (list, tuple, )):
 
             for index, a in enumerate(specifications):
 
                 if not isinstance(a, (Specification, )):
 
-                    raise TypeError("every element in 'specifications' must be an instance of clasp.Specification: the element at index %d is of type '%s'" % (index, type(a).__name__))
+                    raise TypeError("every element in `specifications` must be an instance of `clasp.Specification`: the element at index %d is of type `%s`" % (index, type(a).__name__))
         else:
 
-            raise TypeError("'specifications' must be a list or a tuple")
+            raise TypeError("`specifications` must be a `list` or a `tuple`")
 
     # options:
     #

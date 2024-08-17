@@ -18,7 +18,7 @@ class FlagArgument(object):
                 pass
             else:
 
-                raise TypeError("'argument_specification' must be instance of type '%s'; '%s' (%s) given" % (FlagSpecification, type(argument_specification), argument_specification))
+                raise TypeError("`argument_specification` must be instance of type `%s`; `%s` (%s) given" % (FlagSpecification, type(argument_specification), argument_specification))
 
         self.arg_           =   arg
         self.given_index    =   given_index

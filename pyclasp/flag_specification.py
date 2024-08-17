@@ -46,7 +46,7 @@ def flag(name, **kwargs):
             extras = v
         else:
 
-            raise TypeError("'flag' method does not recognise the '%s' keyword argument" % (n, ))
+            raise TypeError("`flag` method does not recognise the `%s` keyword argument" % (n, ))
 
     return FlagSpecification(name, aliases, help, extras)
 

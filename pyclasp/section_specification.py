@@ -35,7 +35,7 @@ def section(name, **kwargs):
             extras = v
         else:
 
-            raise TypeError("'section' method does not recognise the '%s' keyword argument" % (n, ))
+            raise TypeError("`section` method does not recognise the `%s` keyword argument" % (n, ))
 
     return SectionSpecification(name, extras)
 

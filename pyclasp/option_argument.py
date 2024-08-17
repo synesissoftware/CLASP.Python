@@ -53,7 +53,7 @@ class OptionArgument(object):
                 pass
             else:
 
-                raise TypeError("'argument_specification' must be instance of type '%s'; '%s' (%s) given" % (OptionSpecification, type(argument_specification), argument_specification))
+                raise TypeError("`argument_specification` must be instance of type `%s`; `%s` (%s) given" % (OptionSpecification, type(argument_specification), argument_specification))
 
         self.arg_           =   arg
         self.given_index    =   given_index

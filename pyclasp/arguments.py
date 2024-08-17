@@ -26,11 +26,11 @@ class Arguments:
 
         if not isinstance(argv, ( list, tuple )):
 
-            raise TypeError("'argv' argument must be an instance of 'list' or 'tuple'")
+            raise TypeError("`argv` argument must be an instance of `list` or `tuple`")
 
         if specifications and not isinstance(specifications, ( list, tuple )):
 
-            raise TypeError("'specifications' argument must be None or an instance of 'list' or 'tuple'")
+            raise TypeError("`specifications` argument must be `None` or an instance of `list` or `tuple`")
 
         self.argv       =   argv
 
