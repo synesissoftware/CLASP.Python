@@ -1,5 +1,19 @@
 #! /usr/bin/env python3
 
+# ######################################################################## #
+# File:     tests/test_sections.py
+#
+# Purpose:  Tests use of sections.
+#
+# Created:  22nd August 2019
+# Updated:  25th July 2025
+#
+# Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
+# All rights reserved
+#
+# ######################################################################## #
+
+
 import pyclasp as clasp
 
 import unittest
