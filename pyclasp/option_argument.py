@@ -9,12 +9,14 @@ _FALSE_STRINGS_lower = (
 
     "false",
     "no",
+    "off",
     "0",
 )
 _TRUE_STRINGS_lower = (
 
     "true",
     "yes",
+    "on",
     "1",
 )
 
