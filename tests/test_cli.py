@@ -1,4 +1,18 @@
-#!/usr/bin/env python
+#! /usr/bin/env python3
+
+# ######################################################################## #
+# File:     tests/test_cli.py
+#
+# Purpose:  Tests `show_version()`.
+#
+# Created:  26th February 2019
+# Updated:  25th July 2025
+#
+# Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
+# All rights reserved
+#
+# ######################################################################## #
+
 
 import pyclasp as clasp
 

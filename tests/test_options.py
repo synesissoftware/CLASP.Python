@@ -1,4 +1,18 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
+
+# ######################################################################## #
+# File:     tests/test_options.py
+#
+# Purpose:  Tests option specifications with default values.
+#
+# Created:  24th August 2020
+# Updated:  25th July 2025
+#
+# Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
+# All rights reserved
+#
+# ######################################################################## #
+
 
 from pyclasp import Arguments
 from pyclasp import specification, option
@@ -37,7 +51,7 @@ class Options_tester_1(unittest.TestCase):
 
         self.assertEqual('silent', option.value)
 
-    def _test_option_with_given_value_in_separate_argument(self):
+    def test_option_with_given_value_in_separate_argument(self):
 
         values_range    =   (
 

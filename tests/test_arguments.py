@@ -1,4 +1,18 @@
-#!/usr/bin/env python
+#! /usr/bin/env python3
+
+# ######################################################################## #
+# File:     tests/test_arguments.py
+#
+# Purpose:  Tests a large variety of command-line arguments.
+#
+# Created:  14th February 2019
+# Updated:  25th July 2025
+#
+# Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
+# All rights reserved
+#
+# ######################################################################## #
+
 
 from pyclasp import Arguments
 from pyclasp import specification, option

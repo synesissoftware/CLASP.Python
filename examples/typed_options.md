@@ -7,7 +7,7 @@ Simple example supporting ```--help``` and ```--version```.
 ## Source
 
 ```python
-#!/usr/bin/env python
+#! /usr/bin/env python3
 
 import pyclasp as clasp
 

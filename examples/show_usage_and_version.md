@@ -7,7 +7,7 @@ Simple example supporting ```--help``` and ```--version```.
 ## Source
 
 ```python
-#!/usr/bin/env python
+#! /usr/bin/env python3
 
 # examples/show_usage_and_version.py
 

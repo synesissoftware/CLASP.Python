@@ -1,4 +1,18 @@
-#!/usr/bin/env python
+#! /usr/bin/env python3
+
+# ######################################################################## #
+# File:     tests/test_typed_values.py
+#
+# Purpose:  Tests use of `value_type` with option specifications.
+#
+# Created:  25th April 2019
+# Updated:  25th July 2025
+#
+# Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
+# All rights reserved
+#
+# ######################################################################## #
+
 
 from pyclasp import Arguments
 from pyclasp import specification, option

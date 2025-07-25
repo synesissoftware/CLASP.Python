@@ -7,7 +7,7 @@ Example illustrating how the library will warn about duplicate aliases
 ## Source
 
 ```python
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 # examples/duplicate_aliases.py
 

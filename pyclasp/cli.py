@@ -68,6 +68,11 @@ def _generate_version_string(argv, options):
     return "%s %s%s" % (program_name, version_prefix, version)
 
 
+def _info_line(s):
+
+    return s if s else ''
+
+
 def show_usage(specifications, **kwargs):
     """
     Displays program usage from the given `specifications` (or arguments), according to the given options
@@ -129,7 +134,7 @@ def show_usage(specifications, **kwargs):
 
         info_lines  =   [ info_lines ]
 
-    info_lines      =   [ _generate_version_string(argv, options) if l in ( ':version', ':version:' ) else l for l in info_lines ]
+    info_lines          =   [ _generate_version_string(argv, options) if l in ( ':version', ':version:' ) else _info_line(l) for l in info_lines ]
 
     flags_and_options   =   _ensure_single_space_prefix(flags_and_options)
     values              =   _ensure_single_space_prefix(values)
