@@ -10,6 +10,8 @@
 	"editor.tabSize": 2,
 	"files.exclude": {
 		"**/__pycache__": true,
+		"**/*.egg-info": true,
+		"**/*.swp": true,
 	},
 	"files.trimTrailingWhitespace": true,
 	"python.analysis.typeCheckingMode": "standard",
