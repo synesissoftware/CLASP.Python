@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
 
 from pyclasp import Arguments
 from pyclasp import specification, option
