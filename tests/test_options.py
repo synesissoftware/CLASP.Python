@@ -51,7 +51,7 @@ class Options_tester_1(unittest.TestCase):
 
         self.assertEqual('silent', option.value)
 
-    def _test_option_with_given_value_in_separate_argument(self):
+    def test_option_with_given_value_in_separate_argument(self):
 
         values_range    =   (
 
