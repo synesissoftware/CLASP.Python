@@ -8,5 +8,9 @@
   "editor.insertSpaces": false,
   "editor.renderWhitespace": "all",
   "editor.tabSize": 2,
+  "files.exclude": {
+    "**/__pycache__": true,
+  },
   "files.trimTrailingWhitespace": true,
+  "python.analysis.typeCheckingMode": "standard",
 }
