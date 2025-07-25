@@ -1,6 +1,12 @@
 # **CLASP.Python** Changes
 
 
+## 0.8.10 - 25th July 2025
+
+* ~ `info_lines` now accepts a `None`, which is rendered as `''` (in accordance with **CLASP.Ruby**);
+
+
+
 ## 0.8.9 - 17th August 2024
 
 * ~ misc tidying

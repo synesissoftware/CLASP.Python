@@ -105,6 +105,10 @@ class Sections_tester(unittest.TestCase):
         stm         =   StringIO()
 
         info_lines  =   (
+            "Program suite",
+            "Acme Industries",
+            ":version:",
+            None,
         )
 
         specs       =   (
@@ -120,13 +124,19 @@ class Sections_tester(unittest.TestCase):
             clasp.VersionFlag(),
         )
 
+        version     =   '1.2.3'
+
         try:
-            clasp.show_usage(specs, exit_code=None, stream=stm, info_lines=info_lines, program_name='myprog')
+            clasp.show_usage(specs, exit_code=None, stream=stm, info_lines=info_lines, program_name='myprog', version=version)
 
             actual = _stripped_lines_from_SIO(stm)
 
             expected = (
 
+                "Program suite",
+                "Acme Industries",
+                "myprog 1.2.3",
+                '',
                 'USAGE: myprog [ ... flags and options ... ]',
                 '',
                 'flags/options:',
