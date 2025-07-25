@@ -40,6 +40,18 @@ def _stripped_non_blank_lines_from_SIO(sio):
 
     return lines
 
+
+def _stripped_lines_from_SIO(sio):
+
+    s = sio.getvalue().strip()
+
+    lines = s.split("\n")
+
+    lines = [line.strip() for line in lines]
+
+    return lines
+
+
 class Sections_tester(unittest.TestCase):
 
     def test_sections_1(self):
@@ -88,6 +100,59 @@ class Sections_tester(unittest.TestCase):
             stm.close()
 
 
+    def test_sections_2(self):
+
+        stm         =   StringIO()
+
+        info_lines  =   (
+        )
+
+        specs       =   (
+
+
+            clasp.section('Behaviour:'),
+
+            clasp.flag('--verbose', alias='-v', help='Make output verbose'),
+
+            clasp.section('Standard:'),
+
+            clasp.HelpFlag(),
+            clasp.VersionFlag(),
+        )
+
+        try:
+            clasp.show_usage(specs, exit_code=None, stream=stm, info_lines=info_lines, program_name='myprog')
+
+            actual = _stripped_lines_from_SIO(stm)
+
+            expected = (
+
+                'USAGE: myprog [ ... flags and options ... ]',
+                '',
+                'flags/options:',
+                '',
+                'Behaviour:',
+                '',
+                '-v',
+                '--verbose',
+                'Make output verbose',
+                '',
+                'Standard:',
+                '',
+                '--help',
+                'Shows usage and terminates',
+                '',
+                '--version',
+                'Shows version and terminates',
+            )
+
+            self.assertMultiLineEqual(\
+                "\n".join(expected),
+                "\n".join(actual),
+            )
+
+        finally:
+            stm.close()
 
 
 if '__main__' == __name__:
