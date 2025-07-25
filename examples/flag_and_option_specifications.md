@@ -7,7 +7,7 @@ Example illustrating various kinds of *flag* and *option* specifications, includ
 ## Source
 
 ```python
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 # examples/flags_and_options_specifications.py
 
