@@ -13,7 +13,6 @@ setuptools.setup(
     license='BSD-3-Clause',
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
-    packages=['pyclasp', 'examples', 'tests'],
     url='https://github.com/synesissoftware/clasp.Python',
     classifiers=[
 
@@ -25,5 +24,9 @@ setuptools.setup(
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
     ],
+    packages=setuptools.find_packages(exclude=[
+        'examples',
+        'tests',
+    ]),
 )
 
