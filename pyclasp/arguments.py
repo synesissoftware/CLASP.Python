@@ -4,6 +4,7 @@ from .flag_specification import FlagSpecification
 from .flag_argument import FlagArgument
 from .option_specification import OptionSpecification
 from .option_argument import OptionArgument
+from .exceptions import DuplicateFlagSpecified, DuplicateOptionSpecified
 
 from .util import _get_program_name
 from .util import _global_multiple_flags_action, _global_multiple_options_action

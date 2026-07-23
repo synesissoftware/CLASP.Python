@@ -6,7 +6,7 @@
 # Purpose:  Tests a large variety of command-line arguments.
 #
 # Created:  14th February 2019
-# Updated:  25th July 2025
+# Updated:  24th July 2026
 #
 # Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
 # All rights reserved
@@ -678,7 +678,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertIsInstance(flag, ( Flag, ))
         self.assertEqual(flag.given_index       ,   5)
         self.assertEqual(flag.given_name        ,   '--x')
-        self.assertEqual(flag.argument_specification, specifications[x])
+        self.assertEqual(flag.argument_specification, specifications[0])
         self.assertEqual(flag.given_hyphens     ,   2)
         self.assertEqual(flag.given_label       ,   'x')
         self.assertEqual(flag.name              ,   '--expand')

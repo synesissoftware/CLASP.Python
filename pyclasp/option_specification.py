@@ -2,7 +2,7 @@
 from .specification import Specification
 from .util import _MULTIPLE_OPTION_ACTION_DEFAULT, _MULTIPLE_ACTION_OPTION_ALLOWED
 
-from .util import _SUPPORT_long
+from .util import _SUPPORT_long, _long_type
 
 class OptionSpecification(Specification):
     """
@@ -12,7 +12,7 @@ class OptionSpecification(Specification):
 
     if _SUPPORT_long:
 
-        _VALID_VALUE_TYPES = (bool, float, int, long, str, )
+        _VALID_VALUE_TYPES = (bool, float, int, _long_type, str, )
     else:
 
         _VALID_VALUE_TYPES = (bool, float, int, str, )

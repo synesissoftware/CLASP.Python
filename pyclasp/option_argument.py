@@ -2,7 +2,7 @@
 from .exceptions import *
 from .option_specification import OptionSpecification
 
-from .util import _SUPPORT_long
+from .util import _SUPPORT_long, _long_type
 
 
 _FALSE_STRINGS_lower = (
@@ -119,11 +119,11 @@ class OptionArgument(object):
                         except ValueError as x:
 
                             raise InvalidIntegerException("the '%s' option's value '%s' cannot be interpreted as an integer" % (self.name, given_value))
-                    elif _SUPPORT_long and arg_spec.value_type == long:
+                    elif _SUPPORT_long and arg_spec.value_type == _long_type:
 
                         try:
 
-                            value       =   long(given_value)
+                            value       =   _long_type(given_value)
                         except ValueError as x:
 
                             raise InvalidIntegerException("the '%s' option's value '%s' cannot be interpreted as a long integer" % (self.name, given_value))
