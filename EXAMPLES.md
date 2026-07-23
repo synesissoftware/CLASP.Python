@@ -1,4 +1,4 @@
-# CLASP.Python Examples
+# CLASP.Python Examples <!-- omit from toc -->
 
 |Name|Source & Description|Summary|
 |---|---|---|

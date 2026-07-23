@@ -1,4 +1,9 @@
-# **CLASP.Python** Changes
+# **CLASP.Python** Changes <!-- omit from toc -->
+
+
+## 0.8.11 - 23rd July 2026
+
+* boilerplate improvements;
 
 
 ## 0.8.10 - 25th July 2025
