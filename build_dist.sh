@@ -1,18 +1,10 @@
 #! /bin/bash
 
-# ######################################################################## #
-# File:         build_egg.sh
-#
-# Purpose:      Builds the egg
-#
-# Created:      7th July 2020
-# Updated:      7th July 2020
-#
-# Author:       Matthew Wilson
-#
-# Copyright:    <<TBD>>
-#
-# ######################################################################## #
+set -e
 
-python3 setup.py sdist
+cd "$(dirname "$0")"
 
+rm -rf build/ dist/ clasp.egg-info/
+
+python3 -m build
+python3 -m twine check dist/*
