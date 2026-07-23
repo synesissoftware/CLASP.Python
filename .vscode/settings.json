@@ -1,18 +1,29 @@
 {
+	"[json]": {
+		"editor.tabSize": 2,
+	},
 	"[python]": {
 		"diffEditor.ignoreTrimWhitespace": false,
 		"editor.insertSpaces": true,
-		"editor.rulers": [ 51, 61, 76 ],
+		"editor.rulers": [ 60, 76 ],
 		"editor.tabSize": 4,
 	},
+	"[toml]": {
+		"editor.insertSpaces": false,
+		"editor.tabSize": 2,
+	},
+	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
 	"editor.renderWhitespace": "all",
+	"editor.rulers": [ 76 ],
 	"editor.tabSize": 2,
 	"files.exclude": {
 		"**/__pycache__": true,
 		"**/*.egg-info": true,
 		"**/*.swp": true,
 	},
+	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
 	"python.analysis.typeCheckingMode": "standard",
+	"python.languageServer": "Pylance",
 }
