@@ -1,7 +1,7 @@
 # **CLASP.Python** Changes <!-- omit from toc -->
 
 
-## 0.8.11 - 23rd July 2026
+## 0.8.11 - 24th July 2026
 
 * boilerplate improvements;
 
