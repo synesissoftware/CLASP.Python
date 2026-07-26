@@ -1,6 +1,11 @@
 # **CLASP.Python** Changes
 
 
+## 0.8.11 - 27th July 2026
+
+* ensured that all appropriate unit-tests arguments are in `(expected, actual` order;
+
+
 ## 0.8.10 - 25th July 2025
 
 * ~ `info_lines` now accepts a `None`, which is rendered as `''` (in accordance with **CLASP.Ruby**);

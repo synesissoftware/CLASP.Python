@@ -6,7 +6,7 @@
 # Purpose:  Tests `show_version()`.
 #
 # Created:  26th February 2019
-# Updated:  25th July 2025
+# Updated:  27th July 2026
 #
 # Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
 # All rights reserved
