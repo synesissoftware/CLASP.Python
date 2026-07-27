@@ -85,7 +85,7 @@ class OptionArgument(object):
 
                 given_value = arg_spec.default_value
 
-            if given_value:
+            if given_value is not None:
 
 
                 if arg_spec.value_type:
