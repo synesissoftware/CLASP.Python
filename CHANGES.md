@@ -22,13 +22,6 @@
 * minor boilerplate updates;
 
 
-## 0.8.10.1 - 27th July 2026
-
-* ensured that all appropriate unit-tests arguments are in `(expected, actual` order;
-* canonicalised literal strings to use double-quotes throughout except where strings are well-known (per API) for which single-quotes are used;
-* minor boilerplate updates;
-
-
 ## 0.8.10 - 25th July 2025
 
 * ~ `info_lines` now accepts a `None`, which is rendered as `''` (in accordance with **CLASP.Ruby**);
