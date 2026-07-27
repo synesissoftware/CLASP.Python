@@ -11,9 +11,9 @@ import sys
 
 # Specify specifications, parse, and checking standard flags
 
-flag_Compile    =   clasp.flag('--compile', alias='-c')
-flag_Debug      =   clasp.flag('--debug', alias='-d')
-flag_Execute    =   clasp.flag('--execute', alias='-c')
+flag_Compile    =   clasp.flag("--compile", alias="-c")
+flag_Debug      =   clasp.flag("--debug", alias="-d")
+flag_Execute    =   clasp.flag("--execute", alias="-c")
 
 specifications = (
 
@@ -28,7 +28,7 @@ specifications = (
 args = clasp.parse(sys.argv, specifications)
 
 
-if args.flag_is_specified('--help'):
+if args.flag_is_specified("--help"):
 
     clasp.show_usage(specifications, exit_code=0, stream=sys.stdout)
 else:

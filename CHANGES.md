@@ -1,9 +1,10 @@
 # **CLASP.Python** Changes
 
 
-## 0.8.11 - 27th July 2026
+## 0.8.10.1 - 27th July 2026
 
 * ensured that all appropriate unit-tests arguments are in `(expected, actual` order;
+* canonicalised literal strings to use double-quotes throughout except where strings are well-known (per API) for which single-quotes are used;
 
 
 ## 0.8.10 - 25th July 2025

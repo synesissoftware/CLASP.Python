@@ -15,7 +15,7 @@ VERSION = [ 0, 0, 1 ]
 
 INFO_LINES = (
 
-    'CLASP.Python examples',
+    "CLASP.Python examples",
     ':version:',
     "Illustrates use of CLASP.Python's support for multiple specification of options",
     '',
@@ -23,8 +23,8 @@ INFO_LINES = (
 
 # Specify specifications, parse, and checking standard flags
 
-option_Extension = clasp.option('--extension', alias='-e', help='specifies a file extension. May be specified multiple times', on_multiple='allow')
-flag_CalcDirSize = clasp.flag('--calc-dir-size', alias='-z', help='causes directory sizes to be calculated')
+option_Extension = clasp.option("--extension", alias="-e", help="specifies a file extension. May be specified multiple times", on_multiple="allow")
+flag_CalcDirSize = clasp.flag("--calc-dir-size", alias="-z", help="causes directory sizes to be calculated")
 
 specifications = (
 
@@ -37,11 +37,11 @@ specifications = (
 
 args = clasp.parse(sys.argv, specifications)
 
-if args.flag_is_specified('--help'):
+if args.flag_is_specified("--help"):
 
     clasp.show_usage(specifications, exit_code=0, version=VERSION, stream=sys.stdout, info_lines=INFO_LINES)
 
-if args.flag_is_specified('--version'):
+if args.flag_is_specified("--version"):
 
     clasp.show_version(specifications, exit_code=0, version=VERSION, stream=sys.stdout)
 

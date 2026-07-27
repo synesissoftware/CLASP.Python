@@ -15,7 +15,7 @@ VERSION = [ 0, 0, 3 ]
 
 INFO_LINES = (
 
-    'CLASP.Python examples',
+    "CLASP.Python examples",
     ':version:',
     "Illustrates use of CLASP.Python's use of flags, options, and specifications",
     '',
@@ -23,9 +23,9 @@ INFO_LINES = (
 
 # Specify specifications, parse, and checking standard flags
 
-flag_Debug = clasp.flag('--debug', alias='-d', help='runs in Debug mode')
-option_Verbosity = clasp.option('--verbosity', alias='-v', help='specifies the verbosity', values=[ 'terse', 'quiet', 'silent', 'chatty' ])
-flag_Chatty = clasp.flag('--verbosity=chatty', alias='-c')
+flag_Debug = clasp.flag("--debug", alias="-d", help="runs in Debug mode")
+option_Verbosity = clasp.option("--verbosity", alias="-v", help="specifies the verbosity", values=[ "terse", "quiet", "silent", "chatty" ])
+flag_Chatty = clasp.flag("--verbosity=chatty", alias="-c")
 
 specifications = (
 
@@ -39,24 +39,24 @@ specifications = (
 
 args = clasp.parse(sys.argv, specifications)
 
-if args.flag_is_specified('--help'):
+if args.flag_is_specified("--help"):
 
     clasp.show_usage(specifications, exit_code=0, version=VERSION, stream=sys.stdout, info_lines=INFO_LINES)
 
-if args.flag_is_specified('--version'):
+if args.flag_is_specified("--version"):
 
     clasp.show_version(specifications, exit_code=0, version=VERSION, stream=sys.stdout)
 
 
 # Program-specific processing of flags/options
 
-opt = args.lookup_option('--verbosity')
+opt = args.lookup_option("--verbosity")
 if (opt):
 
     sys.stdout.write("verbosity is specified as: %s\n" % opt.value)
 
 
-if (args.flag_is_specified('--debug')):
+if (args.flag_is_specified("--debug")):
 
     sys.stdout.write("Debug mode is specified\n")
 

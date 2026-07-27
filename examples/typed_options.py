@@ -6,11 +6,11 @@ import sys
 
 # constants
 
-VERSION = '0.0.2'
+VERSION = [ 0, 0, 3 ]
 
 INFO_LINES = (
 
-    'CLASP.Python examples',
+    "CLASP.Python examples",
     ':version',
     "Illustrates use of CLASP.Python's typed option values",
     '',
@@ -23,7 +23,7 @@ specifications = (
     clasp.HelpFlag(),
     clasp.VersionFlag(),
 
-    clasp.option('--length', alias = '-l', help = 'specifies the length', value_type=int),
+    clasp.option("--length", alias = "-l", help = "specifies the length", value_type=int),
 )
 
 try:
@@ -36,18 +36,18 @@ except clasp.ValueParsingException as x:
     sys.exit(1)
 
 
-if args.flag_is_specified('--help'):
+if args.flag_is_specified("--help"):
 
     clasp.show_usage(specifications, exit_code=0, version=VERSION, stream=sys.stdout, info_lines=INFO_LINES)
 
-if args.flag_is_specified('--version'):
+if args.flag_is_specified("--version"):
 
     clasp.show_version(specifications, exit_code=0, version=VERSION, stream=sys.stdout)
 
 
 # Program-specific processing of flags/options
 
-opt_length = args.lookup_option('--length')
+opt_length = args.lookup_option("--length")
 if opt_length:
 
     print("You specified length with the value: %d (of type `%s`). The string that was passed is available in the `given_value` attribute, which is '%s' (of type `%s`)\n" % (opt_length.value, type(opt_length.value), opt_length.given_value, type(opt_length.given_value)))

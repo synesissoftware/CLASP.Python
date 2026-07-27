@@ -35,9 +35,9 @@ class Util_tester(unittest.TestCase):
         try:
             specifications =   ()
 
-            clasp.show_version(specifications, version = "1.2.3", stream = stm, program_name = 'myprog', version_prefix = 'v')
+            clasp.show_version(specifications, version = "1.2.3", stream = stm, program_name = "myprog", version_prefix = "v")
 
-            self.assertEqual('myprog v1.2.3', stm.getvalue().strip())
+            self.assertEqual("myprog v1.2.3", stm.getvalue().strip())
 
         finally:
             stm.close()
@@ -50,9 +50,9 @@ class Util_tester(unittest.TestCase):
         try:
             specifications =   ()
 
-            clasp.show_version(specifications, version = [ 1, 2, 3 ], stream = stm, program_name = 'myprog', version_prefix = 'v')
+            clasp.show_version(specifications, version = [ 1, 2, 3 ], stream = stm, program_name = "myprog", version_prefix = "v")
 
-            self.assertEqual('myprog v1.2.3', stm.getvalue().strip())
+            self.assertEqual("myprog v1.2.3", stm.getvalue().strip())
 
         finally:
             stm.close()
@@ -65,9 +65,9 @@ class Util_tester(unittest.TestCase):
         try:
             specifications =   ()
 
-            clasp.show_version(specifications, version = "1.2.3", stream = stm, program_name = 'myprog')
+            clasp.show_version(specifications, version = "1.2.3", stream = stm, program_name = "myprog")
 
-            self.assertEqual('myprog 1.2.3', stm.getvalue().strip())
+            self.assertEqual("myprog 1.2.3", stm.getvalue().strip())
 
         finally:
             stm.close()
