@@ -17,11 +17,11 @@
 - [Components](#components)
 - [Examples](#examples)
 - [Project Information](#project-information)
-  - [Where to get help](#where-to-get-help)
-  - [Contribution guidelines](#contribution-guidelines)
-  - [Dependencies](#dependencies)
-  - [Related projects](#related-projects)
-  - [License](#license)
+	- [Where to get help](#where-to-get-help)
+	- [Contribution guidelines](#contribution-guidelines)
+	- [Dependencies](#dependencies)
+	- [Related projects](#related-projects)
+	- [License](#license)
 
 
 ## Introduction
@@ -94,3 +94,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 ### License
 
 **CLASP.Python** is released under the 3-clause BSD license. See [LICENSE](./LICENSE) for details.
+
+
+<!-- ########################### end of file ########################### -->
+

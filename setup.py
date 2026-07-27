@@ -3,12 +3,12 @@ import setuptools
 
 setuptools.setup(
 
-    name='pyclasp',
+    name="pyclasp",
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, !=3.6.*, !=3.7.*',
     version='0.8.11',
 
-    author='Matt Wilson',
-    author_email='matthew@synesis.com.au',
+    author="Matt Wilson",
+    author_email="matthew@synesis.com.au",
     classifiers=[
 
         'Intended Audience :: Developers',
@@ -25,15 +25,15 @@ setuptools.setup(
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
     ],
-    description='Command-Line Argument Sorting and Parsing, for Python',
-    keywords='Command-line CLI parsing',
-    license='BSD-3-Clause',
-    long_description=open('README.md').read(),
+    description="Command-Line Argument Sorting and Parsing, for Python",
+    keywords="Command-line CLI parsing",
+    license="BSD-3-Clause",
+    long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(exclude=[
-        'examples',
-        'tests',
+        "examples",
+        "tests",
     ]),
-    url='https://github.com/synesissoftware/CLASP.Python',
+    url="https://github.com/synesissoftware/clasp.Python",
 )
 

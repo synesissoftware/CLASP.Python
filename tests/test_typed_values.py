@@ -6,7 +6,7 @@
 # Purpose:  Tests use of `value_type` with option specifications.
 #
 # Created:  25th April 2019
-# Updated:  24th July 2026
+# Updated:  27th July 2026
 #
 # Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
 # All rights reserved
@@ -35,10 +35,10 @@ class Typed_values_tester_1(unittest.TestCase):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=str),
+            clasp.option("--length", alias="-l", value_type=str),
         )
 
-        argv    =   ( 'myprog', '--length=1.23', '-l', '4.56', )
+        argv    =   ( "myprog", "--length=1.23", "-l", "4.56", )
         args    =   clasp.parse(argv, specifications)
 
         self.assertEqual(0, len(args.flags))
@@ -48,42 +48,42 @@ class Typed_values_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   1)
-        self.assertEqual(option.given_name        ,   '--length')
+        self.assertEqual(1, option.given_index)
+        self.assertEqual("--length", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   2)
-        self.assertEqual(option.given_label       ,   'length')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '1.23')
-        self.assertIsInstance(option.value        ,   str)
-        self.assertEqual(str(option)              ,   '--length=1.23')
-        self.assertEqual(option                   ,   '--length=1.23')
+        self.assertEqual(2, option.given_hyphens)
+        self.assertEqual("length", option.given_label)
+        self.assertEqual("--length", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("1.23", option.given_value)
+        self.assertIsInstance(option.value, str)
+        self.assertEqual("--length=1.23", str(option))
+        self.assertEqual("--length=1.23", option)
 
         option  =   args.options[1]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   2)
-        self.assertEqual(option.given_name        ,   '-l')
+        self.assertEqual(2, option.given_index)
+        self.assertEqual("-l", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   1)
-        self.assertEqual(option.given_label       ,   'l')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '4.56')
-        self.assertIsInstance(option.value        ,   str)
-        self.assertEqual(str(option)              ,   '--length=4.56')
-        self.assertEqual(option                   ,   '--length=4.56')
+        self.assertEqual(1, option.given_hyphens)
+        self.assertEqual("l", option.given_label)
+        self.assertEqual("--length", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("4.56", option.given_value)
+        self.assertIsInstance(option.value, str)
+        self.assertEqual("--length=4.56", str(option))
+        self.assertEqual("--length=4.56", option)
 
 
     def test_valid_option_value_of_type_bool(self):
 
         specifications =   (
 
-            clasp.option('--verbose', alias='-v', value_type=bool),
+            clasp.option("--verbose", alias="-v", value_type=bool),
         )
 
-        argv    =   ( 'myprog', '--verbose=true', '-v', 'FALSE', )
+        argv    =   ( "myprog", "--verbose=true", "-v", "FALSE", )
         args    =   clasp.parse(argv, specifications)
 
         self.assertEqual(0, len(args.flags))
@@ -93,44 +93,44 @@ class Typed_values_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   1)
-        self.assertEqual(option.given_name        ,   '--verbose')
+        self.assertEqual(1, option.given_index)
+        self.assertEqual("--verbose", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   2)
-        self.assertEqual(option.given_label       ,   'verbose')
-        self.assertEqual(option.name              ,   '--verbose')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   'true')
-        self.assertIsInstance(option.value        ,   bool)
-        self.assertEqual(option.value             ,   True)
-        self.assertEqual(str(option)              ,   '--verbose=true')
-        self.assertEqual(option                   ,   '--verbose=true')
+        self.assertEqual(2, option.given_hyphens)
+        self.assertEqual("verbose", option.given_label)
+        self.assertEqual("--verbose", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("true", option.given_value)
+        self.assertIsInstance(option.value, bool)
+        self.assertEqual(True, option.value)
+        self.assertEqual("--verbose=true", str(option))
+        self.assertEqual("--verbose=true", option)
 
         option  =   args.options[1]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   2)
-        self.assertEqual(option.given_name        ,   '-v')
+        self.assertEqual(2, option.given_index)
+        self.assertEqual("-v", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   1)
-        self.assertEqual(option.given_label       ,   'v')
-        self.assertEqual(option.name              ,   '--verbose')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   'FALSE')
-        self.assertIsInstance(option.value        ,   bool)
-        self.assertEqual(option.value             ,   False)
-        self.assertEqual(str(option)              ,   '--verbose=false')
-        self.assertEqual(option                   ,   '--verbose=false')
+        self.assertEqual(1, option.given_hyphens)
+        self.assertEqual("v", option.given_label)
+        self.assertEqual("--verbose", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("FALSE", option.given_value)
+        self.assertIsInstance(option.value, bool)
+        self.assertEqual(False, option.value)
+        self.assertEqual("--verbose=false", str(option))
+        self.assertEqual("--verbose=false", option)
 
 
     def test_valid_option_value_of_type_float(self):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=float),
+            clasp.option("--length", alias="-l", value_type=float),
         )
 
-        argv    =   ( 'myprog', '--length=1.23', '-l', '4.56', )
+        argv    =   ( "myprog", "--length=1.23", "-l", "4.56", )
         args    =   clasp.parse(argv, specifications)
 
         self.assertEqual(0, len(args.flags))
@@ -140,44 +140,44 @@ class Typed_values_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   1)
-        self.assertEqual(option.given_name        ,   '--length')
+        self.assertEqual(1, option.given_index)
+        self.assertEqual("--length", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   2)
-        self.assertEqual(option.given_label       ,   'length')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '1.23')
-        self.assertIsInstance(option.value        ,   float)
-        self.assertAlmostEqual(option.value       ,   1.23)
-        self.assertEqual(str(option)              ,   '--length=1.23')
-        self.assertEqual(option                   ,   '--length=1.23')
+        self.assertEqual(2, option.given_hyphens)
+        self.assertEqual("length", option.given_label)
+        self.assertEqual("--length", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("1.23", option.given_value)
+        self.assertIsInstance(option.value, float)
+        self.assertAlmostEqual(1.23, option.value)
+        self.assertEqual("--length=1.23", str(option))
+        self.assertEqual("--length=1.23", option)
 
         option  =   args.options[1]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   2)
-        self.assertEqual(option.given_name        ,   '-l')
+        self.assertEqual(2, option.given_index)
+        self.assertEqual("-l", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   1)
-        self.assertEqual(option.given_label       ,   'l')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '4.56')
-        self.assertIsInstance(option.value        ,   float)
-        self.assertAlmostEqual(option.value       ,   4.56)
-        self.assertEqual(str(option)              ,   '--length=4.56')
-        self.assertEqual(option                   ,   '--length=4.56')
+        self.assertEqual(1, option.given_hyphens)
+        self.assertEqual("l", option.given_label)
+        self.assertEqual("--length", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("4.56", option.given_value)
+        self.assertIsInstance(option.value, float)
+        self.assertAlmostEqual(4.56, option.value)
+        self.assertEqual("--length=4.56", str(option))
+        self.assertEqual("--length=4.56", option)
 
 
     def test_valid_option_value_of_type_int(self):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=int),
+            clasp.option("--length", alias="-l", value_type=int),
         )
 
-        argv    =   ( 'myprog', '--length=123', '-l', '456', )
+        argv    =   ( "myprog", "--length=123", "-l", "456", )
         args    =   clasp.parse(argv, specifications)
 
         self.assertEqual(0, len(args.flags))
@@ -187,34 +187,34 @@ class Typed_values_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   1)
-        self.assertEqual(option.given_name        ,   '--length')
+        self.assertEqual(1, option.given_index)
+        self.assertEqual("--length", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   2)
-        self.assertEqual(option.given_label       ,   'length')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '123')
-        self.assertIsInstance(option.value        ,   int)
-        self.assertEqual(option.value             ,   123)
-        self.assertEqual(str(option)              ,   '--length=123')
-        self.assertEqual(option                   ,   '--length=123')
+        self.assertEqual(2, option.given_hyphens)
+        self.assertEqual("length", option.given_label)
+        self.assertEqual("--length", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("123", option.given_value)
+        self.assertIsInstance(option.value, int)
+        self.assertEqual(123, option.value)
+        self.assertEqual("--length=123", str(option))
+        self.assertEqual("--length=123", option)
 
         option  =   args.options[1]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   2)
-        self.assertEqual(option.given_name        ,   '-l')
+        self.assertEqual(2, option.given_index)
+        self.assertEqual("-l", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   1)
-        self.assertEqual(option.given_label       ,   'l')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '456')
-        self.assertIsInstance(option.value        ,   int)
-        self.assertEqual(option.value             ,   456)
-        self.assertEqual(str(option)              ,   '--length=456')
-        self.assertEqual(option                   ,   '--length=456')
+        self.assertEqual(1, option.given_hyphens)
+        self.assertEqual("l", option.given_label)
+        self.assertEqual("--length", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("456", option.given_value)
+        self.assertIsInstance(option.value, int)
+        self.assertEqual(456, option.value)
+        self.assertEqual("--length=456", str(option))
+        self.assertEqual("--length=456", option)
 
 
     if sys.version_info < (3, 0):
@@ -223,10 +223,10 @@ class Typed_values_tester_1(unittest.TestCase):
 
             specifications =   (
 
-                clasp.option('--length', alias='-l', value_type=long),
+                clasp.option("--length", alias="-l", value_type=long),
             )
 
-            argv    =   ( 'myprog', '--length=123', '-l', '456', )
+            argv    =   ( "myprog", "--length=123", "-l", "456", )
             args    =   clasp.parse(argv, specifications)
 
             self.assertEqual(0, len(args.flags))
@@ -236,44 +236,44 @@ class Typed_values_tester_1(unittest.TestCase):
             option  =   args.options[0]
 
             self.assertIsInstance(option, ( Option, ))
-            self.assertEqual(option.given_index       ,   1)
-            self.assertEqual(option.given_name        ,   '--length')
+            self.assertEqual(1, option.given_index)
+            self.assertEqual("--length", option.given_name)
             self.assertTrue(option.argument_specification)
-            self.assertEqual(option.given_hyphens     ,   2)
-            self.assertEqual(option.given_label       ,   'length')
-            self.assertEqual(option.name              ,   '--length')
-            self.assertEqual(option.extras            ,   {})
-            self.assertEqual(option.given_value       ,   '123')
-            self.assertIsInstance(option.value        ,   long)
-            self.assertEqual(option.value             ,   123)
-            self.assertEqual(str(option)              ,   '--length=123')
-            self.assertEqual(option                   ,   '--length=123')
+            self.assertEqual(2, option.given_hyphens)
+            self.assertEqual("length", option.given_label)
+            self.assertEqual("--length", option.name)
+            self.assertEqual({}, option.extras)
+            self.assertEqual("123", option.given_value)
+            self.assertIsInstance(option.value, long)
+            self.assertEqual(123, option.value)
+            self.assertEqual("--length=123", str(option))
+            self.assertEqual("--length=123", option)
 
             option  =   args.options[1]
 
             self.assertIsInstance(option, ( Option, ))
-            self.assertEqual(option.given_index       ,   2)
-            self.assertEqual(option.given_name        ,   '-l')
+            self.assertEqual(2, option.given_index)
+            self.assertEqual("-l", option.given_name)
             self.assertTrue(option.argument_specification)
-            self.assertEqual(option.given_hyphens     ,   1)
-            self.assertEqual(option.given_label       ,   'l')
-            self.assertEqual(option.name              ,   '--length')
-            self.assertEqual(option.extras            ,   {})
-            self.assertEqual(option.given_value       ,   '456')
-            self.assertIsInstance(option.value        ,   long)
-            self.assertEqual(option.value             ,   456)
-            self.assertEqual(str(option)              ,   '--length=456')
-            self.assertEqual(option                   ,   '--length=456')
+            self.assertEqual(1, option.given_hyphens)
+            self.assertEqual("l", option.given_label)
+            self.assertEqual("--length", option.name)
+            self.assertEqual({}, option.extras)
+            self.assertEqual("456", option.given_value)
+            self.assertIsInstance(option.value, long)
+            self.assertEqual(456, option.value)
+            self.assertEqual("--length=456", str(option))
+            self.assertEqual("--length=456", option)
 
 
     def test_invalid_option_value_of_type_int(self):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=int),
+            clasp.option("--length", alias="-l", value_type=int),
         )
 
-        argv    =   ( 'myprog', '--length=abc' )
+        argv    =   ( "myprog", "--length=abc" )
 
         with self.assertRaises(clasp.InvalidIntegerException):
 
@@ -284,10 +284,10 @@ class Typed_values_tester_1(unittest.TestCase):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=float),
+            clasp.option("--length", alias="-l", value_type=float),
         )
 
-        argv    =   ( 'myprog', '--length=abc' )
+        argv    =   ( "myprog", "--length=abc" )
 
         with self.assertRaises(clasp.InvalidNumberException):
 
@@ -298,10 +298,10 @@ class Typed_values_tester_1(unittest.TestCase):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=int),
+            clasp.option("--length", alias="-l", value_type=int),
         )
 
-        argv    =   ( 'myprog', '--length=' )
+        argv    =   ( "myprog", "--length=" )
 
         with self.assertRaises(clasp.MissingValueException):
 
@@ -312,10 +312,10 @@ class Typed_values_tester_1(unittest.TestCase):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=int),
+            clasp.option("--length", alias="-l", value_type=int),
         )
 
-        argv    =   ( 'myprog', '-l' )
+        argv    =   ( "myprog", "-l" )
 
         with self.assertRaises(clasp.MissingValueException):
 
@@ -326,10 +326,10 @@ class Typed_values_tester_1(unittest.TestCase):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=int),
+            clasp.option("--length", alias="-l", value_type=int),
         )
 
-        argv    =   ( 'myprog', '--length' )
+        argv    =   ( "myprog", "--length" )
 
         with self.assertRaises(clasp.MissingValueException):
 
@@ -340,10 +340,10 @@ class Typed_values_tester_1(unittest.TestCase):
 
         specifications =   (
 
-            clasp.option('--length', alias='-l', value_type=int),
+            clasp.option("--length", alias="-l", value_type=int),
         )
 
-        argv    =   ( 'myprog', '--length', '--' )
+        argv    =   ( "myprog", "--length", "--" )
 
         with self.assertRaises(clasp.MissingValueException):
 
@@ -354,24 +354,24 @@ class Typed_values_tester_1(unittest.TestCase):
 
         with self.assertRaises(TypeError):
 
-            clasp.option('--length', alias='-l', value_type='abc'),
+            clasp.option("--length", alias="-l", value_type="abc"),
 
 
     def test_flags_of_flags_and_options_combined(self):
 
         specifications =   (
 
-            clasp.flag('--compile', alias='-c'),
-            clasp.flag('--mode=debug', alias='-d'),
-            clasp.flag('--execute', alias='-e'),
-            clasp.option('--mode', alias='-m'),
-            clasp.option('--length', alias='-l', value_type=int),
+            clasp.flag("--compile", alias="-c"),
+            clasp.flag("--mode=debug", alias="-d"),
+            clasp.flag("--execute", alias="-e"),
+            clasp.option("--mode", alias="-m"),
+            clasp.option("--length", alias="-l", value_type=int),
         )
 
-        argv    =   ( 'myprog', '-ced', '-l', '123' )
+        argv    =   ( "myprog", "-ced", "-l", "123" )
         args    =   clasp.parse(argv, specifications)
 
-        self.assertEqual('myprog', args.program_name)
+        self.assertEqual("myprog", args.program_name)
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
@@ -380,28 +380,28 @@ class Typed_values_tester_1(unittest.TestCase):
         flag    =   args.flags[0]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   1)
-        self.assertEqual(flag.given_name        ,   '-ced')
+        self.assertEqual(1, flag.given_index)
+        self.assertEqual("-ced", flag.given_name)
         self.assertTrue(flag.argument_specification)
-        self.assertEqual(flag.given_hyphens     ,   1)
-        self.assertEqual(flag.given_label       ,   'ced')
-        self.assertEqual(flag.name              ,   '--compile')
-        self.assertEqual(flag.extras            ,   {})
-        self.assertEqual(str(flag)              ,   '--compile')
-        self.assertEqual(flag                   ,   '--compile')
+        self.assertEqual(1, flag.given_hyphens)
+        self.assertEqual("ced", flag.given_label)
+        self.assertEqual("--compile", flag.name)
+        self.assertEqual({}, flag.extras)
+        self.assertEqual("--compile", str(flag))
+        self.assertEqual("--compile", flag)
 
         flag    =   args.flags[1]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(flag.given_index       ,   1)
-        self.assertEqual(flag.given_name        ,   '-ced')
+        self.assertEqual(1, flag.given_index)
+        self.assertEqual("-ced", flag.given_name)
         self.assertTrue(flag.argument_specification)
-        self.assertEqual(flag.given_hyphens     ,   1)
-        self.assertEqual(flag.given_label       ,   'ced')
-        self.assertEqual(flag.name              ,   '--execute')
-        self.assertEqual(flag.extras            ,   {})
-        self.assertEqual(str(flag)              ,   '--execute')
-        self.assertEqual(flag                   ,   '--execute')
+        self.assertEqual(1, flag.given_hyphens)
+        self.assertEqual("ced", flag.given_label)
+        self.assertEqual("--execute", flag.name)
+        self.assertEqual({}, flag.extras)
+        self.assertEqual("--execute", str(flag))
+        self.assertEqual("--execute", flag)
 
         self.assertIsInstance(args.options, ( tuple, ))
         self.assertTrue(args.options)
@@ -410,32 +410,32 @@ class Typed_values_tester_1(unittest.TestCase):
         option  =   args.options[0]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   1)
-        self.assertEqual(option.given_name        ,   '-ced')
+        self.assertEqual(1, option.given_index)
+        self.assertEqual("-ced", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   1)
-        self.assertEqual(option.given_label       ,   'ced')
-        self.assertEqual(option.name              ,   '--mode')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   'debug')
-        self.assertEqual(option.value             ,   'debug')
-        self.assertEqual(str(option)              ,   '--mode=debug')
-        self.assertEqual(option                   ,   '--mode=debug')
+        self.assertEqual(1, option.given_hyphens)
+        self.assertEqual("ced", option.given_label)
+        self.assertEqual("--mode", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("debug", option.given_value)
+        self.assertEqual("debug", option.value)
+        self.assertEqual("--mode=debug", str(option))
+        self.assertEqual("--mode=debug", option)
 
         option  =   args.options[1]
 
         self.assertIsInstance(option, ( Option, ))
-        self.assertEqual(option.given_index       ,   2)
-        self.assertEqual(option.given_name        ,   '-l')
+        self.assertEqual(2, option.given_index)
+        self.assertEqual("-l", option.given_name)
         self.assertTrue(option.argument_specification)
-        self.assertEqual(option.given_hyphens     ,   1)
-        self.assertEqual(option.given_label       ,   'l')
-        self.assertEqual(option.name              ,   '--length')
-        self.assertEqual(option.extras            ,   {})
-        self.assertEqual(option.given_value       ,   '123')
-        self.assertEqual(option.value             ,   123)
-        self.assertEqual(str(option)              ,   '--length=123')
-        self.assertEqual(option                   ,   '--length=123')
+        self.assertEqual(1, option.given_hyphens)
+        self.assertEqual("l", option.given_label)
+        self.assertEqual("--length", option.name)
+        self.assertEqual({}, option.extras)
+        self.assertEqual("123", option.given_value)
+        self.assertEqual(123, option.value)
+        self.assertEqual("--length=123", str(option))
+        self.assertEqual("--length=123", option)
 
         self.assertIsInstance(args.values, ( tuple, ))
         self.assertFalse(args.values)

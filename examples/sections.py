@@ -15,7 +15,7 @@ VERSION = [ 0, 0, 1 ]
 
 INFO_LINES = (
 
-    'CLASP.Python examples',
+    "CLASP.Python examples",
     ':version:',
     "Illustrates use of CLASP.Python's clasp.section() to create sections",
     '',
@@ -25,11 +25,11 @@ INFO_LINES = (
 
 specifications = (
 
-    clasp.section('Behaviour:'),
+    clasp.section("Behaviour:"),
 
-    clasp.option('--verbosity', alias='-v', help='specifies the verbosity', values=[ 'terse', 'quiet', 'silent', 'chatty' ]),
+    clasp.option("--verbosity", alias="-v", help="specifies the verbosity", values=[ "terse", "quiet", "silent", "chatty" ]),
 
-    clasp.section('Standard:'),
+    clasp.section("Standard:"),
 
     clasp.HelpFlag(),
     clasp.VersionFlag(),
@@ -37,18 +37,18 @@ specifications = (
 
 args = clasp.parse(sys.argv, specifications)
 
-if args.flag_is_specified('--help'):
+if args.flag_is_specified("--help"):
 
     clasp.show_usage(specifications, exit_code=0, version=VERSION, stream=sys.stdout, info_lines=INFO_LINES)
 
-if args.flag_is_specified('--version'):
+if args.flag_is_specified("--version"):
 
     clasp.show_version(specifications, exit_code=0, version=VERSION, stream=sys.stdout)
 
 
 # Program-specific processing of flags/options
 
-opt = args.lookup_option('--verbosity')
+opt = args.lookup_option("--verbosity")
 if (opt):
 
     sys.stdout.write("verbosity is specified as: %s\n" % opt.value)

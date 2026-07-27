@@ -344,7 +344,7 @@ class Arguments:
 
         if n > 1:
 
-            m = re.match(r'-+([a-zA-Z]+)$', item)
+            m = re.match(r"-+([a-zA-Z]+)$", item)
 
             if m:
 
@@ -352,13 +352,13 @@ class Arguments:
 
                 for c in m.group(1):
 
-                    name = '-' + c
+                    name = "-" + c
 
                     select_specification = Arguments._select_specification(name, specifications)
 
                     if select_specification:
 
-                        m2 = re.match(r'(-+)([^=]+)=(.*)$', select_specification.name)
+                        m2 = re.match(r"(-+)([^=]+)=(.*)$", select_specification.name)
 
                         if m2:
 
@@ -470,7 +470,7 @@ class Arguments:
 
             if not forced_value:
 
-                if '--' == arg:
+                if "--" == arg:
 
                     forced_value = True
 
@@ -492,7 +492,7 @@ class Arguments:
 
                 continue
 
-            m = re.match(r'(-+)([^=]+)', arg)
+            m = re.match(r"(-+)([^=]+)", arg)
 
             if m:
 
@@ -577,7 +577,7 @@ class Arguments:
 
                         alias_has_value =   False
 
-                        m2 = re.match(r'(-+)([^=]+)=(.*)', resolved_name)
+                        m2 = re.match(r"(-+)([^=]+)=(.*)", resolved_name)
 
                         # need to check whether the alias is a
                         # valued-option, and, if so, expand out its name

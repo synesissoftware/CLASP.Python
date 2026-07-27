@@ -15,7 +15,7 @@ VERSION = [ 0, 0, 2 ]
 
 INFO_LINES = (
 
-    'CLASP.Python examples',
+    "CLASP.Python examples",
     ':version:',
     "Illustrates use of CLASP.Python's clasp.show_usage() and clasp.show_version() methods",
     '',
@@ -31,11 +31,11 @@ specifications = (
 
 args = clasp.parse(sys.argv, specifications)
 
-if args.flag_is_specified('--help'):
+if args.flag_is_specified("--help"):
 
     clasp.show_usage(specifications, exit_code=0, version=VERSION, stream=sys.stdout, info_lines=INFO_LINES)
 
-if args.flag_is_specified('--version'):
+if args.flag_is_specified("--version"):
 
     clasp.show_version(specifications, exit_code=0, version=VERSION, stream=sys.stdout)
 
