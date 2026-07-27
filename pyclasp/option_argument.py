@@ -148,7 +148,23 @@ class OptionArgument(object):
                         pass
                     else:
 
-                        raise MissingValueException("the '%s' option does not have a value to be interpreted as an integer" % (self.name))
+                        if arg_spec.value_type == bool:
+
+                            type_name = "boolean"
+                        elif arg_spec.value_type == float:
+
+                            type_name = "a number"
+                        elif arg_spec.value_type == int:
+
+                            type_name = "an integer"
+                        elif _SUPPORT_long and arg_spec.value_type == long:
+
+                            type_name = "a long integer"
+                        else:
+
+                            type_name = "a value"
+
+                        raise MissingValueException("the '%s' option does not have a value to be interpreted as %s" % (self.name, type_name))
 
 
         self.given_value    =   given_value
