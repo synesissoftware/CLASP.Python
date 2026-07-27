@@ -1,16 +1,16 @@
 
-__author__      =   'Matt Wilson'
-__copyright__   =   'Copyright 2019-2020 Synesis Information Systems, Copyright 2019 Synesis Software'
+__author__      =   "Matt Wilson"
+__copyright__   =   "Copyright 2019-2026 Synesis Information Systems, Copyright 2019 Synesis Software"
 __credits__     =   [
 
-        'Garth Lancaster',
-        'Matt Wilson',
+        "Garth Lancaster",
+        "Matt Wilson",
  ]
-__email__       =   'matthew@synesis.com.au'
-__license__     =   'BSD-3-Clause'
-__maintainer__  =   'Matt Wilson'
-__status__      =   'Beta'
-__version__     =   '0.8.10'
+__email__       =   "matthew@synesis.com.au"
+__license__     =   "BSD-3-Clause"
+__maintainer__  =   "Matt Wilson"
+__status__      =   "Beta"
+__version__     =   "0.8.10.1"
 
 from .exceptions import *
 from .flag_specification import FlagSpecification, flag

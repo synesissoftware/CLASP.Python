@@ -51,8 +51,8 @@ def flag(name, **kwargs):
     return FlagSpecification(name, aliases, help, extras)
 
 
-_HELP_FLAG      =   FlagSpecification('--help', None, 'Shows usage and terminates', None)
-_VERSION_FLAG   =   FlagSpecification('--version', None, 'Shows version and terminates', None)
+_HELP_FLAG      =   FlagSpecification('--help', None, "Shows usage and terminates", None)
+_VERSION_FLAG   =   FlagSpecification('--version', None, "Shows version and terminates", None)
 
 
 def HelpFlag():

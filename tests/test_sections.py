@@ -6,7 +6,7 @@
 # Purpose:  Tests use of sections.
 #
 # Created:  22nd August 2019
-# Updated:  25th July 2025
+# Updated:  27th July 2026
 #
 # Copyright (c) Matthew Wilson, Synesis Information Systems Pty Ltd
 # All rights reserved
@@ -61,34 +61,34 @@ class Sections_tester(unittest.TestCase):
         specs   =   (
 
 
-            clasp.section('Behaviour:'),
+            clasp.section("Behaviour:"),
 
-            clasp.flag('--verbose', alias='-v', help='Make output verbose'),
+            clasp.flag("--verbose", alias="-v", help="Make output verbose"),
 
-            clasp.section('Standard:'),
+            clasp.section("Standard:"),
 
             clasp.HelpFlag(),
             clasp.VersionFlag(),
         )
 
         try:
-            clasp.show_usage(specs, exit_code=None, stream=stm, info_lines=(), program_name='myprog')
+            clasp.show_usage(specs, exit_code=None, stream=stm, info_lines=(), program_name="myprog")
 
             actual = _stripped_non_blank_lines_from_SIO(stm)
 
             expected = (
 
-                'USAGE: myprog [ ... flags and options ... ]',
-                'flags/options:',
-                'Behaviour:',
-                '-v',
-                '--verbose',
-                'Make output verbose',
-                'Standard:',
-                '--help',
-                'Shows usage and terminates',
-                '--version',
-                'Shows version and terminates',
+                "USAGE: myprog [ ... flags and options ... ]",
+                "flags/options:",
+                "Behaviour:",
+                "-v",
+                "--verbose",
+                "Make output verbose",
+                "Standard:",
+                "--help",
+                "Shows usage and terminates",
+                "--version",
+                "Shows version and terminates",
             )
 
             self.assertMultiLineEqual(\
@@ -114,20 +114,20 @@ class Sections_tester(unittest.TestCase):
         specs       =   (
 
 
-            clasp.section('Behaviour:'),
+            clasp.section("Behaviour:"),
 
-            clasp.flag('--verbose', alias='-v', help='Make output verbose'),
+            clasp.flag("--verbose", alias="-v", help="Make output verbose"),
 
-            clasp.section('Standard:'),
+            clasp.section("Standard:"),
 
             clasp.HelpFlag(),
             clasp.VersionFlag(),
         )
 
-        version     =   '1.2.3'
+        version     =   "1.2.3"
 
         try:
-            clasp.show_usage(specs, exit_code=None, stream=stm, info_lines=info_lines, program_name='myprog', version=version)
+            clasp.show_usage(specs, exit_code=None, stream=stm, info_lines=info_lines, program_name="myprog", version=version)
 
             actual = _stripped_lines_from_SIO(stm)
 
@@ -136,24 +136,24 @@ class Sections_tester(unittest.TestCase):
                 "Program suite",
                 "Acme Industries",
                 "myprog 1.2.3",
-                '',
-                'USAGE: myprog [ ... flags and options ... ]',
-                '',
-                'flags/options:',
-                '',
-                'Behaviour:',
-                '',
-                '-v',
-                '--verbose',
-                'Make output verbose',
-                '',
-                'Standard:',
-                '',
-                '--help',
-                'Shows usage and terminates',
-                '',
-                '--version',
-                'Shows version and terminates',
+                "",
+                "USAGE: myprog [ ... flags and options ... ]",
+                "",
+                "flags/options:",
+                "",
+                "Behaviour:",
+                "",
+                "-v",
+                "--verbose",
+                "Make output verbose",
+                "",
+                "Standard:",
+                "",
+                "--help",
+                "Shows usage and terminates",
+                "",
+                "--version",
+                "Shows version and terminates",
             )
 
             self.assertMultiLineEqual(\

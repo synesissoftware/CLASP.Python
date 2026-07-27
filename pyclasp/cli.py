@@ -20,7 +20,7 @@ def _ensure_single_space_prefix(s):
 
         if 0 != len(s):
 
-            s = ' ' + s
+            s = " " + s
 
     return s
 
@@ -28,7 +28,7 @@ def _ensure_single_space_prefix(s):
 def _generate_version_string(argv, options):
 
     program_name    =   _get_program_name(argv, options)
-    version_prefix  =   _dict_get_N((options, ''), 'version_prefix', 'version-prefix')
+    version_prefix  =   _dict_get_N((options, ""), 'version_prefix', 'version-prefix')
 
     version         =   options.get('version')
 
@@ -38,7 +38,7 @@ def _generate_version_string(argv, options):
 
             version =   [ str(i) for i in version ]
 
-            version =   '.'.join(version)
+            version =   ".".join(version)
     else:
 
         version_major   =  _dict_get_N(options, 'version_major', 'version-major')
@@ -55,22 +55,22 @@ def _generate_version_string(argv, options):
 
         if version_minor:
 
-            version     +=  '.' + str(version_minor)
+            version     +=  "." + str(version_minor)
 
         if version_patch:
 
-            version     +=  '.' + str(version_patch)
+            version     +=  "." + str(version_patch)
 
         if version_build:
 
-            version     +=  '.' + str(version_build)
+            version     +=  "." + str(version_build)
 
     return "%s %s%s" % (program_name, version_prefix, version)
 
 
 def _info_line(s):
 
-    return s if s else ''
+    return s if s else ""
 
 
 def show_usage(specifications, **kwargs):
@@ -117,7 +117,7 @@ def show_usage(specifications, **kwargs):
     options             =   kwargs
 
     exit_code           =   _dict_get_N(options, 'exit', 'exit_code', 'exit-code')
-    flags_and_options   =   _dict_get_N((options, ' [ ... flags and options ... ]'), 'flags_and_options', 'flags-and-options')
+    flags_and_options   =   _dict_get_N((options, " [ ... flags and options ... ]"), 'flags_and_options', 'flags-and-options')
     info_lines          =   _dict_get_N(options, 'info_lines', 'info-lines')
     program_name        =   _get_program_name(argv, options)
     stream              =   _dict_get_N((options, sys.stdout), 'stream')
@@ -146,7 +146,7 @@ def show_usage(specifications, **kwargs):
 
     for specification in specifications:
 
-        m       =   re.match(r'(-+[a-zA-Z0-3_-]+)[=:](.+)$', specification.name)
+        m       =   re.match(r"(-+[a-zA-Z0-3_-]+)[=:](.+)$", specification.name)
 
         if m:
 
