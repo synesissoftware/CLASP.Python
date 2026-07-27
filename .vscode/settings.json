@@ -17,6 +17,9 @@
 	"editor.renderWhitespace": "all",
 	"editor.rulers": [ 76 ],
 	"editor.tabSize": 2,
+	"files.insertFinalNewline": true,
+	"files.trimTrailingWhitespace": true,
+	"git.mergeEditor": false,
 	"files.exclude": {
 		"**/__pycache__": true,
 		"**/*.egg-info": true,
