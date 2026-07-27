@@ -1,9 +1,15 @@
 
 # directories (by name)
 
+/.bin/
+
 build/
 dist/
+dist-old/
+scratch/
+
 *.egg-info/
+**/__pycache__/
 
 # directories (by pattern)
 
@@ -19,4 +25,5 @@ dist/
 *.swo
 *.swp
 *.tmp
+*.zip
 

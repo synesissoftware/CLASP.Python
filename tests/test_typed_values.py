@@ -24,6 +24,11 @@ import unittest
 
 import sys
 
+try:
+    long = long
+except NameError:
+    long = int
+
 class Typed_values_tester_1(unittest.TestCase):
 
     def test_valid_option_value_of_type_str(self):

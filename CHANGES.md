@@ -1,4 +1,18 @@
-# **CLASP.Python** Changes
+# **CLASP.Python** Changes <!-- omit from toc -->
+
+
+## 0.8.11 - 27th July 2026
+
+* ~ packaging & boilerplate improvements:
+  * + added GitHub Actions CI workflow to systematically test under Python 2.7 (using dynamic containers) and Python 3.8 through 3.14;
+  * + added `.gitattributes` with Linguist configurations;
+  * ~ aligned and expanded `.gitignore` and `.vscode/settings.json` with sister Python repositories;
+  * ~ modernized `setup.py` to use `setuptools.find_packages()` and exclude `examples` and `tests` from binary installations to avoid global namespace pollution;
+  * + added `MANIFEST.in` to cleanly package license, metadata, examples, and tests in source distributions;
+  * ~ introduced Python-based recursive test-runner `tests/run_unittest.py` and simplified `run_all_unit_tests.sh`;
+  * ~ added legacy Python 2.7 test shims (`mock` mapping and `assertRegex` compatibility) to `tests/__init__.py`;
+  * ~ resolved static analyzer (`flake8` / `F821`) errors for undefined names (including type-checks on `long` and local variables);
+  * ~ synchronized `README.md` badge layouts with `Diagnosticism.Python` and `asynkio`;
 
 
 ## 0.8.10.1 - 27th July 2026
@@ -146,7 +160,7 @@
 
 ## previous versions
 
-T.B.C.
+None specified.
 
 
 <!-- ########################### end of file ########################### -->

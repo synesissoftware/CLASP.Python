@@ -10,6 +10,12 @@ if sys.version_info >= (3, 0):
     _SUPPORT_long = False
 
 
+try:
+    _long_type = long
+except NameError:
+    _long_type = int
+
+
 _MULTIPLE_ACTION_ALLOW      =   'ALLOW'
 _MULTIPLE_ACTION_IGNORE     =   'IGNORE'
 _MULTIPLE_ACTION_REJECT     =   'REJECT'
