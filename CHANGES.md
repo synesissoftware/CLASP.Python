@@ -1,7 +1,7 @@
 # **CLASP.Python** Changes <!-- omit from toc -->
 
 
-## 0.8.11 - 24th July 2026
+## 0.8.11 - 27th July 2026
 
 * ~ packaging & boilerplate improvements:
   * + added GitHub Actions CI workflow to systematically test under Python 2.7 (using dynamic containers) and Python 3.8 through 3.14;
@@ -13,6 +13,13 @@
   * ~ added legacy Python 2.7 test shims (`mock` mapping and `assertRegex` compatibility) to `tests/__init__.py`;
   * ~ resolved static analyzer (`flake8` / `F821`) errors for undefined names (including type-checks on `long` and local variables);
   * ~ synchronized `README.md` badge layouts with `Diagnosticism.Python` and `asynkio`;
+
+
+## 0.8.10.1 - 27th July 2026
+
+* ensured that all appropriate unit-tests arguments are in `(expected, actual` order;
+* canonicalised literal strings to use double-quotes throughout except where strings are well-known (per API) for which single-quotes are used;
+* minor boilerplate updates;
 
 
 ## 0.8.10.1 - 27th July 2026
@@ -161,9 +168,6 @@
 ## previous versions
 
 None specified.
-
-
-<!-- ########################### end of file ########################### -->
 
 
 <!-- ########################### end of file ########################### -->
