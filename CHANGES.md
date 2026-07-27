@@ -1,6 +1,12 @@
 # **CLASP.Python** Changes <!-- omit from toc -->
 
 
+## 0.8.12 - 28th July 2026
+
+* fixed falsy default values causing `MissingValueException` for option arguments;
+* fixed failure message to be passed to `MissingValueException`;
+
+
 ## 0.8.11 - 27th July 2026
 
 * ~ packaging & boilerplate improvements:
