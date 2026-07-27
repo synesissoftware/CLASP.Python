@@ -303,9 +303,43 @@ class Typed_values_tester_1(unittest.TestCase):
 
         argv    =   ( "myprog", "--length=" )
 
-        with self.assertRaises(clasp.MissingValueException):
+        with self.assertRaises(clasp.MissingValueException) as ctx:
 
             clasp.parse(argv, specifications)
+
+        self.assertEqual("the '--length' option does not have a value to be interpreted as an integer", str(ctx.exception))
+
+
+    def test_empty_option_value_of_type_float(self):
+
+        specifications =   (
+
+            clasp.option('--length', alias='-l', value_type=float),
+        )
+
+        argv    =   ( 'myprog', '--length=' )
+
+        with self.assertRaises(clasp.MissingValueException) as ctx:
+
+            clasp.parse(argv, specifications)
+
+        self.assertEqual("the '--length' option does not have a value to be interpreted as a number", str(ctx.exception))
+
+
+    def test_empty_option_value_of_type_bool(self):
+
+        specifications =   (
+
+            clasp.option('--length', alias='-l', value_type=bool),
+        )
+
+        argv    =   ( 'myprog', '--length=' )
+
+        with self.assertRaises(clasp.MissingValueException) as ctx:
+
+            clasp.parse(argv, specifications)
+
+        self.assertEqual("the '--length' option does not have a value to be interpreted as boolean", str(ctx.exception))
 
 
     def test_empty_option_value_of_type_int_2(self):
@@ -441,6 +475,61 @@ class Typed_values_tester_1(unittest.TestCase):
         self.assertFalse(args.values)
         self.assertEqual(0, len(args.values))
 
+
+    def test_reproduce_falsy_default_issue(self):
+
+        specifications = (
+            clasp.option(
+                "--depth",
+                alias="-d",
+                default=0,
+                value_type=int,
+            ),
+            clasp.option(
+                "--exchange",
+                alias="-e",
+                required=True,
+                value_type=str,
+            ),
+        )
+
+        argv = ('liquidity-assessor', '-e', 'bybit', '-d', '10')
+        args = clasp.parse(argv, specifications)
+
+        self.assertEqual(2, len(args.options))
+
+        depth_option = next(opt for opt in args.options if opt.name == '--depth')
+        self.assertEqual(10, depth_option.value)
+
+        exchange_option = next(opt for opt in args.options if opt.name == '--exchange')
+        self.assertEqual('bybit', exchange_option.value)
+
+
+    def test_reproduce_falsy_default_issue_with_default_used(self):
+
+        specifications = (
+            clasp.option(
+                "--depth",
+                alias="-d",
+                default=0,
+                value_type=int,
+            ),
+            clasp.option(
+                "--exchange",
+                alias="-e",
+                required=True,
+                value_type=str,
+            ),
+        )
+
+        argv = ('liquidity-assessor', '-e', 'bybit')
+        args = clasp.parse(argv, specifications)
+
+        # In CLASP, options with defaults are not automatically added to args.options unless specified on the CLI or if we lookup/access them?
+        # Wait, let's verify if they are added or not.
+        self.assertEqual(1, len(args.options))
+        exchange_option = args.options[0]
+        self.assertEqual('bybit', exchange_option.value)
 
 
 if '__main__' == __name__:
