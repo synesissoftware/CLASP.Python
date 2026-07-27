@@ -5,11 +5,18 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Installation](#installation)
-3. [Components](#components)
-4. [Examples](#examples)
-5. [Project Information](#project-information)
+- [CLASP.Python](#clasppython)
+	- [Table of Contents](#table-of-contents)
+	- [Introduction](#introduction)
+	- [Installation \& usage](#installation--usage)
+	- [Components](#components)
+	- [Examples](#examples)
+	- [Project Information](#project-information)
+		- [Where to get help](#where-to-get-help)
+		- [Contribution guidelines](#contribution-guidelines)
+		- [Dependencies](#dependencies)
+		- [Related projects](#related-projects)
+		- [License](#license)
 
 ## Introduction
 
@@ -72,4 +79,7 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 ### License
 
 **CLASP.Python** is released under the 3-clause BSD license. See [LICENSE](./LICENSE) for details.
+
+
+<!-- ########################### end of file ########################### -->
 
