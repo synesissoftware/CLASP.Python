@@ -617,7 +617,7 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual("value", args.values[0])
 
 
-    def alias_of_flag_with_two_specifications(self):
+    def test_alias_of_flag_with_two_specifications(self):
 
         flag_expand =   clasp.flag("--expand", aliases = ( "-x", "--x", ), extras = { "some-value": ( "e", "x", "t", "r", "a", "s", ) })
 
@@ -632,7 +632,7 @@ class Arguments_tester_1(unittest.TestCase):
 
         self.assertIsInstance(args.flags, ( tuple, ))
         self.assertTrue(args.flags)
-        self.assertEqual(4, len(args.flags))
+        self.assertEqual(3, len(args.flags))
 
         flag    =   args.flags[0]
 
@@ -650,10 +650,10 @@ class Arguments_tester_1(unittest.TestCase):
         flag    =   args.flags[1]
 
         self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(3, flag.given_index)
-        self.assertEqual("-x", flag.given_name)
+        self.assertEqual(5, flag.given_index) # 5 not 3, because the second instance overrides the first
+        self.assertEqual("--x", flag.given_name)
         self.assertEqual(flag_expand, flag.argument_specification)
-        self.assertEqual(1, flag.given_hyphens)
+        self.assertEqual(2, flag.given_hyphens)
         self.assertEqual("x", flag.given_label)
         self.assertEqual("--expand", flag.name)
         self.assertTrue(flag.extras)
@@ -672,23 +672,6 @@ class Arguments_tester_1(unittest.TestCase):
         self.assertEqual({}, flag.extras)
         self.assertEqual("--delete", str(flag))
         self.assertEqual("--delete", flag)
-
-        flag    =   args.flags[3]
-
-        self.assertIsInstance(flag, ( Flag, ))
-        self.assertEqual(5, flag.given_index)
-        self.assertEqual("--x", flag.given_name)
-        self.assertEqual(specifications[x], flag.argument_specification)
-        self.assertEqual(2, flag.given_hyphens)
-        self.assertEqual("x", flag.given_label)
-        self.assertEqual("--expand", flag.name)
-        self.assertTrue(flag.extras)
-        self.assertIsInstance(flag.extras, dict)
-        self.assertEqual(1, len(flag.extras))
-        self.assertEqual(( "e", "x", "t", "r", "a", "s", ), flag.extras["some-value"])
-        self.assertEqual("--expand", str(flag))
-        self.assertEqual("--expand", flag)
-
 
         self.assertIsInstance(args.options, ( tuple, ))
         self.assertFalse(args.options)
