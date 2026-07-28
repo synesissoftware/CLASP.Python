@@ -83,13 +83,13 @@ sys.stdout.write("no flags specified\n");
 If executed with no arguments
 
 ```
-    python examples/sections.py
+python3 examples/sections.py
 ```
 
 or (in a Unix shell):
 
 ```
-    ./examples/sections.py
+./examples/sections.py
 ```
 
 it gives the output:
@@ -103,7 +103,7 @@ no flags specified
 If executed with the arguments
 
 ```
-    python examples/sections.py --help
+python3 examples/sections.py --help
 ```
 
 it gives the output:
@@ -117,24 +117,24 @@ USAGE: sections.py [ ... flags and options ... ]
 
 flags/options:
 
-	Behaviour:
+  Behaviour:
 
-	-v <value>
-	--verbosity=<value>
-		specifies the verbosity
-		where <value> one of:
-			terse
-			quiet
-			silent
-			chatty
+  -v <value>
+  --verbosity=<value>
+    specifies the verbosity
+    where <value> one of:
+      terse
+      quiet
+      silent
+      chatty
 
-	Standard:
+  Standard:
 
-	--help
-		Shows usage and terminates
+  --help
+    Shows usage and terminates
 
-	--version
-		Shows version and terminates
+  --version
+    Shows version and terminates
 ```
 
 ### Show version
@@ -142,7 +142,7 @@ flags/options:
 If executed with the arguments
 
 ```
-    python examples/sections.py --version
+python3 examples/sections.py --version
 ```
 
 it gives the output:
@@ -156,7 +156,7 @@ sections.py 0.0.1
 If executed with the arguments
 
 ```
-    python examples/sections.py --unknown=value
+python3 examples/sections.py --unknown=value
 ```
 
 it gives the output (on the standard error stream):

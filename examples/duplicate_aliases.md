@@ -50,7 +50,7 @@ else:
 If executed with the arguments
 
 ```
-$ python examples/multiple_options.py --help
+python examples/multiple_options.py --help
 ```
 
 it gives the following output on the standard output stream:
@@ -60,23 +60,23 @@ USAGE: duplicate_aliases.py [ ... flags and options ... ]
 
 flags/options:
 
-	-c
-	--compile
-		None
+  -c
+  --compile
+    None
 
-	-d
-	--debug
-		None
+  -d
+  --debug
+    None
 
-	-c
-	--execute
-		None
+  -c
+  --execute
+    None
 
-	--help
-		Shows usage and terminates
+  --help
+    Shows usage and terminates
 
-	--version
-		Shows version and terminates
+  --version
+    Shows version and terminates
 ```
 
 and it gives the following output on the standard error stream:

@@ -24,10 +24,10 @@ VERSION = [ 0, 0, 2 ]
 
 INFO_LINES = (
 
-    'CLASP.Python examples',
-    ':version:',
-    "Illustrates use of CLASP.Python's clasp.show_usage() and clasp.show_version() methods",
-	'',
+  "CLASP.Python examples",
+  ':version:',
+  "Illustrates use of CLASP.Python's clasp.show_usage() and clasp.show_version() methods",
+  '',
 )
 
 # Specify specifications, parse, and checking standard flags
@@ -70,13 +70,13 @@ sys.stdout.write("no flags specified\n");
 If executed with no arguments
 
 ```
-    python examples/show_usage_and_version.py
+python3 examples/show_usage_and_version.py
 ```
 
 or (in a Unix shell):
 
 ```
-    ./examples/show_usage_and_version.py
+./examples/show_usage_and_version.py
 ```
 
 it gives the output:
@@ -90,7 +90,7 @@ no flags specified
 If executed with the arguments
 
 ```
-    python examples/show_usage_and_version.py --help
+python3 examples/show_usage_and_version.py --help
 ```
 
 it gives the output:
@@ -104,11 +104,11 @@ USAGE: show_usage_and_version.py [ ... flags and options ... ]
 
 flags/options:
 
-	--help
-		Shows usage and terminates
+  --help
+    Shows usage and terminates
 
-	--version
-		Shows version and terminates
+  --version
+    Shows version and terminates
 ```
 
 ### Show version
@@ -116,7 +116,7 @@ flags/options:
 If executed with the arguments
 
 ```
-    python examples/show_usage_and_version.py --version
+python3 examples/show_usage_and_version.py --version
 ```
 
 it gives the output:
@@ -130,7 +130,7 @@ show_usage_and_version.py 0.0.2
 If executed with the arguments
 
 ```
-    python examples/show_usage_and_version.py --unknown=value
+python3 examples/show_usage_and_version.py --unknown=value
 ```
 
 it gives the output (on the standard error stream):
