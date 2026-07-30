@@ -86,7 +86,7 @@ if (unused):
 If executed with the arguments
 
 ```
-    python examples/multiple_options.py -z -z -e cpp -e cxx -e cxx -z
+python3 examples/multiple_options.py -z -z -e cpp -e cxx -e cxx -z
 ```
 
 it gives the output:

@@ -85,13 +85,13 @@ if (unused):
 If executed with no arguments
 
 ```
-    python examples/typed_options.py
+python3 examples/typed_options.py
 ```
 
 or (in a Unix shell):
 
 ```
-    ./examples/typed_options.py
+./examples/typed_options.py
 ```
 
 it gives the output:
@@ -105,7 +105,7 @@ try specifying the '--length' option; use --help for usage
 If executed with the arguments
 
 ```
-    python examples/typed_options.py --help
+python3 examples/typed_options.py --help
 ```
 
 it gives the output:
@@ -119,15 +119,15 @@ USAGE: typed_options.py [ ... flags and options ... ]
 
 flags/options:
 
-	--help
-		Shows usage and terminates
+  --help
+    Shows usage and terminates
 
-	--version
-		Shows version and terminates
+  --version
+    Shows version and terminates
 
-	-l <value>
-	--length=<value>
-		specifies the length
+  -l <value>
+  --length=<value>
+    specifies the length
 ```
 
 ### Specify a valid length
@@ -135,7 +135,7 @@ flags/options:
 If executed with the arguments
 
 ```
-    python examples/typed_options.py --length=10
+python3 examples/typed_options.py --length=10
 ```
 
 it gives the output:
@@ -149,7 +149,7 @@ You specified length with the value: 10 (of type <type 'int'>). The string that 
 If executed with the arguments
 
 ```
-    python examples/typed_options.py --length=
+python3 examples/typed_options.py --length=
 ```
 
 it gives the output (on the standard error stream):
@@ -165,7 +165,7 @@ with an exit code of 1
 If executed with the arguments
 
 ```
-    python examples/typed_options.py --length=abc
+python3 examples/typed_options.py --length=abc
 ```
 
 it gives the output (on the standard error stream):

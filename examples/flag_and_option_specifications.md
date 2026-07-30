@@ -87,13 +87,13 @@ if (unused):
 If executed with no arguments
 
 ```
-    python examples/flag_and_option_specifications.py
+python3 examples/flag_and_option_specifications.py
 ```
 
 or (in a Unix shell):
 
 ```
-    ./examples/flag_and_option_specifications.py
+  ./examples/flag_and_option_specifications.py
 ```
 
 it gives the output:
@@ -106,7 +106,7 @@ it gives the output:
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_specifications.py --help
+python examples/flag_and_option_specifications.py --help
 ```
 
 it gives the output:
@@ -120,25 +120,25 @@ USAGE: flag_and_option_specifications.py [ ... flags and options ... ]
 
 flags/options:
 
-	-d
-	--debug
-		runs in Debug mode
+  -d
+  --debug
+    runs in Debug mode
 
-	-c --verbosity=chatty
-	-v <value>
-	--verbosity=<value>
-		specifies the verbosity
-		where <value> one of:
-			terse
-			quiet
-			silent
-			chatty
+  -c --verbosity=chatty
+  -v <value>
+  --verbosity=<value>
+    specifies the verbosity
+    where <value> one of:
+      terse
+      quiet
+      silent
+      chatty
 
-	--help
-		Shows usage and terminates
+  --help
+    Shows usage and terminates
 
-	--version
-		Shows version and terminates
+  --version
+    Shows version and terminates
 ```
 
 ### Specify flags and options in long-form
@@ -146,7 +146,7 @@ flags/options:
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_specifications.py --debug --verbosity=silent
+python examples/flag_and_option_specifications.py --debug --verbosity=silent
 ```
 
 it gives the output:
@@ -161,7 +161,7 @@ Debug mode is specified
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_specifications.py -v silent -d
+python3 examples/flag_and_option_specifications.py -v silent -d
 ```
 
 it gives the (same) output:
@@ -176,7 +176,7 @@ Debug mode is specified
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_specifications.py -c -d
+python3 examples/flag_and_option_specifications.py -c -d
 ```
 
 it gives the output:
@@ -191,7 +191,7 @@ Debug mode is specified
 If executed with the arguments
 
 ```
-    python examples/flag_and_option_specifications.py -dc
+python3 examples/flag_and_option_specifications.py -dc
 ```
 
 it gives the (same) output:

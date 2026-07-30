@@ -1,5 +1,5 @@
 # CLASP.Python <!-- omit from toc -->
-**C**ommand-**L**ine **A**rgument **S**orting and **P**arsing for Python
+**C**ommand-**L**ine **A**rgument **S**orting and **P**arsing, for Python
 
 ![Language](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
@@ -17,11 +17,11 @@
 - [Components](#components)
 - [Examples](#examples)
 - [Project Information](#project-information)
-	- [Where to get help](#where-to-get-help)
-	- [Contribution guidelines](#contribution-guidelines)
-	- [Dependencies](#dependencies)
-	- [Related projects](#related-projects)
-	- [License](#license)
+  - [Where to get help](#where-to-get-help)
+  - [Contribution guidelines](#contribution-guidelines)
+  - [Dependencies](#dependencies)
+  - [Related projects](#related-projects)
+  - [License](#license)
 
 
 ## Introduction
@@ -37,7 +37,7 @@ Python version.
 Install via **pip** or **pip3**, as in:
 
 ```
-$ pip3 install pyclasp
+pip3 install pyclasp
 ```
 
 Use via **import**:
