@@ -5,10 +5,11 @@
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![PyPI](https://img.shields.io/pypi/v/pyclasp.svg)](https://pypi.org/project/pyclasp/)
 [![GitHub release](https://img.shields.io/github/v/release/synesissoftware/CLASP.Python.svg)](https://github.com/synesissoftware/CLASP.Python/releases/latest)
+[![Last Commit](https://img.shields.io/github/last-commit/synesissoftware/CLASP.Python)](https://github.com/synesissoftware/CLASP.Python/commits/master)
 ![Python](https://img.shields.io/badge/Python-2.7%20%7C%203.8+-lightgrey)
 [![CI](https://github.com/synesissoftware/CLASP.Python/actions/workflows/python-package.yml/badge.svg)](https://github.com/synesissoftware/CLASP.Python/actions/workflows/python-package.yml)
 [![PyPI project](https://img.shields.io/badge/documentation-PyPI-lightgrey)](https://pypi.org/project/pyclasp/)
-
+[![PyPI Downloads](https://img.shields.io/pypi/dm/pyclasp.svg)](https://pypi.org/project/pyclasp/)
 
 ## Table of Contents <!-- omit from toc -->
 
