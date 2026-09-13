@@ -1,4 +1,4 @@
-# CLASP.Python Example - **flag_and_option_specifications**
+# CLASP.Python - Example - **flag_and_option_specifications**
 
 ## Summary
 

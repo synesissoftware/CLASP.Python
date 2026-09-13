@@ -1,4 +1,4 @@
-# CLASP.Python Example - **typed_options**
+# CLASP.Python - Example - **typed_options**
 
 ## Summary
 

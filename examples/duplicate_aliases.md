@@ -1,4 +1,4 @@
-# CLASP.Python Example - **duplicate_aliases**
+# CLASP.Python - Example - **duplicate_aliases**
 
 ## Summary
 

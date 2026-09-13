@@ -1,9 +1,9 @@
-# **CLASP.Python** Changes <!-- omit from toc -->
+# CLASP.Python - Changes <!-- omit in toc -->
 
 
 ## 0.8.12 - 28th July 2026
 
-* fixed falsy default values causing `MissingValueException` for option arguments;
+* fixed falsey default values causing `MissingValueException` for option arguments;
 * fixed failure message to be passed to `MissingValueException`;
 
 
@@ -162,11 +162,6 @@
 * ~ show_usage() and show_version() now handle case whereby first argument is instance of clasp.Arguments, as well as aliases;
 * ~ moved around some internal methods to simplify intra-library dependencies;
 * ~ ensured internal methods named with leading underscore;
-
-
-## previous versions
-
-None specified.
 
 
 <!-- ########################### end of file ########################### -->

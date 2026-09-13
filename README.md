@@ -1,4 +1,4 @@
-# CLASP.Python <!-- omit from toc -->
+# CLASP.Python <!-- omit in toc -->
 **C**ommand-**L**ine **A**rgument **S**orting and **P**arsing, for Python
 
 ![Language](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
@@ -21,6 +21,9 @@
   - [Where to get help](#where-to-get-help)
   - [Contribution guidelines](#contribution-guidelines)
   - [Dependencies](#dependencies)
+    - [Efferent (fan-out)](#efferent-fan-out)
+    - [Development Dependencies](#development-dependencies)
+    - [Afferent (fan-in)](#afferent-fan-in)
   - [Related projects](#related-projects)
   - [License](#license)
 
@@ -80,6 +83,22 @@ Defect reports, feature requests, and pull requests are welcome on https://githu
 
 
 ### Dependencies
+
+
+#### Efferent (fan-out)
+
+None.
+
+
+#### Development Dependencies
+
+None (currently).
+
+
+#### Afferent (fan-in)
+
+* [**libCLImate.Python**](https://github.com/synesissoftware/libCLImate.Python/)
+  (**libclimate**);
 
 
 ### Related projects

@@ -1,4 +1,4 @@
-# CLASP.Python Example - **sections**
+# CLASP.Python - Example - **sections**
 
 ## Summary
 
