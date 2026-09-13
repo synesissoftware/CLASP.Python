@@ -1,6 +1,11 @@
 # CLASP.Python - Changes <!-- omit in toc -->
 
 
+## 0.8.13 - 14th September 2026
+
+* packaging, documentation, and CI modernisation (PEP 621 hybrid, canonical CI, **ruff**, helper scripts);
+
+
 ## 0.8.12 - 28th July 2026
 
 * fixed falsey default values causing `MissingValueException` for option arguments;

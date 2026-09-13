@@ -1,8 +1,9 @@
 # CLASP.Python - News <!-- omit in toc -->
 
-| Date             | News Item                                                                                          | Details                                                |
-| ---------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| 28th July 2026   | [**CLASP.Python** 0.8.12](https://github.com/synesissoftware/CLASP.Python/releases/tag/0.8.12)     | Fixed falsey option defaults / `MissingValueException` |
+| Date                | News Item                                                                                          | Details                                                |
+| ------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| 14th September 2026 | [**CLASP.Python** 0.8.13](https://github.com/synesissoftware/CLASP.Python/releases/tag/0.8.13)     | Packaging / CI modernisation                           |
+| 28th July 2026      | [**CLASP.Python** 0.8.12](https://github.com/synesissoftware/CLASP.Python/releases/tag/0.8.12)     | Fixed falsey option defaults / `MissingValueException` |
 | 27th July 2026   | [**CLASP.Python** 0.8.11](https://github.com/synesissoftware/CLASP.Python/releases/tag/0.8.11)     | Packaging & CI (Python 2.7–3.14)                       |
 | 27th July 2026   | [**CLASP.Python** 0.8.10.1](https://github.com/synesissoftware/CLASP.Python/releases/tag/0.8.10.1) | Test arg order and string-literal canonicalisation     |
 | 25th July 2025   | [**CLASP.Python** 0.8.10](https://github.com/synesissoftware/CLASP.Python/releases/tag/0.8.10)     | `info_lines` `None`; OFF/ON bool conversion            |
