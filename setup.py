@@ -16,6 +16,7 @@ setuptools.setup(
         'Natural Language :: English',
         "Operating System :: OS Independent",
         "Programming Language :: Python",
+        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
@@ -24,6 +25,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
     ],
     description="Command-Line Argument Sorting and Parsing, for Python",
     keywords="Command-line CLI parsing",
@@ -34,6 +36,5 @@ setuptools.setup(
         "examples",
         "tests",
     ]),
-    url="https://github.com/synesissoftware/clasp.Python",
+    url="https://github.com/synesissoftware/CLASP.Python",
 )
-
