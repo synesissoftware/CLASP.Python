@@ -1,5 +1,9 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+# This workflow will install Python dependencies, run tests, and smoke
+# the sdist/wheel on a range of Python versions.
+#
+# Created: 14th September 2026
+# Updated: 14th September 2026
+#
 
 name: Python package
 
@@ -14,6 +18,13 @@ on:
       - rc2
       - rc3
   pull_request:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   build:
@@ -32,24 +43,30 @@ jobs:
           - "3.14"
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checking out code
+      uses: actions/checkout@v4
+
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8
-    - name: Lint with flake8
+        python -m pip install pytest
+        python -m pip install -e .
+
+    - name: Test with pytest
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with unittest
+        pytest
+
+    - name: Build and install smoke
       run: |
-        python tests/run_unittest.py
+        python -m pip install build
+        python -m build
+        python -m pip install dist/pyclasp-*.whl
+        python -c "import pyclasp; assert pyclasp.__version__ == '0.8.12'; print(pyclasp.__version__)"
 
   build-py27:
 
