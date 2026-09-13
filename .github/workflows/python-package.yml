@@ -9,11 +9,11 @@ on:
       - master
       - dev
       - boilerplate
+      - idiomatic
+      - rc1
+      - rc2
+      - rc3
   pull_request:
-    branches:
-      - master
-      - dev
-      - boilerplate
 
 jobs:
   build:

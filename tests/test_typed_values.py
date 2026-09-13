@@ -476,7 +476,7 @@ class Typed_values_tester_1(unittest.TestCase):
         self.assertEqual(0, len(args.values))
 
 
-    def test_reproduce_falsy_default_issue(self):
+    def test_reproduce_falsey_default_issue(self):
 
         specifications = (
             clasp.option(
@@ -505,7 +505,7 @@ class Typed_values_tester_1(unittest.TestCase):
         self.assertEqual('bybit', exchange_option.value)
 
 
-    def test_reproduce_falsy_default_issue_with_default_used(self):
+    def test_reproduce_falsey_default_issue_with_default_used(self):
 
         specifications = (
             clasp.option(
