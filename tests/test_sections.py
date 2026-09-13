@@ -18,7 +18,6 @@ import pyclasp as clasp
 
 import unittest
 
-import sys
 
 try:
 

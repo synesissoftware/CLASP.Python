@@ -83,7 +83,7 @@ def option(name, **kwargs):
             if v is None:
 
                 pass
-            elif str == type(v):
+            elif type(v) is str:
 
                 v = v.upper()
 

@@ -57,7 +57,7 @@ def _dict_get_N(d, *keys, **kwargs):
 
             v = d.get(key)
 
-            if None == v and default_if_none:
+            if None is v and default_if_none:
 
                 continue
 
@@ -89,7 +89,7 @@ def _global_multiple_flags_action():
 
     if a:
 
-        if not a in _MULTIPLE_ACTION_FLAG_ALLOWED:
+        if a not in _MULTIPLE_ACTION_FLAG_ALLOWED:
 
             a = None
 
@@ -110,7 +110,7 @@ def _global_multiple_options_action():
 
     if a:
 
-        if not a in _MULTIPLE_ACTION_OPTION_ALLOWED:
+        if a not in _MULTIPLE_ACTION_OPTION_ALLOWED:
 
             a = None
 

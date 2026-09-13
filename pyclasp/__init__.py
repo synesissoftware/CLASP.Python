@@ -12,18 +12,36 @@ __maintainer__  =   "Matt Wilson"
 __status__      =   "Beta"
 __version__     =   "0.8.12"
 
-from .exceptions import *
-from .flag_specification import FlagSpecification, flag
-from .flag_specification import HelpFlag, VersionFlag
-from .option_specification import OptionSpecification, option
-from .section_specification import SectionSpecification, section
-from .specification import Specification, specification
+from .exceptions import (
+	CLASPException as CLASPException,
+	DuplicateFlagSpecified as DuplicateFlagSpecified,
+	DuplicateOptionSpecified as DuplicateOptionSpecified,
+	IntegerOutOfRangeException as IntegerOutOfRangeException,
+	InvalidBooleanException as InvalidBooleanException,
+	InvalidIntegerException as InvalidIntegerException,
+	InvalidNumberException as InvalidNumberException,
+	InvalidValueException as InvalidValueException,
+	MissingValueException as MissingValueException,
+	ParsingException as ParsingException,
+	ValueParsingException as ValueParsingException,
+)
+from .flag_specification import FlagSpecification as FlagSpecification
+from .flag_specification import HelpFlag as HelpFlag
+from .flag_specification import VersionFlag as VersionFlag
+from .flag_specification import flag as flag
+from .option_specification import OptionSpecification as OptionSpecification
+from .option_specification import option as option
+from .section_specification import SectionSpecification as SectionSpecification
+from .section_specification import section as section
+from .specification import Specification as Specification
+from .specification import specification as specification
 
 from .arguments import Arguments
-from .flag_argument import FlagArgument as Flag
-from .option_argument import OptionArgument as Option
+from .flag_argument import FlagArgument as Flag  # noqa: F401
+from .option_argument import OptionArgument as Option  # noqa: F401
 
-from .cli import show_usage, show_version
+from .cli import show_usage as show_usage
+from .cli import show_version as show_version
 
 import sys
 

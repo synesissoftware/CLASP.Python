@@ -1,5 +1,10 @@
 
-from .exceptions import *
+from .exceptions import (
+    InvalidBooleanException,
+    InvalidIntegerException,
+    InvalidNumberException,
+    MissingValueException,
+)
 from .option_specification import OptionSpecification
 
 from .util import _SUPPORT_long, _long_type
@@ -95,39 +100,39 @@ class OptionArgument(object):
                     if False:
 
                         pass
-                    elif arg_spec.value_type == bool:
+                    elif arg_spec.value_type is bool:
 
                         try:
 
                             value       =   _parse_to_bool(given_value)
-                        except ValueError as x:
+                        except ValueError:
 
                             raise InvalidBooleanException("the '%s' option's value '%s' cannot be interpreted as boolean" % (self.name, given_value))
-                    elif arg_spec.value_type == float:
+                    elif arg_spec.value_type is float:
 
                         try:
 
                             value       =   float(given_value)
-                        except ValueError as x:
+                        except ValueError:
 
                             raise InvalidNumberException("the '%s' option's value '%s' cannot be interpreted as a number" % (self.name, given_value))
-                    elif arg_spec.value_type == int:
+                    elif arg_spec.value_type is int:
 
                         try:
 
                             value       =   int(given_value)
-                        except ValueError as x:
+                        except ValueError:
 
                             raise InvalidIntegerException("the '%s' option's value '%s' cannot be interpreted as an integer" % (self.name, given_value))
-                    elif _SUPPORT_long and arg_spec.value_type == _long_type:
+                    elif _SUPPORT_long and arg_spec.value_type is _long_type:
 
                         try:
 
                             value       =   _long_type(given_value)
-                        except ValueError as x:
+                        except ValueError:
 
                             raise InvalidIntegerException("the '%s' option's value '%s' cannot be interpreted as a long integer" % (self.name, given_value))
-                    elif arg_spec.value_type == str:
+                    elif arg_spec.value_type is str:
 
                         value   =   given_value
             else:
@@ -140,7 +145,7 @@ class OptionArgument(object):
                     if False:
 
                         pass
-                    elif arg_spec.value_type == str:
+                    elif arg_spec.value_type is str:
 
                         pass
                     elif not arg_spec.value_type:
@@ -148,16 +153,16 @@ class OptionArgument(object):
                         pass
                     else:
 
-                        if arg_spec.value_type == bool:
+                        if arg_spec.value_type is bool:
 
                             type_name = "boolean"
-                        elif arg_spec.value_type == float:
+                        elif arg_spec.value_type is float:
 
                             type_name = "a number"
-                        elif arg_spec.value_type == int:
+                        elif arg_spec.value_type is int:
 
                             type_name = "an integer"
-                        elif _SUPPORT_long and arg_spec.value_type == long:
+                        elif _SUPPORT_long and arg_spec.value_type is _long_type:
 
                             type_name = "a long integer"
                         else:

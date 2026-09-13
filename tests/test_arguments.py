@@ -15,7 +15,6 @@
 
 
 from pyclasp import Arguments
-from pyclasp import specification, option
 from pyclasp import Flag
 from pyclasp import Option
 import pyclasp as clasp

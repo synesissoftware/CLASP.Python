@@ -7,7 +7,6 @@ from .flag_specification import FlagSpecification
 from .option_specification import OptionSpecification
 from .section_specification import SectionSpecification
 
-import os
 import re
 import sys
 
@@ -88,7 +87,7 @@ def show_usage(specifications, **kwargs):
 
     if __debug__:
 
-        if specifications == None:
+        if specifications is None:
 
             raise TypeError("`specifications` may not be `None`")
         elif isinstance(specifications, (list, tuple, )):
@@ -134,7 +133,7 @@ def show_usage(specifications, **kwargs):
 
         info_lines  =   [ info_lines ]
 
-    info_lines          =   [ _generate_version_string(argv, options) if l in ( ':version', ':version:' ) else _info_line(l) for l in info_lines ]
+    info_lines          =   [ _generate_version_string(argv, options) if line in ( ':version', ':version:' ) else _info_line(line) for line in info_lines ]
 
     flags_and_options   =   _ensure_single_space_prefix(flags_and_options)
     values              =   _ensure_single_space_prefix(values)
@@ -226,7 +225,7 @@ def show_usage(specifications, **kwargs):
 
                 stream.write("\n")
 
-    if None != exit_code:
+    if None is not exit_code:
 
         sys.exit(exit_code)
 
@@ -246,7 +245,7 @@ def show_version(specifications, **kwargs):
 
     if __debug__:
 
-        if specifications == None:
+        if specifications is None:
 
             raise TypeError("`specifications` may not be `None`")
         elif isinstance(specifications, (list, tuple, )):
@@ -276,7 +275,7 @@ def show_version(specifications, **kwargs):
 
     stream.write("%s\n" % version)
 
-    if None != exit_code:
+    if None is not exit_code:
 
         sys.exit(exit_code)
 

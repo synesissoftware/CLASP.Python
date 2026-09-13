@@ -61,7 +61,7 @@ else:
 
 # Check for any unrecognised flags or options
 
-unused = args.get_first_unused_flag_or_option();
+unused = args.get_first_unused_flag_or_option()
 if (unused):
 
     sys.stderr.write("%s: unrecognised flag/option: %s\n" % (args.program_name, unused))

@@ -46,6 +46,25 @@ Changelog = "https://github.com/synesissoftware/CLASP.Python/blob/master/CHANGES
 Homepage = "https://github.com/synesissoftware/CLASP.Python"
 Repository = "https://github.com/synesissoftware/CLASP.Python"
 
+[project.optional-dependencies]
+dev = [
+	"pytest",
+	"ruff>=0.4.0",
+]
+
+
+[tool.ruff]
+line-length = 76
+target-version = "py38"
+
+[tool.ruff.lint]
+ignore = [
+	"E501",
+]
+select = [
+	"E",
+	"F",
+]
 
 [tool.setuptools.packages.find]
 exclude = [

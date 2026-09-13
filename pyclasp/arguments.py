@@ -88,7 +88,7 @@ class Arguments:
             `True` if the given flag (name, or instance) has been specified; `False` otherwise
         """
 
-        return None != self.lookup_flag(id);
+        return None is not self.lookup_flag(id)
 
 
     def lookupFlag(self, id):
@@ -109,10 +109,10 @@ class Arguments:
         if False:
 
             pass
-        elif FlagSpecification == type(id):
+        elif type(id) is FlagSpecification:
 
             name    =   id.name
-        elif OptionSpecification == type(id):
+        elif type(id) is OptionSpecification:
 
             name    =   id.name
         else:
@@ -148,10 +148,10 @@ class Arguments:
         if False:
 
             pass
-        elif FlagSpecification == type(id):
+        elif type(id) is FlagSpecification:
 
             name    =   id.name
-        elif OptionSpecification == type(id):
+        elif type(id) is OptionSpecification:
 
             name    =   id.name
         else:
@@ -282,10 +282,10 @@ class Arguments:
         if False:
 
             pass
-        elif FlagSpecification == type(id):
+        elif type(id) is FlagSpecification:
 
             name    =   id.name
-        elif OptionSpecification == type(id):
+        elif type(id) is OptionSpecification:
 
             name    =   id.name
         else:
@@ -544,7 +544,7 @@ class Arguments:
                                 elif isinstance(spec, (tuple, )):
 
                                     soa =   spec[0]
-                                    fa  =   spec[1]
+                                    _   =   spec[1] # Unused
                                     v   =   spec[2]
 
                                     option = OptionArgument(arg, index, arg, soa.name, soa, len(hyphens), given_label, v, extras)
@@ -607,7 +607,7 @@ class Arguments:
 
                         if is_option:
 
-                            if not value and value != None:
+                            if not value and value is not None:
 
                                 if alias_has_value:
 
